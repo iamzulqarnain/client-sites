@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonathan Slater, MBA (HBS) — The MBA Agent | Greater Boston Luxury Real Estate</title>
+<meta name="description" content="Harvard MBA. Top 1% agent. Data-driven luxury real estate in Newton, Brookline, Weston, Wellesley and Greater Boston.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --red:#EE3A39;
+  --red-deep:#C04735;
+  --ink:#111111;
+  --ink-2:#4B4B4B;
+  --gray:#909090;
+  --line:#E4E4E4;
+  --surface:#F4F4F4;
+  --white:#FFFFFF;
+  --head:'Oswald',sans-serif;
+  --body:'Open Sans',sans-serif;
+  --max:1240px;
+  --pad:clamp(20px,5vw,64px);
+  --r:2px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--body);color:var(--ink-2);background:var(--white);
+  font-size:16px;line-height:1.7;font-weight:400;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit;color:inherit}
+::selection{background:var(--red);color:#fff}
+
+h1,h2,h3,h4,.h{font-family:var(--head);color:var(--ink);font-weight:400;line-height:1.08;letter-spacing:.01em}
+.eyebrow{
+  font-family:var(--head);font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--red);font-weight:500;display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--red);flex:none}
+.sec-title{font-size:clamp(30px,4.6vw,52px);text-transform:uppercase;letter-spacing:.02em}
+.lede{font-size:clamp(15px,1.5vw,17px);color:var(--gray);max-width:62ch;margin-top:18px;font-weight:300}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+section{padding:clamp(64px,9vw,120px) 0}
+.surface{background:var(--surface)}
+.dark{background:var(--ink);color:#BDBDBD}
+.dark h2,.dark h3,.dark h4{color:#fff}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--head);font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  padding:16px 30px;border:1px solid transparent;border-radius:var(--r);cursor:pointer;
+  position:relative;overflow:hidden;transition:color .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
+  white-space:nowrap;
+}
+.btn span{position:relative;z-index:2}
+.btn::after{
+  content:"";position:absolute;inset:0;z-index:1;transform:translateY(101%);
+  transition:transform .42s var(--ease);
+}
+.btn:hover::after{transform:translateY(0)}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary::after{background:var(--ink)}
+.btn-ghost{border-color:var(--ink);color:var(--ink)}
+.btn-ghost::after{background:var(--ink)}
+.btn-ghost:hover{color:#fff}
+.btn-light{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-light::after{background:#fff}
+.btn-light:hover{color:var(--ink);border-color:#fff}
+.btn-block{width:100%}
+
+.link-arrow{
+  font-family:var(--head);font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink);display:inline-flex;align-items:center;gap:10px;padding-bottom:4px;
+  border-bottom:1px solid var(--line);transition:color .3s,border-color .3s,gap .3s
+}
+.link-arrow:hover{color:var(--red);border-color:var(--red);gap:16px}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .4s var(--ease),box-shadow .4s var(--ease),padding .4s var(--ease);
+  padding:20px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;flex-direction:column;line-height:1;transition:color .4s}
+.brand b{font-family:var(--head);font-size:21px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:#fff;transition:color .4s}
+.brand i{font-style:normal;font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--red);margin-top:6px;font-family:var(--head)}
+.nav.solid{background:rgba(255,255,255,.97);box-shadow:0 1px 0 var(--line);padding:12px 0;backdrop-filter:blur(8px)}
+.nav.solid .brand b{color:var(--ink)}
+.menu{display:flex;align-items:center;gap:30px}
+.menu a{
+  font-family:var(--head);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.88);position:relative;padding:6px 0;transition:color .3s
+}
+.nav.solid .menu a{color:var(--ink-2)}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--red);transition:width .34s var(--ease)}
+.menu a:hover{color:var(--red)}
+.menu a:hover::after,.menu a.active::after{width:100%}
+.menu a.active{color:var(--red)}
+.nav-cta{padding:12px 22px;font-size:12px}
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;position:relative;flex:none}
+.burger i{position:absolute;left:11px;width:22px;height:1.5px;background:#fff;transition:.35s var(--ease)}
+.nav.solid .burger i{background:var(--ink)}
+.burger i:nth-child(1){top:16px}
+.burger i:nth-child(2){top:22px}
+.burger i:nth-child(3){top:28px}
+.burger.on i{background:#fff}
+.burger.on i:nth-child(1){top:22px;transform:rotate(45deg)}
+.burger.on i:nth-child(2){opacity:0}
+.burger.on i:nth-child(3){top:22px;transform:rotate(-45deg)}
+
+.drawer{
+  position:fixed;inset:0;z-index:99;background:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 var(--pad);
+  clip-path:circle(0% at 92% 5%);transition:clip-path .6s var(--ease);pointer-events:none;
+}
+.drawer.open{clip-path:circle(150% at 92% 5%);pointer-events:auto}
+.drawer a{
+  font-family:var(--head);font-size:clamp(26px,7vw,40px);text-transform:uppercase;color:#fff;
+  letter-spacing:.04em;padding:9px 0;opacity:0;transform:translateY(14px);transition:.5s var(--ease);
+  border-bottom:1px solid rgba(255,255,255,.08)
+}
+.drawer.open a{opacity:1;transform:none}
+.drawer.open a:nth-child(1){transition-delay:.14s}
+.drawer.open a:nth-child(2){transition-delay:.19s}
+.drawer.open a:nth-child(3){transition-delay:.24s}
+.drawer.open a:nth-child(4){transition-delay:.29s}
+.drawer.open a:nth-child(5){transition-delay:.34s}
+.drawer.open a:nth-child(6){transition-delay:.39s}
+.drawer.open a:nth-child(7){transition-delay:.44s}
+.drawer a:hover{color:var(--red);padding-left:12px}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;padding-bottom:0}
+.hero-bg{position:absolute;inset:0}
+.hero-slide{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  opacity:0;transform:scale(1.08);transition:opacity 1.4s var(--ease),transform 7s linear;
+}
+.hero-slide.on{opacity:1;transform:scale(1)}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(17,17,17,.72) 0%,rgba(17,17,17,.34) 38%,rgba(17,17,17,.88) 100%);
+}
+.hero-inner{position:relative;z-index:3;width:100%;padding-top:140px}
+.hero h1{
+  color:#fff;font-size:clamp(40px,7.4vw,90px);text-transform:uppercase;letter-spacing:.005em;
+  max-width:16ch;font-weight:300;
+}
+.hero h1 em{font-style:normal;color:var(--red);font-weight:500}
+.hero-sub{color:rgba(255,255,255,.82);max-width:54ch;margin-top:24px;font-weight:300;font-size:clamp(15px,1.7vw,18px)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.hero-caption{
+  display:flex;align-items:center;gap:14px;margin-top:44px;
+  font-family:var(--head);font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6)
+}
+.dots{display:flex;gap:8px}
+.dot{width:26px;height:2px;background:rgba(255,255,255,.28);border:0;padding:0;cursor:pointer;transition:background .3s}
+.dot.on{background:var(--red)}
+
+/* search */
+.search{
+  margin-top:48px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
+  padding:14px;display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:10px;
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+}
+.search label{display:block;font-family:var(--head);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);margin:0 0 6px 12px}
+.search input,.search select{
+  width:100%;border:0;background:var(--surface);padding:14px 12px;border-radius:var(--r);
+  font-size:14px;outline:none;border:1px solid transparent;transition:border-color .3s
+}
+.search input:focus,.search select:focus{border-color:var(--red)}
+.search .fld{min-width:0}
+.search .btn{height:100%;align-self:end}
+
+/* ============ TICKER ============ */
+.ticker{background:var(--red);color:#fff;padding:14px 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;gap:56px;animation:slide 32s linear infinite;font-family:var(--head);font-size:12.5px;letter-spacing:.24em;text-transform:uppercase}
+.ticker-track span{display:inline-flex;align-items:center;gap:56px}
+.ticker-track span::after{content:"◆";font-size:7px;opacity:.65}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============ STATS ============ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.stat{background:var(--white);padding:clamp(28px,4vw,48px) clamp(16px,2.4vw,32px);text-align:center;transition:background .4s}
+.stat:hover{background:var(--surface)}
+.stat b{display:block;font-family:var(--head);font-size:clamp(34px,5.2vw,58px);color:var(--ink);font-weight:400;line-height:1}
+.stat b i{font-style:normal;color:var(--red)}
+.stat small{display:block;margin-top:12px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);font-family:var(--head)}
+
+/* ============ SPLIT / ABOUT ============ */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,84px);align-items:center}
+.split-media{position:relative}
+.split-media img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r)}
+.badge{
+  position:absolute;right:-18px;bottom:36px;background:var(--red);color:#fff;
+  padding:24px 26px;max-width:210px;box-shadow:0 20px 44px rgba(0,0,0,.2)
+}
+.badge b{display:block;font-family:var(--head);font-size:34px;line-height:1}
+.badge small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-family:var(--head);opacity:.92}
+.checks{list-style:none;margin-top:30px;display:grid;gap:14px}
+.checks li{display:flex;gap:14px;align-items:flex-start;font-size:15px}
+.checks li::before{
+  content:"";flex:none;width:18px;height:18px;margin-top:5px;border:1px solid var(--red);border-radius:50%;
+  background:radial-gradient(circle,var(--red) 0 34%,transparent 35%)
+}
+
+/* ============ ACCORDION (interactive) ============ */
+.acc{border-top:1px solid var(--line);margin-top:34px}
+.acc-item{border-bottom:1px solid var(--line)}
+.acc-head{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;padding:24px 48px 24px 0;
+  font-family:var(--head);font-size:clamp(17px,2.1vw,22px);color:var(--ink);text-transform:uppercase;
+  letter-spacing:.02em;position:relative;transition:color .3s
+}
+.acc-head:hover{color:var(--red)}
+.acc-head::after,.acc-head::before{content:"";position:absolute;right:6px;top:50%;background:var(--red);transition:.35s var(--ease)}
+.acc-head::after{width:15px;height:1.5px;margin-top:-.75px}
+.acc-head::before{width:1.5px;height:15px;margin-top:-7.5px;right:12.75px}
+.acc-item.open .acc-head::before{transform:rotate(90deg);opacity:0}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.acc-body p{padding:0 40px 26px 0;color:var(--gray);font-weight:300}
+
+/* ============ TOWNS (interactive grid) ============ */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{
+  border:1px solid var(--line);background:transparent;padding:10px 20px;cursor:pointer;border-radius:999px;
+  font-family:var(--head);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);
+  transition:.3s var(--ease)
+}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.towns{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:38px}
+.town{
+  position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:var(--r);
+  display:flex;align-items:flex-end;padding:24px;isolation:isolate;
+  transition:transform .5s var(--ease),opacity .4s,filter .4s
+}
+.town.hide{display:none}
+.town img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .9s var(--ease)}
+.town::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(17,17,17,0) 35%,rgba(17,17,17,.86) 100%);transition:background .45s}
+.town:hover img{transform:scale(1.08)}
+.town:hover::after{background:linear-gradient(180deg,rgba(238,58,57,.28) 0%,rgba(17,17,17,.9) 100%)}
+.town-txt{position:relative;color:#fff}
+.town-txt h4{color:#fff;font-size:21px;text-transform:uppercase;letter-spacing:.06em}
+.town-txt small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);font-family:var(--head)}
+.town-txt em{
+  display:block;font-style:normal;font-family:var(--head);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--red);margin-top:12px;opacity:0;transform:translateY(8px);transition:.4s var(--ease)
+}
+.town:hover .town-txt em{opacity:1;transform:none}
+
+/* ============ INSIGHTS ============ */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,30px);margin-top:46px}
+.post{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.45s var(--ease)}
+.post:hover{transform:translateY(-8px);box-shadow:0 26px 54px rgba(0,0,0,.09);border-color:transparent}
+.post-img{aspect-ratio:16/10;overflow:hidden}
+.post-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.post:hover .post-img img{transform:scale(1.07)}
+.post-body{padding:26px;display:flex;flex-direction:column;gap:12px;flex:1}
+.tag{font-family:var(--head);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.post h3{font-size:19px;line-height:1.3;text-transform:none;letter-spacing:0}
+.post p{font-size:14px;color:var(--gray);font-weight:300;flex:1}
+
+/* ============ TESTIMONIALS ============ */
+.quote-wrap{max-width:900px;margin:0 auto;text-align:center;position:relative}
+.quote{display:none}
+.quote.on{display:block;animation:fade .6s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.quote p{font-family:var(--head);font-weight:300;font-size:clamp(20px,3.1vw,34px);line-height:1.42;color:#fff}
+.quote footer{margin-top:28px;font-family:var(--head);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.quote footer small{display:block;color:var(--gray);margin-top:8px;letter-spacing:.16em}
+.stars{color:var(--red);letter-spacing:.34em;font-size:13px;margin-bottom:26px}
+.q-nav{display:flex;justify-content:center;gap:12px;margin-top:40px}
+.q-btn{
+  width:46px;height:46px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer;
+  border-radius:50%;transition:.3s var(--ease);font-size:15px
+}
+.q-btn:hover{background:var(--red);border-color:var(--red)}
+
+/* ============ CALCULATOR ============ */
+.calc{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center}
+.calc-fields{display:grid;gap:26px;margin-top:34px}
+.fld-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.fld-row label{font-family:var(--head);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+.fld-row output{font-family:var(--head);font-size:17px;color:var(--red)}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:2px;background:var(--line);outline:none;border-radius:2px
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--red);cursor:pointer;
+  border:4px solid #fff;box-shadow:0 0 0 1px var(--red);transition:transform .2s
+}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--red);cursor:pointer;border:3px solid #fff}
+.calc-out{background:var(--ink);color:#fff;padding:clamp(32px,5vw,54px);border-radius:var(--r);text-align:center}
+.calc-out small{font-family:var(--head);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray)}
+.calc-out b{display:block;font-family:var(--head);font-size:clamp(40px,6.4vw,64px);color:#fff;font-weight:400;margin:14px 0 4px;line-height:1}
+.calc-out b i{font-style:normal;color:var(--red)}
+.calc-meta{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.12);margin:30px 0;border-radius:var(--r);overflow:hidden}
+.calc-meta div{background:var(--ink);padding:16px 10px}
+.calc-meta span{display:block;font-family:var(--head);font-size:18px;color:#fff}
+.calc-meta em{font-style:normal;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);font-family:var(--head)}
+
+/* ============ CTA BAND ============ */
+.band{position:relative;overflow:hidden;background:var(--ink)}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.26}
+.band .wrap{position:relative;text-align:center}
+.band h2{color:#fff;font-size:clamp(32px,5.4vw,64px);text-transform:uppercase;max-width:20ch;margin:0 auto}
+.band p{color:rgba(255,255,255,.72);max-width:56ch;margin:20px auto 0;font-weight:300}
+.band .hero-cta{justify-content:center}
+
+/* ============ CONTACT ============ */
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,80px)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form .full{grid-column:1/-1}
+.form input,.form textarea{
+  width:100%;border:0;border-bottom:1px solid var(--line);background:transparent;padding:14px 2px;
+  font-size:15px;outline:none;transition:border-color .3s
+}
+.form input:focus,.form textarea:focus{border-color:var(--red)}
+.form textarea{resize:vertical;min-height:110px}
+.info-list{list-style:none;display:grid;gap:26px;margin-top:34px}
+.info-list li{border-left:2px solid var(--red);padding-left:18px}
+.info-list b{display:block;font-family:var(--head);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gray)}
+.info-list a,.info-list span{font-family:var(--head);font-size:19px;color:var(--ink);transition:color .3s}
+.info-list a:hover{color:var(--red)}
+.note{font-size:12.5px;color:var(--gray);margin-top:4px}
+.toast{
+  grid-column:1/-1;background:#F1F8F0;border-left:3px solid #468847;color:#3d6b3e;
+  padding:14px 18px;font-size:14px;display:none
+}
+.toast.on{display:block;animation:fade .4s var(--ease)}
+
+/* ============ FOOTER ============ */
+.foot{background:var(--ink);color:var(--gray);padding:clamp(56px,7vw,84px) 0 0}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:clamp(24px,4vw,48px)}
+.foot h5{font-family:var(--head);color:#fff;font-size:12px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:20px;font-weight:500}
+.foot ul{list-style:none;display:grid;gap:11px}
+.foot a{font-size:14px;transition:color .3s}
+.foot a:hover{color:var(--red)}
+.foot .brand b{color:#fff}
+.foot p{font-size:14px;font-weight:300;margin-top:20px;max-width:34ch}
+.socials{display:flex;gap:10px;margin-top:26px}
+.socials a{
+  width:40px;height:40px;border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;border-radius:50%;
+  font-size:12px;font-family:var(--head);letter-spacing:.04em;transition:.3s var(--ease)
+}
+.socials a:hover{background:var(--red);border-color:var(--red);color:#fff}
+.foot-btm{
+  margin-top:clamp(40px,6vw,64px);border-top:1px solid rgba(255,255,255,.1);padding:24px 0;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px
+}
+
+/* ============ REVEAL + TOP ============ */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.top{
+  position:fixed;right:22px;bottom:22px;z-index:90;width:48px;height:48px;border:0;border-radius:50%;
+  background:var(--red);color:#fff;cursor:pointer;opacity:0;pointer-events:none;transition:.35s var(--ease);
+  box-shadow:0 10px 26px rgba(238,58,57,.36);font-size:16px
+}
+.top.on{opacity:1;pointer-events:auto}
+.top:hover{background:var(--ink);transform:translateY(-4px)}
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--red);z-index:101;width:0;transition:width .12s linear}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1080px){
+  .menu{display:none}
+  .burger{display:block}
+  .towns{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  .search{grid-template-columns:1fr 1fr;gap:12px}
+  .search .btn{grid-column:1/-1;padding:16px}
+  .stats{grid-template-columns:1fr 1fr}
+  .split,.calc,.contact{grid-template-columns:1fr}
+  .split-media{order:-1;max-width:460px}
+  .badge{right:14px}
+  .posts{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .hero-inner{padding-top:120px;padding-bottom:8px}
+  .hero{min-height:94svh}
+  .search{grid-template-columns:1fr;padding:12px;margin-top:34px}
+  .towns{grid-template-columns:1fr 1fr;gap:12px}
+  .posts{grid-template-columns:1fr}
+  .form{grid-template-columns:1fr}
+  .calc-meta{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-btm{flex-direction:column;text-align:center;justify-content:center}
+  .btn{padding:15px 24px;font-size:12px}
+  .hero-cta .btn{flex:1 1 100%}
+  .badge{position:static;margin-top:-40px;margin-left:20px;max-width:190px;position:relative;z-index:2}
+}
+@media(max-width:400px){
+  .towns{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><b>MBA<span style="color:var(--red)">agent</span></b><i>Jonathan Slater · HBS MBA</i></a>
+    <nav class="menu" id="menu">
+      <a href="#advantage">Advantage</a>
+      <a href="#towns">Towns</a>
+      <a href="#insights">Market Data</a>
+      <a href="#voices">Clients</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#valuation" class="btn btn-primary nav-cta"><span>What's My Home Worth?</span></a>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  </div>
+</header>
+
+<nav class="drawer" id="drawer">
+  <a href="#advantage">Advantage</a>
+  <a href="#towns">Towns</a>
+  <a href="#insights">Market Data</a>
+  <a href="#voices">Clients</a>
+  <a href="#calculator">Calculator</a>
+  <a href="#valuation">Home Value</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="slides">
+    <div class="hero-slide on" data-cap="Historic homes for every taste" style="background-image:url('https://media.placester.com/image/upload/c_fill,f_auto,q_50,w_2560/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_1.jpg')"></div>
+    <div class="hero-slide" data-cap="Impeccable design, 21st-century aesthetic" style="background-image:url('https://media.placester.com/image/upload/c_fill,f_auto,q_50,w_2560/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_3.jpg')"></div>
+    <div class="hero-slide" data-cap="Clean, graceful, built for the way you live" style="background-image:url('https://media.placester.com/image/upload/c_fill,f_auto,q_50,w_2560/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_4.jpg')"></div>
+    <div class="hero-slide" data-cap="Charming and classically inspired properties" style="background-image:url('https://media.placester.com/image/upload/c_fill,f_auto,q_50,w_2560/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_5.jpg')"></div>
+  </div>
+
+  <div class="wrap hero-inner">
+    <p class="eyebrow" style="color:#fff">Newton · Brookline · Weston · Wellesley</p>
+    <h1>Most agents sell homes.<br><em>I run the numbers first.</em></h1>
+    <p class="hero-sub">A Harvard MBA applied to Greater Boston luxury real estate. Pricing models instead of guesswork, negotiation strategy instead of hope — and a Top&nbsp;1% track record to prove it works.</p>
+
+    <div class="hero-cta">
+      <a href="#valuation" class="btn btn-primary"><span>Get My Home's Value →</span></a>
+      <a href="#advantage" class="btn btn-light"><span>See The Advantage</span></a>
+    </div>
+
+    <form class="search" id="searchForm" onsubmit="return false">
+      <div class="fld">
+        <label for="q">Location</label>
+        <input id="q" type="text" placeholder="City, town, or ZIP">
+      </div>
+      <div class="fld">
+        <label for="type">Property Type</label>
+        <select id="type"><option>Single Family</option><option>Condo</option><option>Multi-Family</option><option>Land</option></select>
+      </div>
+      <div class="fld">
+        <label for="budget">Max Price</label>
+        <select id="budget"><option>$1M+</option><option>$2M+</option><option>$3M+</option><option>$5M+</option></select>
+      </div>
+      <button class="btn btn-primary" type="submit"><span>Search</span></button>
+    </form>
+
+    <div class="hero-caption">
+      <div class="dots" id="dots"></div>
+      <span id="cap">Historic homes for every taste</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Boston Magazine Top Producer</span><span>Best of Zillow — Top 1%</span><span>Harvard Business School MBA</span><span>Keller Williams Chestnut Hill</span>
+    <span>Boston Magazine Top Producer</span><span>Best of Zillow — Top 1%</span><span>Harvard Business School MBA</span><span>Keller Williams Chestnut Hill</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section style="padding-top:0;padding-bottom:0">
+  <div class="stats" id="stats">
+    <div class="stat rv"><b><span class="count" data-to="20">0</span><i>+</i></b><small>Years In Market</small></div>
+    <div class="stat rv"><b><i>$</i><span class="count" data-to="500">0</span><i>M+</i></b><small>Volume Closed</small></div>
+    <div class="stat rv"><b><span class="count" data-to="98">0</span><i>%</i></b><small>List-To-Sale Ratio</small></div>
+    <div class="stat rv"><b><span class="count" data-to="1">0</span><i>%</i></b><small>Top Zillow Tier</small></div>
+  </div>
+</section>
+
+<!-- ADVANTAGE -->
+<section id="advantage">
+  <div class="wrap split">
+    <div class="rv">
+      <p class="eyebrow">The MBA Advantage</p>
+      <h2 class="sec-title">Real estate,<br>run like a business</h2>
+      <p class="lede">Your home is likely your largest asset. It deserves analysis — not a yard sign and a prayer. Every listing gets a pricing model, a buyer-demand study, and a negotiation plan before it ever hits the market.</p>
+
+      <div class="acc" id="acc">
+        <div class="acc-item open">
+          <button class="acc-head">Data-Driven Pricing</button>
+          <div class="acc-body"><p>Comparative models built from live absorption rates, days-on-market curves, and micro-neighborhood trends — so your list price attracts offers instead of repelling them.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head">Negotiation Strategy</button>
+          <div class="acc-body"><p>Harvard-trained negotiation frameworks applied to every offer. I map the other side's incentives before the first counter — which is where most deals are quietly won or lost.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head">Luxury Marketing</button>
+          <div class="acc-body"><p>Architectural photography, cinematic tours, and targeted digital placement in front of qualified buyers in Newton, Brookline, Weston, and beyond.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head">Concierge Execution</button>
+          <div class="acc-body"><p>Staging, contractors, inspections, and closing coordination handled end-to-end. You approve decisions; I run the project.</p></div>
+        </div>
+      </div>
+
+      <div style="margin-top:36px"><a href="#contact" class="btn btn-ghost"><span>Book A Strategy Call</span></a></div>
+    </div>
+
+    <div class="split-media rv">
+      <img src="https://media.placester.com/image/upload/c_fill,f_auto,q_70,w_1200/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_2.jpg" alt="Luxury Greater Boston interior">
+      <div class="badge"><b>Top 1%</b><small>Best of Zillow</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOWNS -->
+<section class="surface" id="towns">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">Featured Towns</p>
+      <h2 class="sec-title">Where I know<br>every street</h2>
+      <p class="lede">Eight markets. Two decades of transaction history. Filter below to see where your next move fits.</p>
+      <div class="filters" id="filters">
+        <button class="chip on" data-f="all">All Markets</button>
+        <button class="chip" data-f="suburb">Suburban Estates</button>
+        <button class="chip" data-f="urban">Urban Core</button>
+        <button class="chip" data-f="village">Village Living</button>
+      </div>
+    </div>
+
+    <div class="towns rv" id="townGrid">
+      <a href="#contact" class="town" data-c="village"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_1.jpg" alt="Chestnut Hill"><div class="town-txt"><small>Median $2.4M</small><h4>Chestnut Hill</h4><em>Explore →</em></div></a>
+      <a href="#contact" class="town" data-c="urban"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_2.jpg" alt="Brookline"><div class="town-txt"><small>Median $1.9M</small><h4>Brookline</h4><em>Explore →</em></div></a>
+      <a href="#contact" class="town" data-c="village"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_3.jpg" alt="Newton"><div class="town-txt"><small>Median $1.7M</small><h4>Newton</h4><em>Explore →</em></div></a>
+      <a href="#contact" class="town" data-c="suburb"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_4.jpg" alt="Weston"><div class="town-txt"><small>Median $3.1M</small><h4>Weston</h4><em>Explore →</em></div></a>
+      <a href="#contact" class="town" data-c="suburb"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_5.jpg" alt="Wellesley"><div class="town-txt"><small>Median $2.2M</small><h4>Wellesley</h4><em>Explore →</em></div></a>
+      <a href="#contact" class="town" data-c="village"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_3.jpg" alt="Needham"><div class="town-txt"><small>Median $1.4M</small><h4>Needham</h4><em>Explore →</em></div></a>
+      <a href="#contact" class="town" data-c="urban"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_1.jpg" alt="Boston"><div class="town-txt"><small>Median $1.1M</small><h4>Boston</h4><em>Explore →</em></div></a>
+      <a href="#contact" class="town" data-c="urban"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_2.jpg" alt="Cambridge"><div class="town-txt"><small>Median $1.3M</small><h4>Cambridge</h4><em>Explore →</em></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="insights">
+  <div class="wrap">
+    <div class="rv" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+      <div>
+        <p class="eyebrow">Market Intelligence</p>
+        <h2 class="sec-title">The numbers,<br>before the headlines</h2>
+      </div>
+      <a href="#contact" class="link-arrow">All Market Studies →</a>
+    </div>
+
+    <div class="posts rv">
+      <article class="post">
+        <div class="post-img"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_4.jpg" alt=""></div>
+        <div class="post-body">
+          <span class="tag">Market Study</span>
+          <h3>Prime MetroWest Luxury: Single-Family Sales Drop 41.1% YoY</h3>
+          <p>Brookline, Newton, Wellesley and Weston sold 73 homes versus 124 a year prior. Here's what that actually means for your list price.</p>
+          <a href="#contact" class="link-arrow" style="align-self:flex-start">Read More →</a>
+        </div>
+      </article>
+      <article class="post">
+        <div class="post-img"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_5.jpg" alt=""></div>
+        <div class="post-body">
+          <span class="tag">Recognition</span>
+          <h3>Named Real Estate Top Producer by Boston Magazine</h3>
+          <p>The moniker stuck for a reason. Operating out of the KW Chestnut Hill office, with a method built on analysis over instinct.</p>
+          <a href="#contact" class="link-arrow" style="align-self:flex-start">Read More →</a>
+        </div>
+      </article>
+      <article class="post">
+        <div class="post-img"><img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_800/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_1.jpg" alt=""></div>
+        <div class="post-body">
+          <span class="tag">Trend Report</span>
+          <h3>Greater Boston Residential Real Estate Starting to Pop</h3>
+          <p>Strong recent gains across Boston and the western suburbs. Which micro-markets are leading — and which are lagging.</p>
+          <a href="#contact" class="link-arrow" style="align-self:flex-start">Read More →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="dark" id="voices">
+  <div class="wrap">
+    <div class="quote-wrap">
+      <p class="eyebrow" style="justify-content:center">Client Voices</p>
+      <div class="stars">★ ★ ★ ★ ★</div>
+
+      <blockquote class="quote on"><p>"Jonathan is the most strategic real estate professional with whom I have ever worked."</p><footer>John Dolan<small>Buyer · Newton, MA</small></footer></blockquote>
+      <blockquote class="quote"><p>"An outstanding experience working with Jonathan — I would give the strongest possible recommendation."</p><footer>Vinod Nambudiri<small>Buyer · Newton, MA</small></footer></blockquote>
+      <blockquote class="quote"><p>"Jonathan is simply amazing. He goes well beyond the extra mile, every single time."</p><footer>Nes &amp; Barb<small>Buyers · Newton, MA</small></footer></blockquote>
+
+      <div class="q-nav">
+        <button class="q-btn" id="qPrev" aria-label="Previous">←</button>
+        <button class="q-btn" id="qNext" aria-label="Next">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="surface" id="calculator">
+  <div class="wrap calc">
+    <div class="rv">
+      <p class="eyebrow">Payment Calculator</p>
+      <h2 class="sec-title">Know the number<br>before you tour</h2>
+      <p class="lede">Move the sliders. The math updates live — no form, no email gate.</p>
+
+      <div class="calc-fields">
+        <div>
+          <div class="fld-row"><label for="price">Property Price</label><output id="oPrice">$1,800,000</output></div>
+          <input type="range" id="price" min="300000" max="8000000" step="25000" value="1800000">
+        </div>
+        <div>
+          <div class="fld-row"><label for="down">Down Payment</label><output id="oDown">20%</output></div>
+          <input type="range" id="down" min="0" max="60" step="1" value="20">
+        </div>
+        <div>
+          <div class="fld-row"><label for="rate">Interest Rate</label><output id="oRate">6.25%</output></div>
+          <input type="range" id="rate" min="1" max="12" step="0.05" value="6.25">
+        </div>
+        <div>
+          <div class="fld-row"><label for="term">Loan Term</label><output id="oTerm">30 yrs</output></div>
+          <input type="range" id="term" min="5" max="40" step="1" value="30">
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-out rv">
+      <small>Estimated Monthly Payment</small>
+      <b><i>$</i><span id="pay">11,084</span></b>
+      <div class="calc-meta">
+        <div><span id="mLoan">$1,440,000</span><em>Loan Amount</em></div>
+        <div><span id="mDown">$360,000</span><em>Cash Down</em></div>
+        <div><span id="mInt">$2,549,000</span><em>Total Interest</em></div>
+        <div><span id="mTotal">$3,989,000</span><em>Total Paid</em></div>
+      </div>
+      <a href="#contact" class="btn btn-primary btn-block"><span>Get Pre-Approved →</span></a>
+      <p class="note" style="color:var(--gray);margin-top:16px">Principal &amp; interest only. Taxes and insurance excluded.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="band" id="valuation">
+  <img src="https://media.placester.com/image/upload/c_fill,f_auto,q_60,w_2000/v1/inception-app-assets/slideshows/Luxury%20Properties/Luxury_Slideshow_3.jpg" alt="">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center">Seller Hook</p>
+    <h2>Your neighbor just sold for over asking. Should you?</h2>
+    <p>Get a modeled valuation — not a Zestimate. Absorption rate, comparable spread, and the price band that actually moves your home in this market.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary"><span>What's My Home Worth? →</span></a>
+      <a href="tel:6172164000" class="btn btn-light"><span>Call 617-216-4000</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact">
+    <div class="rv">
+      <p class="eyebrow">Get In Touch</p>
+      <h2 class="sec-title">Let's talk<br>strategy</h2>
+      <p class="lede">Buying, selling, or just testing the water — the first conversation is analysis, not a pitch.</p>
+      <ul class="info-list">
+        <li><b>Direct</b><a href="tel:6172164000">617.216.4000</a></li>
+        <li><b>Email</b><a href="mailto:jslater@MBAagent.com">jslater@MBAagent.com</a></li>
+        <li><b>Office</b><span>KW Chestnut Hill · Newton Centre, MA 02467</span></li>
+      </ul>
+    </div>
+
+    <form class="form rv" id="contactForm" novalidate>
+      <div><input type="text" placeholder="First Name" required></div>
+      <div><input type="text" placeholder="Last Name" required></div>
+      <div class="full"><input type="email" placeholder="Email Address" required></div>
+      <div class="full"><input type="tel" placeholder="Phone Number"></div>
+      <div class="full"><textarea placeholder="What are you looking to do?"></textarea></div>
+      <div class="toast" id="toast">Thank you for reaching out — I'll get back to you shortly.</div>
+      <div class="full"><button class="btn btn-primary btn-block" type="submit"><span>Send Message →</span></button></div>
+      <p class="note full">Replies within one business day. No spam, no drip campaigns.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand"><b>MBA<span style="color:var(--red)">agent</span></b><i>Jonathan Slater · HBS MBA</i></a>
+        <p>Greater Boston luxury real estate, run with the rigor of a business case.</p>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Twitter">X</a>
+          <a href="#" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div><h5>Explore</h5><ul><li><a href="#advantage">Advantage</a></li><li><a href="#towns">Featured Towns</a></li><li><a href="#insights">Market Data</a></li><li><a href="#voices">Testimonials</a></li></ul></div>
+      <div><h5>Tools</h5><ul><li><a href="#valuation">Home Valuation</a></li><li><a href="#calculator">Payment Calculator</a></li><li><a href="#top">Property Search</a></li><li><a href="#contact">Sell Your Home</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="tel:6172164000">617.216.4000</a></li><li><a href="mailto:jslater@MBAagent.com">jslater@MBAagent.com</a></li><li><a href="#contact">Newton Centre, MA</a></li></ul></div>
+    </div>
+    <div class="foot-btm">
+      <span>©2026 MBAagent.com — All Rights Reserved</span>
+      <span>Equal Housing Opportunity · REALTOR®</span>
+    </div>
+  </div>
+</footer>
+
+<button class="top" id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+  /* NAV state */
+  var nav=$('#nav'),prog=$('#progress'),toTop=$('#toTop');
+  function onScroll(){
+    var y=window.pageYOffset,h=document.documentElement.scrollHeight-window.innerHeight;
+    nav.classList.toggle('solid',y>80);
+    toTop.classList.toggle('on',y>600);
+    prog.style.width=(h>0?(y/h)*100:0)+'%';
+    var cur='';
+    $$('section[id]').forEach(function(s){ if(y>=s.offsetTop-140) cur=s.id; });
+    $$('#menu a').forEach(function(a){ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+  /* Mobile drawer */
+  var burger=$('#burger'),drawer=$('#drawer');
+  burger.addEventListener('click',function(){
+    var open=drawer.classList.toggle('open');
+    burger.classList.toggle('on',open);
+    burger.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+  });
+  $$('#drawer a').forEach(function(a){a.addEventListener('click',function(){
+    drawer.classList.remove('open');burger.classList.remove('on');document.body.style.overflow='';
+  })});
+
+  /* Hero slideshow */
+  var slides=$$('.hero-slide'),dots=$('#dots'),cap=$('#cap'),si=0,timer;
+  slides.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='dot'+(i===0?' on':'');b.setAttribute('aria-label','Slide '+(i+1));
+    b.addEventListener('click',function(){go(i);reset()});
+    dots.appendChild(b);
+  });
+  function go(i){
+    si=(i+slides.length)%slides.length;
+    slides.forEach(function(s,n){s.classList.toggle('on',n===si)});
+    $$('.dot').forEach(function(d,n){d.classList.toggle('on',n===si)});
+    cap.textContent=slides[si].dataset.cap;
+  }
+  function reset(){clearInterval(timer);timer=setInterval(function(){go(si+1)},6000)}
+  reset();
+
+  /* Accordion */
+  $$('.acc-head').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.parentElement,open=item.classList.contains('open');
+      $$('.acc-item').forEach(function(i){i.classList.remove('open');$('.acc-body',i).style.maxHeight=null});
+      if(!open){item.classList.add('open');var b=$('.acc-body',item);b.style.maxHeight=b.scrollHeight+'px'}
+    });
+  });
+  var firstOpen=$('.acc-item.open .acc-body'); if(firstOpen) firstOpen.style.maxHeight=firstOpen.scrollHeight+'px';
+
+  /* Town filters */
+  $$('#filters .chip').forEach(function(c){
+    c.addEventListener('click',function(){
+      $$('#filters .chip').forEach(function(x){x.classList.remove('on')});
+      c.classList.add('on');
+      var f=c.dataset.f;
+      $$('.town').forEach(function(t){
+        var show=(f==='all'||t.dataset.c===f);
+        t.classList.toggle('hide',!show);
+      });
+    });
+  });
+
+  /* Testimonial slider */
+  var quotes=$$('.quote'),qi=0;
+  function q(n){qi=(n+quotes.length)%quotes.length;quotes.forEach(function(el,i){el.classList.toggle('on',i===qi)})}
+  $('#qNext').addEventListener('click',function(){q(qi+1)});
+  $('#qPrev').addEventListener('click',function(){q(qi-1)});
+  setInterval(function(){q(qi+1)},9000);
+
+  /* Calculator */
+  var price=$('#price'),down=$('#down'),rate=$('#rate'),term=$('#term');
+  var fmt=function(n){return Math.round(n).toLocaleString('en-US')};
+  function calc(){
+    var P=+price.value,d=+down.value,r=+rate.value,t=+term.value;
+    var loan=P*(1-d/100),i=r/100/12,n=t*12;
+    var m=i>0?loan*i/(1-Math.pow(1+i,-n)):loan/n;
+    $('#oPrice').textContent='$'+fmt(P);
+    $('#oDown').textContent=d+'%';
+    $('#oRate').textContent=r.toFixed(2)+'%';
+    $('#oTerm').textContent=t+' yrs';
+    $('#pay').textContent=fmt(m);
+    $('#mLoan').textContent='$'+fmt(loan);
+    $('#mDown').textContent='$'+fmt(P-loan);
+    $('#mInt').textContent='$'+fmt(m*n-loan);
+    $('#mTotal').textContent='$'+fmt(m*n);
+  }
+  [price,down,rate,term].forEach(function(el){el.addEventListener('input',calc)});
+  calc();
+
+  /* Reveal on scroll */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)} });
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  $$('.rv').forEach(function(el){io.observe(el)});
+
+  /* Counters */
+  var cio=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el=e.target,to=+el.dataset.to,start=null;
+      function step(ts){
+        if(!start)start=ts;
+        var p=Math.min((ts-start)/1400,1);
+        el.textContent=Math.round(to*(1-Math.pow(1-p,3)));
+        if(p<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);cio.unobserve(el);
+    });
+  },{threshold:.5});
+  $$('.count').forEach(function(el){cio.observe(el)});
+
+  /* Contact form */
+  $('#contactForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=true;
+    $$('input[required]',this).forEach(function(i){ if(!i.value.trim()){i.style.borderColor='var(--red)';ok=false} else {i.style.borderColor=''} });
+    if(!ok) return;
+    $('#toast').classList.add('on');
+    this.reset();
+  });
+
+  /* Search demo */
+  $('#searchForm').addEventListener('submit',function(){
+    document.getElementById('towns').scrollIntoView({behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Flat Earth Dave — Observe. Question. Verify.</title>
+<meta name="theme-color" content="#0A1A2F" />
+<meta name="description" content="Proof, Shows, Tools, People. 20 years of research, 4,116 interviews, 200 observable proofs — organised into one path." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   ZETETIC — design system
+   Motif: instrument. Horizon lines, dials, grids.
+   Rule: one claim + one action per section.
+   ═══════════════════════════════════════════════════ */
+:root{
+  /* color roles */
+  --ink:#050B15;            /* page */
+  --navy:#0A1A2F;           /* brand base */
+  --raise:rgba(255,255,255,.035);
+  --raise-2:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.09);
+  --line-2:rgba(255,255,255,.17);
+  --text:#EAF1FA;
+  --muted:#8DA2BE;
+  --signal:#F5B544;          /* the single warm light — actions only */
+  --signal-soft:rgba(245,181,68,.13);
+  --live:#3DD6C4;            /* live/verified state only */
+  /* scale */
+  --r:18px; --r-sm:12px;
+  --max:1220px;
+  --pad:clamp(20px,5vw,64px);
+  --ff-d:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --ff-b:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--ff-b);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+h1,h2,h3,h4{font-family:var(--ff-d);font-weight:600;line-height:1.08;letter-spacing:-.025em;margin:0}
+p{margin:0}::selection{background:var(--signal);color:var(--ink)}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--pad)}
+.sec{padding-block:clamp(70px,10vw,128px);position:relative}
+
+/* ── pillar header: number / pillar / claim / action ── */
+.pillar{display:flex;align-items:center;gap:12px;font-family:var(--ff-d);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--signal);margin-bottom:18px}
+.pillar em{font-style:normal;color:var(--muted);opacity:.65}
+.pillar::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);max-width:120px}
+.h2{font-size:clamp(1.9rem,4.4vw,3.2rem)}
+.lead{color:var(--muted);font-size:clamp(1rem,1.5vw,1.1rem);max-width:58ch;margin-top:16px;font-weight:300}
+.sec-head{max-width:780px;margin-bottom:clamp(34px,5vw,58px)}
+.sec-head.row{max-width:none;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+
+/* ── horizon divider (signature motif) ── */
+.horizon-rule{height:1px;background:linear-gradient(90deg,transparent,var(--line-2) 20%,var(--line-2) 80%,transparent);position:relative}
+.horizon-rule::after{content:"";position:absolute;left:50%;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--ink);border:1px solid var(--signal);transform:translateX(-50%)}
+
+/* ── buttons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font-family:var(--ff-d);font-weight:500;font-size:.94rem;transition:.35s var(--ease);border:1px solid transparent;text-align:center}
+.btn svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.btn-primary{background:var(--signal);color:#1A1204;box-shadow:0 10px 32px -12px rgba(245,181,68,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(245,181,68,.85)}
+.btn-primary:hover svg{transform:translateX(4px)}
+.btn-ghost{border-color:var(--line-2);background:var(--raise)}
+.btn-ghost:hover{background:var(--raise-2);border-color:var(--signal);transform:translateY(-2px)}
+.btn-sm{padding:10px 18px;font-size:.85rem}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-d);font-size:.9rem;color:var(--signal);transition:gap .3s var(--ease)}
+.link-arrow:hover{gap:14px}
+
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--signal),var(--live));z-index:200;transition:width .1s linear}
+
+/* ═══════════ NAV ═══════════ */
+header{position:fixed;inset:0 0 auto 0;z-index:150;transition:.4s var(--ease)}
+header.scrolled{background:rgba(5,11,21,.8);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--ff-d);font-weight:600;letter-spacing:-.02em;flex:none}
+.brand-mark{width:36px;height:36px;border-radius:50%;flex:none;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 38%,#12325A,#071425 70%);border:1px solid var(--line-2);display:grid;place-items:center}
+.brand-mark img{width:100%;height:100%;object-fit:cover}
+.brand small{display:block;font-family:var(--ff-b);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.menu{display:flex;align-items:center;gap:6px}
+.menu>li{list-style:none;position:relative}
+.menu-btn{display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;font-size:.92rem;color:var(--muted);transition:.25s}
+.menu-btn svg{width:11px;height:11px;opacity:.6;transition:transform .3s var(--ease)}
+.menu>li:hover .menu-btn,.menu>li.open .menu-btn{color:var(--text);background:var(--raise)}
+.menu>li.open .menu-btn svg{transform:rotate(180deg)}
+.mega{
+  position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(-8px);
+  width:max-content;min-width:420px;max-width:min(640px,86vw);
+  background:rgba(8,16,29,.97);backdrop-filter:blur(22px);border:1px solid var(--line);border-radius:20px;
+  padding:16px;box-shadow:0 40px 90px -40px rgba(0,0,0,.95);
+  opacity:0;visibility:hidden;transition:.32s var(--ease);
+}
+.menu>li.open .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mega a{display:flex;gap:12px;padding:12px 14px;border-radius:13px;transition:.25s}
+.mega a:hover{background:var(--raise-2)}
+.mega a i{font-style:normal;width:30px;height:30px;flex:none;border-radius:9px;background:var(--signal-soft);color:var(--signal);display:grid;place-items:center;font-size:.9rem}
+.mega a b{display:block;font-family:var(--ff-d);font-weight:500;font-size:.92rem}
+.mega a span{display:block;font-size:.78rem;color:var(--muted);line-height:1.4}
+.mega-foot{margin-top:10px;padding:13px 14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:.82rem;color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:10px;flex:none}
+.burger{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;place-items:center;background:var(--raise)}
+.burger i{display:block;width:18px;height:1.5px;background:var(--text);position:relative;transition:.3s var(--ease)}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0;width:18px;height:1.5px;background:var(--text);transition:.3s var(--ease)}
+.burger i::before{top:-6px}.burger i::after{top:6px}
+.burger.open i{background:transparent}
+.burger.open i::before{top:0;transform:rotate(45deg)}
+.burger.open i::after{top:0;transform:rotate(-45deg)}
+
+/* mobile drawer */
+.drawer{position:fixed;inset:76px 0 0 0;background:rgba(5,11,21,.98);backdrop-filter:blur(20px);z-index:140;padding:18px var(--pad) 40px;overflow-y:auto;display:none}
+.drawer.open{display:block;animation:slideDown .35s var(--ease)}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.dgroup{border-bottom:1px solid var(--line)}
+.dgroup>button{width:100%;display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-family:var(--ff-d);font-size:1.06rem}
+.dgroup>button span{color:var(--signal);font-size:1.2rem;transition:transform .3s var(--ease)}
+.dgroup.open>button span{transform:rotate(45deg)}
+.dsub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.dgroup.open .dsub{grid-template-rows:1fr}
+.dsub>div{overflow:hidden}
+.dsub a{display:block;padding:11px 0 11px 16px;color:var(--muted);font-size:.93rem;border-left:1px solid var(--line)}
+.drawer .btn{width:100%;margin-top:18px}
+
+/* ═══════════ HERO ═══════════ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding-top:118px;padding-bottom:70px;overflow:hidden}
+#stars{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.hero-glow{position:absolute;left:50%;top:-12%;width:min(1100px,130vw);aspect-ratio:1;transform:translateX(-50%);background:radial-gradient(circle,rgba(20,58,104,.5),rgba(10,26,47,0) 62%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;pointer-events:none;opacity:.3;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 40%,#000,transparent 75%)}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero-layout{display:grid;grid-template-columns:1.05fr .82fr;gap:clamp(30px,5vw,64px);align-items:center}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 15px 7px 9px;border-radius:999px;border:1px solid var(--line-2);background:var(--raise);font-size:.78rem;color:var(--muted);margin-bottom:24px}
+.pill b{color:var(--text);font-weight:500}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 rgba(61,214,196,.6);animation:pulse 2.4s infinite;flex:none}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(61,214,196,0)}100%{box-shadow:0 0 0 0 rgba(61,214,196,0)}}
+h1{font-size:clamp(2.5rem,7.6vw,5.4rem);letter-spacing:-.04em;max-width:14ch}
+h1 .sig{background:linear-gradient(120deg,var(--signal),#FFD98A 42%,var(--live));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.hero-note{margin-top:20px;font-size:.82rem;color:var(--muted)}
+.hero-art{position:relative}
+.hero-art img{width:100%;border-radius:calc(var(--r) + 10px);border:1px solid var(--line-2);box-shadow:0 50px 110px -50px rgba(0,0,0,.95);animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.hero-badge{position:absolute;right:-6px;bottom:22px;background:rgba(5,11,21,.84);backdrop-filter:blur(14px);border:1px solid var(--line-2);border-radius:16px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:.78rem}
+.hero-badge b{font-family:var(--ff-d);color:var(--signal)}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.scroll-hint span{width:1px;height:36px;background:linear-gradient(var(--signal),transparent);animation:drop 1.9s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ═══════════ PROOF STRIP ═══════════ */
+.strip{border-block:1px solid var(--line);background:linear-gradient(180deg,rgba(13,35,64,.5),transparent)}
+.strip-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:clamp(24px,4vw,38px) 18px;text-align:center;border-left:1px solid var(--line);transition:background .4s}
+.stat:first-child{border-left:0}.stat:hover{background:var(--raise)}
+.stat b{display:block;font-family:var(--ff-d);font-size:clamp(1.45rem,3.8vw,2.5rem);letter-spacing:-.03em}
+.stat small{display:block;margin-top:6px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* ═══════════ CARDS / GRIDS ═══════════ */
+.card{background:var(--raise);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,30px);transition:.4s var(--ease);position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(245,181,68,.1),transparent 60%);opacity:0;transition:opacity .4s}
+.card:hover{transform:translateY(-4px);border-color:var(--line-2);background:var(--raise-2)}
+.card:hover::after{opacity:1}
+.card h3{font-size:1.15rem;margin-bottom:10px}
+.card p{color:var(--muted);font-size:.92rem;font-weight:300}
+.card .k{font-family:var(--ff-d);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);display:block;margin-bottom:12px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+/* media */
+.media{position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(160deg,#0E2947,#06111F)}
+.media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.media:hover img{transform:scale(1.045)}
+.media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(5,11,21,.75));pointer-events:none}
+.media-cap{position:absolute;left:18px;right:18px;bottom:16px;z-index:2;font-family:var(--ff-d);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+img.fallback{opacity:0}
+
+/* ═══════════ ENTRY PATH ═══════════ */
+.path{display:flex;flex-direction:column;gap:10px}
+.step{border:1px solid var(--line);border-radius:var(--r);background:var(--raise);overflow:hidden;transition:.4s var(--ease)}
+.step.active{border-color:rgba(245,181,68,.45);background:linear-gradient(180deg,var(--signal-soft),transparent)}
+.step-head{display:flex;align-items:center;gap:18px;width:100%;padding:21px clamp(18px,3vw,28px);text-align:left}
+.step-num{font-family:var(--ff-d);font-size:.76rem;color:var(--signal);letter-spacing:.14em;width:28px;flex:none}
+.step-title{font-family:var(--ff-d);font-size:clamp(1.02rem,2.5vw,1.45rem);flex:1;letter-spacing:-.02em}
+.step-ico{width:30px;height:30px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;flex:none;transition:.4s var(--ease);font-size:1.05rem;line-height:1}
+.step.active .step-ico{background:var(--signal);color:var(--ink);border-color:var(--signal);transform:rotate(45deg)}
+.step-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.step.active .step-body{grid-template-rows:1fr}
+.step-body>div{overflow:hidden}
+.step-inner{padding:0 clamp(18px,3vw,28px) 26px;padding-left:clamp(18px,3vw,74px);color:var(--muted);font-weight:300;max-width:70ch}
+.step-inner .btn{margin-top:16px}
+
+/* ═══════════ TABS ═══════════ */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.tab{padding:9px 18px;border-radius:999px;border:1px solid var(--line);font-size:.85rem;color:var(--muted);transition:.3s var(--ease);background:var(--raise)}
+.tab:hover{color:var(--text);border-color:var(--line-2)}
+.tab.active{background:var(--signal);color:#1A1204;border-color:var(--signal);font-weight:500}
+.panel{display:none}.panel.active{display:block;animation:fade .45s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.film{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,46px);align-items:center}
+.film-art{aspect-ratio:16/10;border-radius:var(--r);border:1px solid var(--line);position:relative;overflow:hidden;background:linear-gradient(160deg,#0E2947,#06111F);display:grid;place-items:center}
+.film-art::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(245,181,68,.18),transparent 45%),radial-gradient(circle at 75% 80%,rgba(61,214,196,.14),transparent 45%)}
+.film-art .hz{position:absolute;left:-10%;right:-10%;bottom:26%;height:1px;background:linear-gradient(90deg,transparent,var(--signal),transparent)}
+.film-art .disc{width:46%;aspect-ratio:1;border-radius:50%;border:1px solid var(--line-2);position:relative;background:radial-gradient(circle at 42% 34%,rgba(255,255,255,.07),transparent 60%)}
+.film-art .disc::after{content:"";position:absolute;inset:18%;border-radius:50%;border:1px dashed rgba(245,181,68,.4);animation:spin 26s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.film-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+
+/* ═══════════ SHOWS ═══════════ */
+.ep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ep{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--raise);transition:.4s var(--ease)}
+.ep:hover{transform:translateY(-5px);border-color:var(--line-2)}
+.ep-thumb{aspect-ratio:16/9;background:linear-gradient(150deg,#12314F,#070F1C);position:relative;display:grid;place-items:center;border-bottom:1px solid var(--line)}
+.ep-thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,rgba(61,214,196,.15),transparent 55%)}
+.play{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-2);background:rgba(5,11,21,.55);backdrop-filter:blur(6px);display:grid;place-items:center;transition:.35s var(--ease);z-index:2}
+.ep:hover .play{background:var(--signal);border-color:var(--signal);transform:scale(1.1)}
+.play svg{width:14px;height:14px;fill:var(--text);transition:.35s}
+.ep:hover .play svg{fill:#1A1204}
+.ep-body{padding:18px 20px 22px}
+.ep-tag{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);margin-bottom:8px;display:block}
+.ep-body h4{font-family:var(--ff-d);font-size:1rem;line-height:1.3;margin-bottom:8px}
+.ep-body small{color:var(--muted);font-size:.8rem}
+.ticker{overflow:hidden;padding:15px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker-track{display:flex;gap:42px;width:max-content;animation:marquee 38s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{font-family:var(--ff-d);font-size:.84rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:42px;white-space:nowrap}
+.ticker-track span::after{content:"◆";color:var(--signal);font-size:.58rem}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ═══════════ TOOLS ═══════════ */
+.tool-split{display:grid;grid-template-columns:1fr .85fr;gap:clamp(30px,5vw,66px);align-items:center}
+.feat{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);transition:.3s}
+.feat:hover{padding-left:6px}
+.feat-ico{width:34px;height:34px;flex:none;border-radius:10px;background:var(--signal-soft);color:var(--signal);display:grid;place-items:center;font-size:.95rem}
+.feat h4{font-family:var(--ff-d);font-size:1rem;margin-bottom:3px}
+.feat p{font-size:.85rem;color:var(--muted);font-weight:300}
+.app-art{position:relative;border-radius:calc(var(--r) + 8px);overflow:hidden;border:1px solid var(--line-2);background:linear-gradient(170deg,#0F2A4B,#050C16);box-shadow:0 40px 90px -45px rgba(0,0,0,.9)}
+.clock-badge{position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:12px;padding:11px 15px;border-radius:14px;background:rgba(5,11,21,.8);backdrop-filter:blur(14px);border:1px solid var(--line-2)}
+.az-mini{width:34px;height:34px;border-radius:50%;border:1px solid rgba(245,181,68,.45);position:relative;display:grid;place-items:center;flex:none}
+.az-hand{position:absolute;width:50%;height:1px;left:50%;top:50%;transform-origin:left center;background:linear-gradient(90deg,var(--signal),transparent)}
+.az-hand.moon{background:linear-gradient(90deg,var(--live),transparent)}
+.az-core{width:5px;height:5px;border-radius:50%;background:var(--signal);box-shadow:0 0 12px var(--signal)}
+.clock-badge small{display:block;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ask{border:1px solid var(--line);border-radius:calc(var(--r) + 6px);overflow:hidden;background:linear-gradient(180deg,rgba(13,35,64,.85),rgba(5,11,21,.6))}
+.ask-top{display:flex;align-items:center;gap:10px;padding:13px 20px;border-bottom:1px solid var(--line);font-size:.76rem;color:var(--muted)}
+.ask-top .dots{display:flex;gap:6px}
+.ask-top .dots i{width:9px;height:9px;border-radius:50%;background:var(--line-2);display:block}
+.ask-body{padding:clamp(20px,3vw,32px);min-height:190px}
+.ask-q{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px}
+.avatar{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:.68rem;font-family:var(--ff-d);background:var(--raise-2);border:1px solid var(--line)}
+.avatar.dave{background:var(--signal);color:#1A1204;border-color:var(--signal)}
+.bubble{font-size:.95rem;font-weight:300}
+.bubble.muted{color:var(--muted)}
+.typing i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--signal);margin-right:4px;animation:blink 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.chips{display:flex;flex-wrap:wrap;gap:9px;padding:0 clamp(20px,3vw,32px) 20px}
+.chip{padding:9px 15px;border-radius:999px;border:1px solid var(--line);font-size:.82rem;color:var(--muted);background:var(--raise);transition:.3s var(--ease)}
+.chip:hover{border-color:var(--signal);color:var(--text);transform:translateY(-2px)}
+.ask-foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:17px clamp(20px,3vw,32px);border-top:1px solid var(--line);background:rgba(0,0,0,.2)}
+.ask-foot small{color:var(--muted);font-size:.8rem}
+
+/* ═══════════ PEOPLE ═══════════ */
+.comm{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:linear-gradient(170deg,rgba(13,35,64,.7),transparent);transition:.4s var(--ease)}
+.comm:hover{border-color:var(--line-2);transform:translateY(-4px)}
+.comm-media{aspect-ratio:16/9}
+.comm-body{padding:clamp(24px,3.5vw,34px)}
+.comm .num{font-family:var(--ff-d);font-size:2.1rem;color:var(--signal);letter-spacing:-.03em}
+.comm h3{font-size:clamp(1.25rem,2.8vw,1.7rem);margin-bottom:10px}
+
+/* ═══════════ CHALLENGE ═══════════ */
+.challenge{border:1px solid rgba(245,181,68,.3);border-radius:calc(var(--r) + 8px);overflow:hidden;position:relative;background:linear-gradient(120deg,rgba(245,181,68,.1),rgba(10,26,47,.5) 55%);padding:clamp(32px,6vw,66px);text-align:center}
+.challenge-bg{position:absolute;inset:0;z-index:0;opacity:.32;pointer-events:none}
+.challenge-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.challenge-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,11,21,.5),rgba(5,11,21,.88) 70%)}
+.challenge>:not(.challenge-bg){position:relative;z-index:1}
+.coin{width:clamp(72px,12vw,120px);margin:0 auto 4px;animation:float 6s ease-in-out infinite}
+.btc{font-family:var(--ff-d);font-size:clamp(2.8rem,12vw,6.8rem);letter-spacing:-.05em;line-height:.9;background:linear-gradient(120deg,#FFD98A,var(--signal),#B97F16);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ═══════════ DAVE ═══════════ */
+.about{display:grid;grid-template-columns:.58fr 1fr;gap:clamp(26px,4vw,56px);align-items:center}
+.about .media{aspect-ratio:4/5}
+.quote{border-left:2px solid var(--signal);padding-left:20px;margin-top:26px;font-family:var(--ff-d);font-size:clamp(1.02rem,2vw,1.28rem);line-height:1.45;letter-spacing:-.02em}
+
+/* ═══════════ SUPPORT ═══════════ */
+.sup{display:flex;flex-direction:column;gap:12px;min-height:210px}
+.sup .btn{margin-top:auto;align-self:flex-start}
+.sponsor-row{display:flex;gap:14px;width:max-content;animation:marquee 44s linear infinite}
+.sponsor{padding:13px 25px;border:1px solid var(--line);border-radius:999px;font-family:var(--ff-d);font-size:.88rem;color:var(--muted);white-space:nowrap;transition:.3s}
+.sponsor:hover{color:var(--text);border-color:var(--signal)}
+
+/* ═══════════ CTA BAND ═══════════ */
+.cta-band{border-top:1px solid var(--line);background:radial-gradient(ellipse 80% 120% at 50% 100%,rgba(20,58,104,.55),transparent 70%);text-align:center}
+.form{display:flex;gap:10px;max-width:470px;margin:28px auto 0;flex-wrap:wrap}
+.form input{flex:1;min-width:200px;padding:14px 18px;border-radius:999px;border:1px solid var(--line-2);background:var(--raise);color:var(--text);font-family:var(--ff-b);font-size:.92rem;transition:.3s}
+.form input::placeholder{color:var(--muted)}
+.form input:focus{outline:none;border-color:var(--signal);background:var(--raise-2)}
+.form-note{margin-top:14px;font-size:.78rem;color:var(--muted)}
+
+/* ═══════════ FOOTER ═══════════ */
+footer{border-top:1px solid var(--line);padding-block:clamp(48px,7vw,78px) 30px;background:var(--ink)}
+.foot-grid{display:grid;grid-template-columns:1.5fr repeat(5,1fr);gap:30px}
+.foot h5{font-family:var(--ff-d);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--signal);margin:0 0 15px}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.foot a{font-size:.88rem;color:var(--muted);transition:color .25s}
+.foot a:hover{color:var(--text)}
+.socials{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.socials a{width:37px;height:37px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:.7rem;font-family:var(--ff-d);color:var(--muted);transition:.3s var(--ease)}
+.socials a:hover{background:var(--signal);color:#1A1204;border-color:var(--signal);transform:translateY(-3px)}
+.foot-bottom{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.79rem;color:var(--muted)}
+
+/* ═══════════ MOBILE STICKY CTA ═══════════ */
+.mbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:130;display:none;gap:10px;padding:10px;border-radius:18px;background:rgba(8,16,29,.92);backdrop-filter:blur(18px);border:1px solid var(--line-2);box-shadow:0 20px 50px -20px rgba(0,0,0,.9);transform:translateY(130%);transition:transform .45s var(--ease)}
+.mbar.show{transform:none}
+.mbar .btn{flex:1;padding:12px 14px;font-size:.86rem}
+
+/* ═══════════ REVEAL / MOTION ═══════════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media(max-width:1180px){.foot-grid{grid-template-columns:1.4fr repeat(3,1fr);row-gap:34px}}
+@media(max-width:1024px){
+  .grid-3,.grid-4,.ep-grid{grid-template-columns:repeat(2,1fr)}
+  .tool-split{grid-template-columns:1fr;gap:42px}
+  .app-art{order:-1;max-width:520px;margin-inline:auto}
+  .hero-layout{grid-template-columns:1fr;gap:38px}
+  .hero-art{max-width:430px;margin-inline:auto}
+  .film{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr;gap:28px}
+  .about .media{aspect-ratio:16/10;max-width:520px}
+}
+@media(max-width:940px){
+  .menu,.nav-right .btn{display:none}
+  .burger{display:grid}
+  .mbar{display:flex}
+  .strip-grid{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media(max-width:640px){
+  .grid-3,.grid-2,.grid-4,.ep-grid{grid-template-columns:1fr}
+  .hero{min-height:auto;padding-top:126px}
+  h1{font-size:clamp(2.2rem,10.5vw,3.3rem)}
+  .hero-cta .btn{width:100%}
+  .scroll-hint{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .form input,.form .btn{min-width:100%;width:100%}
+  footer{padding-bottom:92px}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- ══════════ NAV: 5 pillars + 1 action ══════════ -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><img src="https://flatearthdave.com/images/logo-dave-128.webp" alt="Flat Earth Dave" onerror="this.classList.add('fallback')"></span>
+      <span>Flat Earth Dave<small>Observe · Question · Verify</small></span>
+    </a>
+
+    <ul class="menu" id="menu">
+      <li data-drop>
+        <button class="menu-btn">Proof <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega">
+          <div class="mega-grid">
+            <a href="#proof"><i>◎</i><b>Crash Course<span>44 films, in order</span></b></a>
+            <a href="#proof"><i>✦</i><b>200 Proofs<span>Repeat them yourself</span></b></a>
+            <a href="#proof"><i>▤</i><b>The LEVEL Trilogy<span>The documentaries</span></b></a>
+            <a href="#proof"><i>⌕</i><b>Knowledge Library<span>9,523 indexed</span></b></a>
+            <a href="#proof"><i>❏</i><b>Book Club<span>Virtual reader</span></b></a>
+            <a href="#proof"><i>✎</i><b>Blog<span>Written breakdowns</span></b></a>
+          </div>
+          <div class="mega-foot"><span>New here? Start with film 1.</span><a href="#start" class="link-arrow">Start Here →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button class="menu-btn">Shows <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega">
+          <div class="mega-grid">
+            <a href="#shows"><i>▶</i><b>Latest Interviews<span>Updated weekly</span></b></a>
+            <a href="#shows"><i>◉</i><b>DITRH Podcast<span>The home show</span></b></a>
+            <a href="#shows"><i>⚔</i><b>Debates<span>Unedited, both sides</span></b></a>
+            <a href="#shows"><i>★</i><b>Iconic Episodes<span>78 hand-picked</span></b></a>
+            <a href="#shows"><i>◷</i><b>Watch Live<span>Next stream</span></b></a>
+            <a href="#dave"><i>✉</i><b>Book Dave<span>Guest on your show</span></b></a>
+          </div>
+          <div class="mega-foot"><span>4,116 interviews. One question.</span><a href="#shows" class="link-arrow">Browse all →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button class="menu-btn">Tools <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega" style="min-width:380px">
+          <div class="mega-grid">
+            <a href="#tools"><i>☀</i><b>Sun &amp; Moon Clock<span>Live AE tracking</span></b></a>
+            <a href="#tools"><i>✺</i><b>Ask Dave AI<span>3 free / day</span></b></a>
+            <a href="#tools"><i>▦</i><b>Flash Cards<span>200 in your pocket</span></b></a>
+            <a href="#tools"><i>♥</i><b>Gift the App<span>Send it to a skeptic</span></b></a>
+          </div>
+          <div class="mega-foot"><span>One purchase. Yours forever.</span><a href="#tools" class="link-arrow">Get the app →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button class="menu-btn">People <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega" style="min-width:380px">
+          <div class="mega-grid">
+            <a href="#people"><i>♡</i><b>Match Maker<span>50+ countries</span></b></a>
+            <a href="#people"><i>⌖</i><b>Meetup Maker<span>Find your city</span></b></a>
+            <a href="#challenge"><i>₿</i><b>The 3 BTC Challenge<span>Still unclaimed</span></b></a>
+            <a href="#join"><i>✉</i><b>Newsletter<span>One email a week</span></b></a>
+          </div>
+          <div class="mega-foot"><span>313,716 truth seekers.</span><a href="#people" class="link-arrow">Meet them →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button class="menu-btn">Dave <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="mega" style="min-width:380px">
+          <div class="mega-grid">
+            <a href="#dave"><i>◐</i><b>The Story<span>How it started</span></b></a>
+            <a href="#dave"><i>▣</i><b>Press Kit<span>Bio, photos, one-sheet</span></b></a>
+            <a href="#support"><i>◈</i><b>Sponsors<span>Who backs this</span></b></a>
+            <a href="#support"><i>✆</i><b>Contact<span>Reach the team</span></b></a>
+          </div>
+          <div class="mega-foot"><span>20 years. Same question.</span><a href="#dave" class="link-arrow">Read it →</a></div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="#support" class="btn btn-ghost btn-sm">Support</a>
+      <a href="#start" class="btn btn-primary btn-sm">Start Here
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile drawer, same 5 pillars -->
+<div class="drawer" id="drawer">
+  <div class="dgroup"><button>Proof <span>+</span></button><div class="dsub"><div>
+    <a href="#proof">Crash Course</a><a href="#proof">200 Proofs</a><a href="#proof">The LEVEL Trilogy</a><a href="#proof">Knowledge Library</a><a href="#proof">Book Club</a><a href="#proof">Blog</a>
+  </div></div></div>
+  <div class="dgroup"><button>Shows <span>+</span></button><div class="dsub"><div>
+    <a href="#shows">Latest Interviews</a><a href="#shows">DITRH Podcast</a><a href="#shows">Debates</a><a href="#shows">Iconic Episodes</a><a href="#dave">Book Dave</a>
+  </div></div></div>
+  <div class="dgroup"><button>Tools <span>+</span></button><div class="dsub"><div>
+    <a href="#tools">Sun &amp; Moon Clock</a><a href="#tools">Ask Dave AI</a><a href="#tools">Flash Cards</a><a href="#tools">Gift the App</a>
+  </div></div></div>
+  <div class="dgroup"><button>People <span>+</span></button><div class="dsub"><div>
+    <a href="#people">Match Maker</a><a href="#people">Meetup Maker</a><a href="#challenge">3 BTC Challenge</a><a href="#join">Newsletter</a>
+  </div></div></div>
+  <div class="dgroup"><button>Dave <span>+</span></button><div class="dsub"><div>
+    <a href="#dave">The Story</a><a href="#dave">Press Kit</a><a href="#support">Sponsors</a><a href="#support">Contact</a>
+  </div></div></div>
+  <a href="#start" class="btn btn-primary">Start Here</a>
+  <a href="#support" class="btn btn-ghost">Support the work</a>
+</div>
+
+<!-- ══════════ HOOK ══════════ -->
+<section class="hero" id="top">
+  <canvas id="stars"></canvas>
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-layout">
+      <div>
+        <span class="pill"><span class="dot"></span><b>313,716</b> truth seekers inside</span>
+        <h1>Don't believe me.<br><span class="sig">Go look.</span></h1>
+        <p class="lead">Twenty years of research, 4,116 interviews and 200 observations you can repeat yourself — organised into one path instead of a thousand links.</p>
+        <div class="hero-cta">
+          <a href="#start" class="btn btn-primary">Start Here — it's free
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#challenge" class="btn btn-ghost">3 BTC if you prove me wrong</a>
+        </div>
+        <p class="hero-note">No account · No email · Film 1 plays instantly</p>
+      </div>
+      <div class="hero-art">
+        <img src="https://flatearthdave.com/images/dave-hero-art.webp" alt="Flat Earth Dave" onerror="this.closest('.hero-art').style.display='none'">
+        <div class="hero-badge"><span class="dot"></span><span><b>1,400+</b> shows<br><span style="color:var(--muted)">and counting</span></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll<span></span></div>
+</section>
+
+<!-- ══════════ CREDIBILITY ══════════ -->
+<section class="strip">
+  <div class="strip-grid">
+    <div class="stat"><b data-count="9523" data-suffix="+">0</b><small>Videos &amp; Episodes</small></div>
+    <div class="stat"><b data-count="4116" data-suffix="+">0</b><small>Interviews</small></div>
+    <div class="stat"><b data-count="200" data-suffix="">0</b><small>Observable Proofs</small></div>
+    <div class="stat"><b data-count="20" data-suffix=" yrs">0</b><small>Of Research</small></div>
+  </div>
+</section>
+
+<!-- ══════════ 01 · ENTRY ══════════ -->
+<section class="sec" id="start">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pillar">01 <em>/</em> Start Here</span>
+      <h2 class="h2">Three steps. No belief required.</h2>
+      <p class="lead">Every link on this site fits one of five places: <b style="color:var(--text)">Proof, Shows, Tools, People, Dave</b>. This is the order to take them in.</p>
+    </div>
+    <div class="path reveal">
+      <div class="step active">
+        <button class="step-head"><span class="step-num">01</span><span class="step-title">Watch — the Crash Course</span><span class="step-ico">+</span></button>
+        <div class="step-body"><div><div class="step-inner">
+          44 hand-picked films, ordered for people who've never looked into this. Ten minutes is all the first one asks of you.
+          <div><a href="#proof" class="btn btn-primary btn-sm">Play film 1 of 44
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div></div></div>
+      </div>
+      <div class="step">
+        <button class="step-head"><span class="step-num">02</span><span class="step-title">Ask — the hard question</span><span class="step-ico">+</span></button>
+        <div class="step-body"><div><div class="step-inner">
+          Whatever you're about to object with has been asked before, on camera. Ask Dave AI pulls the answer from two decades of recordings. Three free a day.
+          <div><a href="#tools" class="btn btn-ghost btn-sm">Ask your first question</a></div>
+        </div></div></div>
+      </div>
+      <div class="step">
+        <button class="step-head"><span class="step-num">03</span><span class="step-title">Verify — with your own eyes</span><span class="step-ico">+</span></button>
+        <div class="step-body"><div><div class="step-inner">
+          200 observations you can repeat with a camera, a level, a telescope, or the app in your pocket. Take nobody's word for it — including mine.
+          <div><a href="#tools" class="btn btn-ghost btn-sm">Get the observation tools</a></div>
+        </div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="horizon-rule"></div></div>
+
+<!-- ══════════ 02 · PROOF ══════════ -->
+<section class="sec" id="proof">
+  <div class="wrap">
+    <div class="sec-head row reveal">
+      <div>
+        <span class="pillar">02 <em>/</em> Proof</span>
+        <h2 class="h2">The evidence, in order.</h2>
+        <p class="lead">Films, proofs, books and archives. Everything here is free and repeatable — no paywall in front of the argument.</p>
+      </div>
+      <a href="#" class="link-arrow">Open the full library →</a>
+    </div>
+
+    <div class="tabs reveal" role="tablist">
+      <button class="tab active" data-panel="p1">Crash Course</button>
+      <button class="tab" data-panel="p2">The LEVEL Trilogy</button>
+      <button class="tab" data-panel="p3">200 Proofs</button>
+      <button class="tab" data-panel="p4">Library &amp; Books</button>
+    </div>
+
+    <div class="panel active" id="p1">
+      <div class="grid-3 reveal">
+        <div class="card"><span class="k">Step 1 · 44 films</span><h3>Built for first-timers</h3><p>Ordered from "never heard of this" to "show me the math". Bingeable in a weekend.</p><div style="margin-top:18px"><a href="#" class="link-arrow">Start the course →</a></div></div>
+        <div class="card"><span class="k">Step 2 · Deep dives</span><h3>78 iconic episodes</h3><p>The interviews people send to their friends. Hand-picked from 4,116.</p><div style="margin-top:18px"><a href="#shows" class="link-arrow">Watch the best →</a></div></div>
+        <div class="card"><span class="k">Step 3 · Written</span><h3>The blog &amp; breakdowns</h3><p>Short reads for the claims that need a diagram, not a two-hour video.</p><div style="margin-top:18px"><a href="#" class="link-arrow">Read the blog →</a></div></div>
+      </div>
+    </div>
+
+    <div class="panel" id="p2">
+      <div class="film reveal">
+        <div class="film-art"><span class="hz"></span><span class="disc"></span></div>
+        <div>
+          <div class="film-meta"><span>Documentary</span><span>3 parts</span><span>Free</span></div>
+          <h3 style="font-size:clamp(1.5rem,3.4vw,2.2rem)">Level · The Next Level · Level With Me</h3>
+          <p class="lead">Part one is where it begins. Part two takes the experiments further. Part three puts the question to scientists, pilots and engineers on camera.</p>
+          <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+            <a href="#" class="btn btn-primary">Watch part 1 free
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="#" class="btn btn-ghost">Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="p3">
+      <div class="grid-4 reveal">
+        <div class="card"><span class="k">01–50</span><h3>Horizon &amp; distance</h3><p>What you can see, and from how far.</p></div>
+        <div class="card"><span class="k">51–100</span><h3>Water &amp; level</h3><p>Canals, lakes, lasers, spirit levels.</p></div>
+        <div class="card"><span class="k">101–150</span><h3>Sun, moon &amp; stars</h3><p>Angles, timings, shadows, tracking.</p></div>
+        <div class="card"><span class="k">151–200</span><h3>Flight &amp; motion</h3><p>Routes, gyros, and what you don't feel.</p></div>
+      </div>
+      <div style="margin-top:26px" class="reveal"><a href="#" class="btn btn-ghost">Open all 200 proofs</a></div>
+    </div>
+
+    <div class="panel" id="p4">
+      <div class="grid-3 reveal">
+        <div class="card"><span class="k">Essential</span><h3>200 Proofs Earth Is Not a Spinning Ball</h3><p>The starting text. Free in the virtual reader.</p></div>
+        <div class="card"><span class="k">Historical</span><h3>Zetetic Astronomy — Earth Not a Globe</h3><p>The 19th-century source material.</p></div>
+        <div class="card"><span class="k">Archive</span><h3>Knowledge Library</h3><p>9,523 videos, podcasts and episodes. Searchable, uncensored.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="horizon-rule"></div></div>
+
+<!-- ══════════ 03 · SHOWS ══════════ -->
+<section class="sec" id="shows">
+  <div class="wrap">
+    <div class="sec-head row reveal">
+      <div>
+        <span class="pillar">03 <em>/</em> Shows</span>
+        <h2 class="h2">1,400+ shows. One question.</h2>
+        <p class="lead">Podcasts, long-form sit-downs and unedited debates — hosts who agreed, hosts who didn't, and the question none of them closed.</p>
+      </div>
+      <a href="#" class="link-arrow">Browse all 4,116 →</a>
+    </div>
+
+    <div class="tabs reveal">
+      <button class="tab active" data-filter="all">All</button>
+      <button class="tab" data-filter="podcast">Podcasts</button>
+      <button class="tab" data-filter="long">Long Form</button>
+      <button class="tab" data-filter="debate">Debates</button>
+    </div>
+
+    <div class="ep-grid reveal" id="epGrid">
+      <article class="ep" data-cat="podcast"><div class="ep-thumb"><button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div><div class="ep-body"><span class="ep-tag">Podcast</span><h4>The Roseanne Barr Podcast</h4><small>1h 12m · 480K views</small></div></article>
+      <article class="ep" data-cat="long"><div class="ep-thumb"><button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div><div class="ep-body"><span class="ep-tag">Long Form</span><h4>Deep Inside The Rabbit Hole — Ep. 412</h4><small>2h 04m · New</small></div></article>
+      <article class="ep" data-cat="podcast"><div class="ep-thumb"><button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div><div class="ep-body"><span class="ep-tag">Podcast</span><h4>The Digital Social Hour</h4><small>58m · 210K views</small></div></article>
+      <article class="ep" data-cat="debate"><div class="ep-thumb"><button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div><div class="ep-body"><span class="ep-tag">Debate</span><h4>Engineer vs. Observation — Live</h4><small>1h 44m · Unedited</small></div></article>
+      <article class="ep" data-cat="podcast"><div class="ep-thumb"><button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div><div class="ep-body"><span class="ep-tag">Podcast</span><h4>Paranoia Radio</h4><small>1h 06m</small></div></article>
+      <article class="ep" data-cat="long"><div class="ep-thumb"><button class="play" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div><div class="ep-body"><span class="ep-tag">Long Form</span><h4>The Invisible Prison — Series</h4><small>6 parts</small></div></article>
+    </div>
+  </div>
+  <div class="ticker" style="margin-top:34px;border-block:1px solid var(--line)">
+    <div class="ticker-track">
+      <span>Deep Inside The Rabbit Hole</span><span>Paranoia Radio</span><span>Roseanne Barr</span><span>Digital Social Hour</span><span>True Earth Whisperer</span><span>Strange World 580</span><span>The Sam Hyde Show</span>
+      <span>Deep Inside The Rabbit Hole</span><span>Paranoia Radio</span><span>Roseanne Barr</span><span>Digital Social Hour</span><span>True Earth Whisperer</span><span>Strange World 580</span><span>The Sam Hyde Show</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04 · TOOLS ══════════ -->
+<section class="sec" id="tools">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pillar">04 <em>/</em> Tools</span>
+      <h2 class="h2">Instruments, not opinions.</h2>
+      <p class="lead">Two tools do the work: one tracks what's above you in real time, the other answers what you're about to ask.</p>
+    </div>
+
+    <div class="tool-split" style="margin-bottom:clamp(50px,7vw,90px)">
+      <div class="reveal">
+        <h3 style="font-size:clamp(1.4rem,3vw,2rem);margin-bottom:14px">The Sun, Moon &amp; Zodiac Clock</h3>
+        <p class="lead" style="margin-top:0">Live sun and moon positions on the Azimuthal Equidistant map — then go outside and check them. One purchase, yours forever.</p>
+        <div style="margin-top:28px">
+          <div class="feat"><span class="feat-ico">◎</span><div><h4>Live sun &amp; moon tracking</h4><p>Real positions, updated by the second.</p></div></div>
+          <div class="feat"><span class="feat-ico">◈</span><div><h4>200+ flash cards</h4><p>One card, one observation, in your pocket.</p></div></div>
+          <div class="feat"><span class="feat-ico">⌕</span><div><h4>Censorship-free search</h4><p>9,523 episodes indexed. Nothing buried.</p></div></div>
+          <div class="feat"><span class="feat-ico">☁</span><div><h4>Weather &amp; zodiac overlay</h4><p>Conditions layered over the clock.</p></div></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px">
+          <a href="#" class="btn btn-primary">Download the App
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M6 11l6 6 6-6M5 21h14"/></svg></a>
+          <a href="#" class="btn btn-ghost">Gift it to a skeptic</a>
+        </div>
+      </div>
+      <div class="app-art reveal">
+        <img src="https://flatearthdave.com/clock-app-artwork.webp" alt="The Sun, Moon &amp; Zodiac Clock app" loading="lazy" onerror="this.style.display='none';this.parentElement.style.aspectRatio='9/16'">
+        <div class="clock-badge">
+          <span class="az-mini"><span class="az-hand" id="sunHand"></span><span class="az-hand moon" id="moonHand"></span><span class="az-core"></span></span>
+          <span><span id="appClock" style="font-family:var(--ff-d);font-size:1.05rem">--:--:--</span><small>Sun &amp; Moon · Live</small></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <h3 style="font-size:clamp(1.4rem,3vw,2rem);margin-bottom:8px">Ask Dave AI</h3>
+      <p class="lead" style="margin-top:0;margin-bottom:26px">Trained on 20 years of interviews, films and research notes. Three free questions a day.</p>
+      <div class="ask">
+        <div class="ask-top"><span class="dots"><i></i><i></i><i></i></span> ask.flatearthdave.com</div>
+        <div class="ask-body">
+          <div class="ask-q"><span class="avatar">You</span><span class="bubble" id="askQ">Pick a question below to see how it works →</span></div>
+          <div class="ask-q"><span class="avatar dave">FED</span><span class="bubble muted" id="askA">Ask Dave is standing by.</span></div>
+        </div>
+        <div class="chips">
+          <button class="chip" data-q="What about ships disappearing over the horizon?">Ships over the horizon?</button>
+          <button class="chip" data-q="How do flights to Australia work then?">Flights to Australia?</button>
+          <button class="chip" data-q="What's your strongest single observation?">Your strongest proof?</button>
+          <button class="chip" data-q="What would change your mind?">What would change your mind?</button>
+        </div>
+        <div class="ask-foot">
+          <small>3 free questions / day · Unlimited for $11 a year</small>
+          <a href="#" class="btn btn-primary btn-sm">Ask your own
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="horizon-rule"></div></div>
+
+<!-- ══════════ 05 · PEOPLE ══════════ -->
+<section class="sec" id="people">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pillar">05 <em>/</em> People</span>
+      <h2 class="h2">You're not the only one who looked.</h2>
+      <p class="lead">Thousands of connections across 50+ countries — friendships, local meetups, and more than a few marriages.</p>
+    </div>
+    <div class="grid-2 reveal">
+      <div class="comm">
+        <div class="media comm-media"><img src="https://flatearthdave.com/clock-app/features/match-maker-couple.webp" alt="Match Maker" loading="lazy" onerror="this.classList.add('fallback')"><span class="media-cap">1,000s of connections · 50+ countries</span></div>
+        <div class="comm-body">
+          <div class="num">50+</div>
+          <h3>Match Maker</h3>
+          <p class="lead" style="margin-top:6px">Find people who see it the way you do — friends, collaborators, or something more.</p>
+          <div style="margin-top:22px"><a href="#" class="btn btn-primary btn-sm">Enter Match Maker
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </div>
+      </div>
+      <div class="comm">
+        <div class="media comm-media"><img src="https://flatearthdave.com/clock-app/features/meetup-maker-hero.webp" alt="Meetup Maker" loading="lazy" onerror="this.classList.add('fallback')"><span class="media-cap">Meetups happening near you</span></div>
+        <div class="comm-body">
+          <div class="num">Local</div>
+          <h3>Meetup Maker</h3>
+          <p class="lead" style="margin-top:6px">Start or join a meetup in your city. Bring a level, a laser, and a friend who thinks you've lost it.</p>
+          <div style="margin-top:22px"><a href="#" class="btn btn-ghost btn-sm">Try Meetup Maker</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ HOOK · CHALLENGE ══════════ -->
+<section class="sec" id="challenge" style="padding-top:0">
+  <div class="wrap">
+    <div class="challenge reveal">
+      <div class="challenge-bg"><img src="https://flatearthdave.com/images/atmospheric/section-ice-wall.webp" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <img class="coin" src="https://flatearthdave.com/images/bitcoin-coin-clean.webp" alt="Bitcoin" loading="lazy" onerror="this.style.display='none'">
+      <span class="pillar" style="justify-content:center;display:inline-flex">The Open Challenge</span>
+      <div class="btc">3 BTC</div>
+      <h2 class="h2" style="margin-top:16px">Prove it. Take the bitcoin.</h2>
+      <p class="lead" style="margin-inline:auto;margin-top:14px">One observable, repeatable experiment. No authority cited, no renders, no consensus. The offer has been open for years and it's still unclaimed.</p>
+      <div style="margin-top:30px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="#" class="btn btn-primary">Accept the Challenge
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#" class="btn btn-ghost">Read the rules</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 06 · DAVE ══════════ -->
+<section class="sec" id="dave" style="border-top:1px solid var(--line)">
+  <div class="wrap about reveal">
+    <div class="media">
+      <img src="https://flatearthdave.com/dave-legendary.jpg" alt="Dave" loading="lazy" onerror="this.classList.add('fallback')">
+      <span class="media-cap">Dave · 20 years in</span>
+    </div>
+    <div>
+      <span class="pillar">06 <em>/</em> Dave</span>
+      <h2 class="h2">One guy, one camera, one question.</h2>
+      <p class="lead">No degree waved around, no authority cited. Twenty years, 4,116 interviews and 1,400+ shows later, the question is still open — and anyone can check the work.</p>
+      <blockquote class="quote">"It's no longer an argument or a debate. It's simply an observation. Trust the senses you were born with."</blockquote>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#" class="btn btn-ghost btn-sm">The full story</a>
+        <a href="#" class="btn btn-ghost btn-sm">Press Kit</a>
+        <a href="#" class="btn btn-ghost btn-sm">Book Dave on your show</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 · SUPPORT ══════════ -->
+<section class="sec" id="support" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pillar">07 <em>/</em> Support</span>
+      <h2 class="h2">Everything above stays free. This is how.</h2>
+      <p class="lead">No paywall on the evidence — the work runs on the shop, the app, and people who chip in.</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="card sup"><span class="k">One-off</span><h3>The Shop</h3><p>Shirts, flyers, cards and the gear people hand out at meetups.</p><a href="#" class="btn btn-ghost btn-sm">Browse the shop</a></div>
+      <div class="card sup"><span class="k">Monthly</span><h3>Subscribe &amp; Donate</h3><p>Fund the next film, the next interview trip, the next server bill.</p><a href="#" class="btn btn-primary btn-sm">Support the work</a></div>
+      <div class="card sup"><span class="k">Business</span><h3>Sponsor a Show</h3><p>Reach 313,716 people who actually listen to the whole episode.</p><a href="#" class="btn btn-ghost btn-sm">Sponsor enquiries</a></div>
+    </div>
+  </div>
+  <div class="ticker" style="margin-top:36px">
+    <div class="sponsor-row">
+      <span class="sponsor">Kinesis</span><span class="sponsor">Blue Bottle Love</span><span class="sponsor">Nutronics Labs</span><span class="sponsor">JJs Garden</span><span class="sponsor">RNC Store</span><span class="sponsor">Ice Wall Shop</span><span class="sponsor">Flat Earth Flyers</span><span class="sponsor">Radiant Phi</span><span class="sponsor">MasterPeace</span>
+      <span class="sponsor">Kinesis</span><span class="sponsor">Blue Bottle Love</span><span class="sponsor">Nutronics Labs</span><span class="sponsor">JJs Garden</span><span class="sponsor">RNC Store</span><span class="sponsor">Ice Wall Shop</span><span class="sponsor">Flat Earth Flyers</span><span class="sponsor">Radiant Phi</span><span class="sponsor">MasterPeace</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="sec cta-band" id="join">
+  <div class="wrap reveal">
+    <span class="pillar" style="display:inline-flex">Join 313,716 others</span>
+    <h2 class="h2">One email a week. Zero noise.</h2>
+    <p class="lead" style="margin-inline:auto">New interviews, new observations, and the meetups happening near you.</p>
+    <form class="form" id="subForm" novalidate>
+      <input type="email" id="email" placeholder="you@email.com" required aria-label="Email address" />
+      <button class="btn btn-primary" type="submit">Get In
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+    <p class="form-note" id="formNote">Unsubscribe any time. We never sell your data.</p>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER: same 5 pillars ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot">
+        <a href="#top" class="brand" style="margin-bottom:14px"><span class="brand-mark"><img src="https://flatearthdave.com/images/logo-dave-128.webp" alt="" loading="lazy" onerror="this.classList.add('fallback')"></span><span>Flat Earth Dave<small>Observe · Question · Verify</small></span></a>
+        <p style="color:var(--muted);font-size:.88rem;max-width:32ch;font-weight:300">It's no longer an argument or a debate. It's simply an observation.</p>
+        <div class="socials">
+          <a href="#" title="YouTube">YT</a><a href="#" title="X">X</a><a href="#" title="Instagram">IG</a><a href="#" title="Facebook">FB</a><a href="#" title="TikTok">TT</a><a href="#" title="Substack">SS</a><a href="#" title="Patreon">PA</a><a href="#" title="Truth Social">TS</a>
+        </div>
+      </div>
+      <div class="foot"><h5>Proof</h5><ul><li><a href="#proof">Crash Course</a></li><li><a href="#proof">200 Proofs</a></li><li><a href="#proof">LEVEL Trilogy</a></li><li><a href="#proof">Knowledge Library</a></li><li><a href="#proof">Book Club</a></li><li><a href="#proof">Blog</a></li></ul></div>
+      <div class="foot"><h5>Shows</h5><ul><li><a href="#shows">Latest Interviews</a></li><li><a href="#shows">DITRH Podcast</a></li><li><a href="#shows">Debates</a></li><li><a href="#shows">Iconic Episodes</a></li><li><a href="#dave">Book Dave</a></li></ul></div>
+      <div class="foot"><h5>Tools</h5><ul><li><a href="#tools">Sun &amp; Moon Clock</a></li><li><a href="#tools">Ask Dave AI</a></li><li><a href="#tools">Flash Cards</a></li><li><a href="#tools">Gift the App</a></li></ul></div>
+      <div class="foot"><h5>People</h5><ul><li><a href="#people">Match Maker</a></li><li><a href="#people">Meetup Maker</a></li><li><a href="#challenge">3 BTC Challenge</a></li><li><a href="#join">Newsletter</a></li></ul></div>
+      <div class="foot"><h5>Dave</h5><ul><li><a href="#dave">The Story</a></li><li><a href="#dave">Press Kit</a></li><li><a href="#support">Shop</a></li><li><a href="#support">Support</a></li><li><a href="#support">Sponsors</a></li><li><a href="#support">Contact</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Flat Earth Dave. All rights reserved.</span>
+      <span style="display:flex;gap:18px;flex-wrap:wrap"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Stop. Look. Think.</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- mobile sticky action bar -->
+<div class="mbar" id="mbar">
+  <a href="#start" class="btn btn-primary">Start Here</a>
+  <a href="#tools" class="btn btn-ghost">Get the App</a>
+</div>
+
+<script>
+/* progress + header */
+const header=document.getElementById('header'),bar=document.getElementById('progress'),mbar=document.getElementById('mbar');
+const onScroll=()=>{
+  const y=window.scrollY,h=document.documentElement.scrollHeight-window.innerHeight;
+  header.classList.toggle('scrolled',y>20);
+  bar.style.width=(h>0?(y/h)*100:0)+'%';
+  mbar.classList.toggle('show',y>window.innerHeight*0.8);
+};
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* desktop mega menu — click to open, hover to preview, esc to close */
+const items=[...document.querySelectorAll('[data-drop]')];
+items.forEach(li=>{
+  const btn=li.querySelector('.menu-btn');
+  btn.addEventListener('click',e=>{e.stopPropagation();const o=li.classList.contains('open');items.forEach(i=>i.classList.remove('open'));li.classList.toggle('open',!o)});
+  li.addEventListener('mouseenter',()=>{items.forEach(i=>i.classList.remove('open'));li.classList.add('open')});
+  li.addEventListener('mouseleave',()=>li.classList.remove('open'));
+  li.querySelectorAll('.mega a').forEach(a=>a.addEventListener('click',()=>li.classList.remove('open')));
+});
+document.addEventListener('click',()=>items.forEach(i=>i.classList.remove('open')));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')items.forEach(i=>i.classList.remove('open'))});
+
+/* mobile drawer */
+const burger=document.getElementById('burger'),drawer=document.getElementById('drawer');
+burger.addEventListener('click',()=>{
+  const open=drawer.classList.toggle('open');
+  burger.classList.toggle('open',open);burger.setAttribute('aria-expanded',open);
+  document.body.style.overflow=open?'hidden':'';
+});
+document.querySelectorAll('.dgroup>button').forEach(b=>b.addEventListener('click',()=>{
+  const g=b.parentElement,o=g.classList.contains('open');
+  document.querySelectorAll('.dgroup').forEach(x=>x.classList.remove('open'));
+  g.classList.toggle('open',!o);
+}));
+drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  drawer.classList.remove('open');burger.classList.remove('open');document.body.style.overflow='';
+}));
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* counters */
+const fmt=n=>n.toLocaleString('en-US');
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,target=+el.dataset.count,suf=el.dataset.suffix||'',dur=1600,t0=performance.now();
+  const tick=t=>{const p=Math.min((t-t0)/dur,1),k=1-Math.pow(1-p,3);el.textContent=fmt(Math.floor(target*k))+(p===1?suf:'');if(p<1)requestAnimationFrame(tick)};
+  requestAnimationFrame(tick);cio.unobserve(el);
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* accordion */
+document.querySelectorAll('.step-head').forEach(h=>h.addEventListener('click',()=>{
+  const s=h.parentElement,o=s.classList.contains('active');
+  document.querySelectorAll('.step').forEach(x=>x.classList.remove('active'));
+  if(!o)s.classList.add('active');
+}));
+
+/* proof tabs */
+document.querySelectorAll('[data-panel]').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('[data-panel]').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  t.classList.add('active');document.getElementById(t.dataset.panel).classList.add('active');
+}));
+
+/* show filters */
+document.querySelectorAll('[data-filter]').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');const f=t.dataset.filter;
+  document.querySelectorAll('#epGrid .ep').forEach(ep=>{
+    const show=f==='all'||ep.dataset.cat===f;ep.style.display=show?'':'none';
+    if(show){ep.style.animation='none';void ep.offsetWidth;ep.style.animation='fade .45s var(--ease)'}
+  });
+}));
+
+/* ask demo */
+const askQ=document.getElementById('askQ'),askA=document.getElementById('askA');
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{
+  askQ.textContent=c.dataset.q;askA.className='bubble muted typing';askA.innerHTML='<i></i><i></i><i></i>';
+  setTimeout(()=>{askA.className='bubble muted';askA.innerHTML='Searching 9,523 episodes and 4,116 interviews for this exact question… <a href="#" style="color:var(--signal)">open the full answer →</a>'},1400);
+}));
+
+/* card glow */
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointermove',e=>{
+  const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');
+}));
+
+/* live clock */
+const clock=document.getElementById('appClock'),sun=document.getElementById('sunHand'),moon=document.getElementById('moonHand');
+setInterval(()=>{
+  const d=new Date();clock.textContent=d.toLocaleTimeString('en-US',{hour12:false});
+  const s=d.getHours()*3600+d.getMinutes()*60+d.getSeconds();
+  sun.style.transform=`rotate(${(s/86400)*360-90}deg)`;
+  moon.style.transform=`rotate(${(s/86400)*360*1.035+110}deg)`;
+},1000);
+
+/* newsletter */
+document.getElementById('subForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=document.getElementById('email').value.trim(),note=document.getElementById('formNote');
+  const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  note.textContent=ok?"You're in. Check your inbox — film 1 is waiting.":"That email doesn't look right — try again.";
+  note.style.color=ok?'var(--live)':'var(--signal)';
+  if(ok)e.target.reset();
+});
+
+/* starfield */
+(function(){
+  const c=document.getElementById('stars');if(!c)return;
+  const ctx=c.getContext('2d');let w,h,stars=[],raf;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function init(){
+    w=c.width=c.offsetWidth*devicePixelRatio;h=c.height=c.offsetHeight*devicePixelRatio;
+    const n=Math.min(150,Math.floor(w*h/26000));
+    stars=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5*devicePixelRatio+.3,a:Math.random(),s:Math.random()*.012+.003}));
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    stars.forEach(s=>{s.a+=s.s;const o=.25+Math.abs(Math.sin(s.a))*.6;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.283);ctx.fillStyle=`rgba(210,232,255,${o})`;ctx.fill()});
+    raf=requestAnimationFrame(draw);
+  }
+  init();if(reduce){draw();cancelAnimationFrame(raf)}else draw();
+  let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(init,180)});
+})();
+</script>
+</body>
+</html>

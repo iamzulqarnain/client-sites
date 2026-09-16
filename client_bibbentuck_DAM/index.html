@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bibbentuckers — Premier Dry Cleaning, Dallas–Fort Worth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1F36;--ink-2:#183152;--ink-3:#22416A;
+  --press:#F4F5F2;--paper:#FFFFFF;--steam:#D9E4EE;
+  --brass:#B4884C;--brass-2:#DDB878;--brass-3:#F1D9A8;
+  --charcoal:#394047;--mist:#8792A0;--line:rgba(14,31,54,.12);
+  --serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);--r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--ink);background:var(--press);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@media(hover:hover) and (pointer:fine){body,a,button{cursor:none}}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.015em}
+h1{font-size:clamp(3rem,8.5vw,7.4rem)}
+h2{font-size:clamp(2.3rem,5vw,4.4rem)}
+h3{font-size:clamp(1.5rem,2.4vw,2.1rem)}
+p{max-width:62ch}
+.wrap{width:min(1280px,92vw);margin-inline:auto}
+.sec{padding:clamp(4.5rem,10vw,9rem) 0}
+.lede{font-size:1.15rem;color:var(--charcoal)}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}
+
+/* Cursor */
+#cur{position:fixed;top:0;left:0;width:12px;height:12px;border-radius:50%;background:var(--brass);pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s,opacity .3s;mix-blend-mode:difference}
+#ring{position:fixed;top:0;left:0;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--brass);pointer-events:none;z-index:998;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),border-color .3s,opacity .3s}
+body.hovering #cur{width:6px;height:6px}
+body.hovering #ring{width:64px;height:64px;border-color:var(--brass-2)}
+body.hide-cur #cur,body.hide-cur #ring{opacity:0}
+@media(hover:none){#cur,#ring{display:none}}
+
+/* Progress + transition */
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--brass),var(--brass-2));z-index:100;transition:width .1s linear}
+#wipe{position:fixed;inset:0;background:var(--ink);z-index:200;transform:scaleY(0);transform-origin:bottom;pointer-events:none}
+#wipe.in{animation:wipeIn .55s var(--ease) forwards}
+#wipe.out{animation:wipeOut .55s var(--ease) forwards;transform-origin:top}
+@keyframes wipeIn{to{transform:scaleY(1)}}
+@keyframes wipeOut{from{transform:scaleY(1)}to{transform:scaleY(0)}}
+
+/* Buttons (magnetic) */
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.7rem;border-radius:999px;font-weight:500;font-size:.95rem;position:relative;overflow:hidden;border:1.5px solid transparent;transition:color .3s,border-color .3s,transform .5s var(--ease);will-change:transform}
+.btn::before{content:"";position:absolute;inset:0;border-radius:inherit;background:currentColor;opacity:0;transform:scale(0);transition:transform .5s var(--ease),opacity .3s}
+.btn:hover::before{transform:scale(1.4);opacity:.12}
+.btn>*{position:relative}
+.btn.primary{background:var(--ink);color:#fff}
+.btn.ghost{border-color:var(--ink);color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn.ghostw{border-color:rgba(255,255,255,.4);color:#fff}
+.btn.light{background:#fff;color:var(--ink)}
+.btn.brass{background:linear-gradient(120deg,var(--brass),var(--brass-2));color:var(--ink)}
+.btn .ar{width:18px;height:18px;transition:transform .4s var(--ease)}
+.btn:hover .ar{transform:translateX(4px)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+/* Header */
+header{position:fixed;top:0;left:0;right:0;z-index:50;transition:all .4s var(--ease);color:#fff}
+header.solid{background:rgba(244,245,242,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);color:var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{font-family:var(--serif);font-size:1.75rem;display:flex;align-items:center;gap:.6rem}
+.logo b{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--brass);color:var(--ink);font-family:var(--serif);font-weight:400;font-size:1.3rem;transition:transform .5s var(--ease)}
+.logo:hover b{transform:rotate(12deg) scale(1.08)}
+.menu{display:flex;gap:.15rem;align-items:center}
+.menu>li{list-style:none;position:relative}
+.menu>li>button{padding:.6rem .9rem;border-radius:8px;font-size:.92rem;font-weight:500;display:inline-flex;align-items:center;gap:.35rem;transition:background .25s}
+.menu>li>button:hover{background:rgba(127,127,127,.15)}
+.menu>li>button svg{width:11px;height:11px;transition:transform .3s}
+.menu>li.open>button svg{transform:rotate(180deg)}
+.drop{position:absolute;top:calc(100% + 12px);left:0;min-width:300px;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:var(--r);padding:.6rem;box-shadow:0 30px 60px -25px rgba(14,31,54,.45);opacity:0;pointer-events:none;transform:translateY(10px) scale(.98);transition:all .35s var(--ease)}
+.menu>li.open .drop{opacity:1;pointer-events:auto;transform:none}
+.drop a{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border-radius:10px;font-size:.92rem;color:var(--charcoal);transition:all .2s}
+.drop a:hover{background:var(--press);color:var(--ink);padding-left:1.1rem}
+.drop a span{font-size:.75rem;color:var(--mist)}
+.drop .all{margin-top:.3rem;border-top:1px solid var(--line);color:var(--brass);font-weight:500}
+.nav-cta{display:flex;gap:.5rem;align-items:center}
+.nav-cta .btn{padding:.65rem 1.15rem;font-size:.88rem}
+.burger{display:none;width:44px;height:44px;place-items:center;border-radius:10px}
+.burger span,.burger span::before,.burger span::after{display:block;width:22px;height:2px;background:currentColor;position:relative;content:"";transition:transform .3s}
+.burger span::before{position:absolute;top:-7px}.burger span::after{position:absolute;top:7px}
+.drawer{position:fixed;inset:0;z-index:60;background:var(--ink);color:#fff;padding:2rem 6vw;overflow:auto;clip-path:circle(0% at calc(100% - 40px) 40px);transition:clip-path .7s var(--ease)}
+.drawer.on{clip-path:circle(150% at calc(100% - 40px) 40px)}
+.drawer .close{position:absolute;top:1.2rem;right:6vw;font-size:2.4rem;line-height:1}
+.drawer h4{font-size:2.4rem;margin:1.8rem 0 .5rem;color:var(--brass-2)}
+.drawer a{display:block;padding:.4rem 0;color:rgba(255,255,255,.8);font-size:1.05rem}
+@media(max-width:1020px){.menu,.nav-cta .ghost,.nav-cta .ghostw{display:none}.burger{display:grid}}
+
+#app{min-height:80vh}
+.page{animation:rise .8s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* HERO */
+.hero{position:relative;background:var(--ink);color:#fff;min-height:100vh;display:grid;align-items:center;overflow:hidden;padding-top:78px}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.7}
+.hero .glow{position:absolute;width:60vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(221,184,120,.18),transparent 60%);top:-20vw;right:-15vw;pointer-events:none;animation:breathe 8s ease-in-out infinite alternate}
+@keyframes breathe{to{transform:scale(1.2) translate(-5%,5%)}}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;padding:4rem 0}
+.hero h1{margin:1.2rem 0 1.4rem}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom}
+.hero h1 .w span{display:inline-block;transform:translateY(110%);animation:up 1s var(--ease) forwards}
+.hero h1 em{font-style:italic;color:var(--brass-2)}
+@keyframes up{to{transform:none}}
+.hero p{color:rgba(255,255,255,.7);font-size:1.15rem;opacity:0;animation:fade 1s .7s var(--ease) forwards}
+.hero .acts{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:2.2rem;opacity:0;animation:fade 1s .9s var(--ease) forwards}
+@keyframes fade{to{opacity:1}}
+.kick{display:inline-flex;align-items:center;gap:.6rem;font-size:.9rem;color:var(--brass-2)}
+.kick i{width:32px;height:1px;background:var(--brass-2)}
+.rail{position:relative;height:480px;perspective:1000px;opacity:0;animation:fade 1.2s .5s var(--ease) forwards}
+.rail::before{content:"";position:absolute;top:26px;left:-4%;right:-4%;height:4px;background:linear-gradient(90deg,transparent,var(--brass-2) 20%,var(--brass-2) 80%,transparent);border-radius:4px}
+.hanger{position:absolute;top:26px;width:150px;transform-origin:top center;animation:sway 7s ease-in-out infinite alternate;transform-style:preserve-3d}
+.hanger:nth-child(2){animation-delay:-1.5s}.hanger:nth-child(3){animation-delay:-3s}.hanger:nth-child(4){animation-delay:-4.5s}
+@keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
+.hanger .hook{width:1px;height:40px;background:rgba(255,255,255,.5);margin:0 auto}
+.hanger .body{margin-top:-2px;height:270px;border-radius:64px 64px 28px 28px / 44px 44px 28px 28px;position:relative;box-shadow:0 40px 50px -30px rgba(0,0,0,.7);transition:transform .6s var(--ease),box-shadow .6s;overflow:hidden}
+.hanger .body::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.25) 45%,transparent 60%);transform:translateX(-120%);transition:transform .9s var(--ease)}
+.hanger:hover .body{transform:translateY(-14px) rotateY(8deg)}
+.hanger:hover .body::after{transform:translateX(120%)}
+.hanger .tag{position:absolute;top:74px;right:-14px;background:var(--brass-3);color:var(--ink);font-size:.72rem;padding:.35rem .6rem;border-radius:6px;transform:rotate(8deg);font-weight:500}
+.hanger .name{margin-top:1rem;text-align:center;font-size:.85rem;color:rgba(255,255,255,.7)}
+.hanger.picked .body{outline:2px solid var(--brass-2);outline-offset:6px}
+.care{position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:1rem 1.2rem;font-size:.9rem;backdrop-filter:blur(10px);min-height:76px;transition:all .4s var(--ease)}
+.care b{color:var(--brass-2);font-weight:500}
+.scrollhint{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);font-size:.75rem;letter-spacing:.15em;color:rgba(255,255,255,.5);display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.scrollhint i{width:1px;height:40px;background:linear-gradient(var(--brass-2),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.rail{height:420px}.hanger{width:110px}.hanger .body{height:200px}}
+
+/* Marquee */
+.marq{overflow:hidden;background:var(--brass);color:var(--ink);padding:1rem 0;font-family:var(--serif);font-size:1.5rem;white-space:nowrap;transform:rotate(-1.2deg) scale(1.02);margin:-1.5rem 0 1rem}
+.marq div{display:inline-block;animation:slide 40s linear infinite}
+.marq:hover div{animation-play-state:paused}
+.marq span{margin:0 2rem}
+.marq span::after{content:"✦";margin-left:2rem}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center}
+@media(max-width:860px){.split{grid-template-columns:1fr;gap:2.5rem}}
+.stat{font-family:var(--serif);font-size:3.8rem;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1.5rem}
+.stats small{display:block;color:var(--mist);font-size:.85rem}
+
+/* Before/After compare */
+.cmp{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;user-select:none;box-shadow:0 60px 100px -50px rgba(14,31,54,.5);touch-action:none}
+.cmp .side{position:absolute;inset:0;display:grid;place-items:center}
+.cmp .before{background:linear-gradient(160deg,#E8E0D2,#D6CBB8)}
+.cmp .after{background:linear-gradient(160deg,#FFFFFF,#EEF2F5);clip-path:inset(0 0 0 50%)}
+.cmp .shirt{width:62%;aspect-ratio:3/4;border-radius:40% 40% 12% 12%/28% 28% 10% 10%;position:relative}
+.cmp .before .shirt{background:#F3EBDD}
+.cmp .after .shirt{background:#FBFBFA}
+.cmp .shirt::before{content:"";position:absolute;top:0;left:50%;width:34%;height:14%;transform:translateX(-50%);background:inherit;border-radius:0 0 50% 50%;filter:brightness(.94)}
+.cmp .stain{position:absolute;width:26%;height:22%;left:30%;top:36%;border-radius:60% 40% 55% 45%;background:radial-gradient(circle at 40% 40%,rgba(120,40,60,.65),rgba(120,40,60,.35) 60%,transparent 75%);filter:blur(1px)}
+.cmp .stain.s2{width:12%;height:12%;left:58%;top:52%;opacity:.7}
+.cmp .lbl{position:absolute;top:1rem;font-size:.75rem;letter-spacing:.12em;padding:.35rem .7rem;border-radius:999px;background:rgba(14,31,54,.75);color:#fff}
+.cmp .before .lbl{left:1rem}.cmp .after .lbl{right:1rem}
+.cmp .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--brass-2);transform:translateX(-50%)}
+.cmp .handle b{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:var(--brass-2);display:grid;place-items:center;color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.3);font-size:1rem;letter-spacing:-.1em}
+
+/* Services horizontal scroll */
+.hscroll{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1rem 4vw 2.5rem;scrollbar-width:none;margin-inline:-4vw}
+.hscroll::-webkit-scrollbar{display:none}
+.scard{flex:0 0 min(340px,80vw);scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:24px;padding:2rem;min-height:380px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:transform .6s var(--ease),box-shadow .6s;transform-style:preserve-3d}
+.scard::after{content:"";position:absolute;inset:auto -30% -30% auto;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(221,184,120,.35),transparent 65%);transition:transform .6s var(--ease)}
+.scard:hover{box-shadow:0 40px 80px -40px rgba(14,31,54,.5)}
+.scard:hover::after{transform:scale(1.5)}
+.scard .ico{width:44px;height:44px;color:var(--brass)}
+.scard h3{font-size:1.9rem;margin-top:1rem}
+.scard small{display:block;color:var(--mist);margin-top:.5rem}
+.scard .go{display:inline-flex;align-items:center;gap:.5rem;font-weight:500;font-size:.9rem;margin-top:1.5rem;color:var(--brass)}
+.hbar{height:2px;background:var(--line);position:relative;border-radius:2px}
+.hbar i{position:absolute;left:0;top:0;height:100%;width:15%;background:var(--ink);border-radius:2px;transition:left .15s}
+
+/* Pinned process */
+.pin{position:relative}
+.pin .stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;overflow:hidden}
+.pin .stage .vis{position:relative;aspect-ratio:1;max-height:70vh;margin-inline:auto;width:100%}
+.pin .stage .vis>div{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:scale(.9);transition:all .8s var(--ease)}
+.pin .stage .vis>div.on{opacity:1;transform:none}
+.pin .steps{display:grid;gap:0}
+.pin .step{padding:1.2rem 0;border-top:1px solid rgba(255,255,255,.12);transition:opacity .5s;opacity:.35}
+.pin .step.on{opacity:1}
+.pin .step h4{font-size:1.9rem;display:flex;gap:1rem;align-items:baseline}
+.pin .step h4 small{font-family:var(--sans);font-size:.85rem;color:var(--brass-2)}
+.pin .step p{color:rgba(255,255,255,.65);font-size:.95rem;margin-top:.3rem}
+.pin .spacer{height:80vh}
+.orb{width:min(360px,70%);aspect-ratio:1;border-radius:50%;position:relative;display:grid;place-items:center;font-family:var(--serif);font-size:5rem;color:var(--brass-2)}
+.orb::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(221,184,120,.4);animation:spin 20s linear infinite}
+.orb::after{content:"";position:absolute;inset:12%;border-radius:50%;border:1px dashed rgba(221,184,120,.4);animation:spin 30s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:860px){.pin .stage{grid-template-columns:1fr;height:auto;position:static;padding:3rem 0}.pin .stage .vis{display:none}.pin .step{opacity:1}.pin .spacer{display:none}}
+
+/* Why grid tilt */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.why .tilt{padding:1.8rem;border-radius:var(--r);background:#fff;border:1px solid var(--line);transition:transform .3s ease-out,box-shadow .5s;transform-style:preserve-3d}
+.why .tilt:hover{box-shadow:0 40px 70px -40px rgba(14,31,54,.5)}
+.why svg{width:32px;height:32px;color:var(--brass);margin-bottom:1rem}
+.why h4{font-size:1.35rem;margin-bottom:.3rem}
+.why p{font-size:.92rem;color:var(--charcoal)}
+@media(max-width:800px){.why{grid-template-columns:1fr}}
+
+/* Locations */
+.locs{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+.map{background:var(--ink);border-radius:24px;padding:1rem;position:sticky;top:98px;overflow:hidden}
+.map svg{width:100%;height:auto}
+.map .pin{cursor:pointer}
+.map .pin circle{transition:all .35s var(--ease)}
+.map .pin .pulse{animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{r:6;opacity:.8}100%{r:26;opacity:0}}
+.map .pin:hover circle.r,.map .pin.on circle.r{r:9;fill:var(--brass-2)}
+.map .pin text{font:500 11px var(--sans);fill:rgba(255,255,255,.7);pointer-events:none}
+.map .pin.on text{fill:#fff}
+.loclist{display:grid;gap:.6rem}
+.loc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.2rem 1.4rem;cursor:pointer;transition:all .4s var(--ease)}
+.loc:hover{transform:translateX(6px)}
+.loc.on{border-color:var(--ink);box-shadow:0 30px 50px -35px rgba(14,31,54,.6)}
+.loc .top{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.loc h3{font-size:1.5rem}
+.loc .open{font-size:.78rem;padding:.25rem .65rem;border-radius:999px;background:var(--steam);white-space:nowrap}
+.loc .open.y{background:#DDF1E2;color:#1F6A3A}
+.loc .more{max-height:0;overflow:hidden;transition:max-height .6s var(--ease)}
+.loc.on .more{max-height:320px}
+.loc .more p{font-size:.92rem;color:var(--charcoal);margin-top:.7rem}
+.loc .more .acts{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.loc .more .acts a{font-size:.85rem;padding:.6rem 1rem}
+@media(max-width:860px){.locs{grid-template-columns:1fr}.map{position:static}}
+
+/* Reviews */
+.rev{background:var(--ink);color:#fff;border-radius:32px;padding:clamp(2rem,5vw,4.5rem);position:relative;overflow:hidden}
+.rev::before{content:"“";position:absolute;top:-2rem;right:2rem;font-family:var(--serif);font-size:22rem;color:rgba(221,184,120,.12);line-height:1}
+.rev blockquote{font-family:var(--serif);font-size:clamp(1.6rem,3.2vw,2.7rem);line-height:1.2;min-height:5em;transition:opacity .4s,transform .4s;position:relative}
+.rev blockquote.fade{opacity:0;transform:translateY(10px)}
+.rev cite{display:block;margin-top:1.5rem;font-style:normal;color:var(--brass-2);font-size:.95rem}
+.rev .ctrl{display:flex;gap:.5rem;margin-top:2rem;align-items:center}
+.rev .ctrl button{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;transition:all .3s}
+.rev .ctrl button:hover{background:var(--brass-2);color:var(--ink);border-color:var(--brass-2)}
+.rev .dots{display:flex;gap:.4rem;margin-left:1rem}
+.rev .dots i{width:24px;height:3px;border-radius:3px;background:rgba(255,255,255,.25);transition:background .3s}
+.rev .dots i.on{background:var(--brass-2)}
+.stars{color:var(--brass-2);letter-spacing:.15em;font-size:.9rem}
+
+/* CTA band */
+.band{background:linear-gradient(120deg,var(--brass),var(--brass-2));color:var(--ink);border-radius:32px;padding:clamp(2.5rem,6vw,5rem);display:grid;grid-template-columns:1.3fr .7fr;gap:2rem;align-items:center;position:relative;overflow:hidden}
+.band::after{content:"";position:absolute;width:40%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(14,31,54,.15);right:-10%;bottom:-40%;animation:spin 40s linear infinite}
+.band p{color:rgba(14,31,54,.75)}
+.band .acts{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:flex-end;position:relative}
+@media(max-width:800px){.band{grid-template-columns:1fr}.band .acts{justify-content:flex-start}}
+
+/* Footer */
+footer{background:var(--ink);color:rgba(255,255,255,.75);margin-top:5rem;padding:5rem 0 2rem;position:relative;overflow:hidden}
+footer .big{font-family:var(--serif);font-size:clamp(4rem,14vw,13rem);line-height:.9;color:rgba(255,255,255,.05);white-space:nowrap;position:absolute;left:0;bottom:-1.5rem;pointer-events:none}
+footer .grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;position:relative}
+footer h4{font-size:1.5rem;color:#fff;margin-bottom:.8rem}
+footer a{display:block;padding:.25rem 0;font-size:.92rem;transition:color .2s,padding-left .2s}
+footer a:hover{color:var(--brass-2);padding-left:.3rem}
+footer .apps{display:flex;gap:.6rem;margin-top:1rem;flex-wrap:wrap}
+footer .apps a{padding:.6rem 1rem;border:1px solid rgba(255,255,255,.25);border-radius:10px;font-size:.85rem;display:inline-flex;align-items:center;gap:.5rem}
+footer .base{border-top:1px solid rgba(255,255,255,.12);margin-top:3rem;padding-top:1.5rem;display:flex;justify-content:space-between;font-size:.82rem;flex-wrap:wrap;gap:1rem;position:relative}
+footer .base a{display:inline;margin-left:1rem}
+@media(max-width:800px){footer .grid{grid-template-columns:1fr 1fr}}
+
+/* Inner page hero */
+.phero{padding:clamp(9rem,16vw,13rem) 0 clamp(2.5rem,5vw,4rem);background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.phero::after{content:"";position:absolute;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(221,184,120,.16),transparent 60%);top:-20vw;right:-15vw}
+.phero .wrap{position:relative}
+.phero .crumb{font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:1rem}
+.phero .crumb a:hover{color:#fff}
+.phero p{margin-top:1rem;color:rgba(255,255,255,.7);font-size:1.15rem}
+
+/* Scheduler */
+.sched{background:#fff;border:1px solid var(--line);border-radius:28px;padding:2.2rem;box-shadow:0 50px 100px -50px rgba(14,31,54,.45)}
+.sched .tabs{display:flex;gap:.4rem;margin-bottom:1.6rem}
+.sched .tabs span{flex:1;height:4px;border-radius:4px;background:var(--steam);transition:background .4s}
+.sched .tabs span.on{background:var(--ink)}
+.field{display:grid;gap:.4rem;margin-bottom:1rem}
+.field label{font-size:.85rem;color:var(--charcoal);font-weight:500}
+.field input,.field select,.field textarea{padding:.9rem 1rem;border:1.5px solid var(--line);border-radius:12px;font:inherit;background:var(--press);width:100%;transition:all .25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink);outline:0;background:#fff;box-shadow:0 0 0 4px rgba(14,31,54,.08)}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.chip{padding:.6rem 1.05rem;border-radius:999px;border:1.5px solid var(--line);font-size:.9rem;transition:all .3s var(--ease)}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink);transform:scale(1.04)}
+.slotgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:.5rem}
+.slot{padding:.75rem .4rem;border-radius:12px;border:1.5px solid var(--line);text-align:center;font-size:.85rem;transition:all .3s var(--ease)}
+.slot b{display:block;font-weight:500}
+.slot:hover{border-color:var(--ink)}
+.slot.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sched .row{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1.4rem}
+.sum{background:var(--press);border-radius:14px;padding:1.2rem;display:grid;gap:.5rem;font-size:.95rem}
+.sum div{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px dashed var(--line);padding-bottom:.4rem}
+.sum div:last-child{border:0}
+.ok{background:var(--ink);color:#fff;border-radius:16px;padding:2rem;text-align:center;position:relative;overflow:hidden}
+.ok h3{color:var(--brass-2)}
+.ok .tick{width:64px;height:64px;border-radius:50%;border:2px solid var(--brass-2);display:grid;place-items:center;margin:0 auto 1rem;color:var(--brass-2)}
+.ok .tick svg{width:30px;height:30px;stroke-dasharray:40;stroke-dashoffset:40;animation:draw 1s .3s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;counter-reset:s}
+.steps4 div{padding-top:1.2rem;border-top:2px solid var(--ink)}
+.steps4 div::before{counter-increment:s;content:counter(s);font-family:var(--serif);font-size:2.6rem;line-height:1;display:block;margin-bottom:.6rem;color:var(--brass)}
+.steps4 h4{font-size:1.3rem;margin-bottom:.3rem}
+.steps4 p{font-size:.95rem;color:var(--charcoal)}
+@media(max-width:800px){.steps4{grid-template-columns:1fr 1fr}}
+
+/* Service detail / misc */
+.detail{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem}
+.detail ul{list-style:none;display:grid;gap:.6rem;margin:1.5rem 0}
+.detail li{padding-left:1.4rem;position:relative;color:var(--charcoal)}
+.detail li::before{content:"";position:absolute;left:0;top:.65em;width:8px;height:8px;border-radius:50%;background:var(--brass)}
+.aside{background:#fff;border:1px solid var(--line);border-radius:24px;padding:1.8rem;position:sticky;top:98px}
+.aside dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1rem;font-size:.92rem;margin:1rem 0 1.4rem}
+.aside dt{color:var(--mist)}
+.svcnav{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:2.5rem}
+.svcnav a{font-size:.85rem;padding:.5rem .9rem;border:1px solid var(--line);border-radius:999px;transition:all .25s}
+.svcnav a.on,.svcnav a:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media(max-width:860px){.detail{grid-template-columns:1fr}.aside{position:static}}
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:1.4rem 0;font-family:var(--serif);font-size:1.5rem;display:flex;justify-content:space-between;gap:1rem;align-items:center;transition:padding-left .3s}
+.faq summary:hover{padding-left:.5rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.8rem;color:var(--brass);transition:transform .4s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:1.4rem;color:var(--charcoal)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.8rem;transition:transform .5s var(--ease),box-shadow .5s}
+.card:hover{transform:translateY(-6px);box-shadow:0 40px 60px -40px rgba(14,31,54,.5)}
+.card h4{font-size:1.4rem;margin-bottom:.4rem}
+.card p{font-size:.92rem;color:var(--charcoal)}
+.card .yr{font-family:var(--serif);font-size:2.4rem;color:var(--brass);line-height:1}
+.card .tag{display:inline-block;font-size:.78rem;background:var(--steam);padding:.2rem .6rem;border-radius:999px;margin-bottom:.8rem}
+.special{display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem;align-items:center;padding:1.6rem 0;border-bottom:1px solid var(--line)}
+.special .pct{font-family:var(--serif);font-size:3.4rem;line-height:1;color:var(--brass);min-width:100px}
+.special p{font-size:.92rem;color:var(--charcoal)}
+@media(max-width:700px){.special{grid-template-columns:1fr}}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.cinfo dl{display:grid;gap:1.2rem}
+.cinfo dt{font-size:.85rem;color:var(--mist)}
+.cinfo dd{font-family:var(--serif);font-size:1.6rem}
+@media(max-width:860px){.contact{grid-template-columns:1fr}}
+.acct{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.acct .box{background:#fff;border:1px solid var(--line);border-radius:28px;padding:2.2rem}
+.acct .toggle{display:flex;background:var(--press);border-radius:999px;padding:.3rem;margin-bottom:1.5rem;position:relative}
+.acct .toggle button{flex:1;padding:.65rem;border-radius:999px;font-weight:500;font-size:.9rem;transition:all .3s}
+.acct .toggle button.on{background:var(--ink);color:#fff}
+.acct .feat{display:grid;gap:1rem}
+.acct .feat div{display:flex;gap:1rem;align-items:flex-start}
+.acct .feat svg{width:26px;height:26px;color:var(--brass);flex:none;margin-top:.2rem}
+.acct .feat h4{font-size:1.25rem}
+.acct .feat p{font-size:.92rem;color:var(--charcoal)}
+.phone{width:min(290px,80vw);aspect-ratio:9/18.5;margin-inline:auto;background:var(--ink);border-radius:40px;padding:14px;box-shadow:0 60px 100px -50px rgba(14,31,54,.7);transition:transform .3s ease-out;transform-style:preserve-3d}
+.phone .scr{background:var(--press);border-radius:28px;height:100%;padding:1.3rem 1rem;display:grid;grid-template-rows:auto auto 1fr;gap:.8rem;font-size:.75rem;color:var(--ink)}
+.phone .scr .t{background:#fff;border-radius:14px;padding:.85rem;border:1px solid var(--line)}
+.phone .scr .t b{display:block;font-size:.9rem}
+.phone .scr .prog{height:5px;background:var(--steam);border-radius:5px;margin-top:.5rem;overflow:hidden}
+.phone .scr .prog i{display:block;height:100%;background:var(--brass);animation:grow 3s var(--ease) infinite alternate}
+@keyframes grow{from{width:30%}to{width:78%}}
+@media(max-width:860px){.acct{grid-template-columns:1fr}}
+.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.post{border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .5s var(--ease),box-shadow .5s}
+.post:hover{transform:translateY(-6px);box-shadow:0 40px 60px -40px rgba(14,31,54,.5)}
+.post .cover{aspect-ratio:16/10;background:linear-gradient(135deg,var(--steam),#fff);transition:transform .8s var(--ease)}
+.post:hover .cover{transform:scale(1.04)}
+.post .cover.b{background:linear-gradient(135deg,var(--ink-2),var(--ink))}
+.post .cover.c{background:linear-gradient(135deg,var(--brass-2),var(--brass))}
+.post div.txt{padding:1.4rem}
+.post small{color:var(--mist);font-size:.82rem}
+.post h4{font-size:1.45rem;margin:.3rem 0 .5rem}
+.post p{font-size:.92rem;color:var(--charcoal)}
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translate(-50%,140%);background:var(--ink);color:#fff;padding:.95rem 1.5rem;border-radius:999px;font-size:.92rem;transition:transform .6s var(--ease);z-index:70;box-shadow:0 20px 40px -20px rgba(0,0,0,.5)}
+.toast.on{transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="ring"></div>
+<div id="prog"></div><div id="wipe"></div>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#/" class="logo"><b>B</b>Bibbentuckers</a>
+    <ul class="menu" id="menu"></ul>
+    <div class="nav-cta">
+      <a class="btn ghostw" id="navGhost" href="#/pickup"><span>Pickup &amp; delivery</span></a>
+      <a class="btn brass" href="#/pickup#schedule"><span>Schedule a pickup</span></a>
+      <button class="burger" id="burger" aria-label="Open menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="close" id="drawerClose" aria-label="Close menu">×</button>
+  <div id="drawerLinks"></div>
+</div>
+
+<main id="app"></main>
+
+<footer>
+  <div class="big">Bibbentuckers</div>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="logo" style="color:#fff"><b>B</b>Bibbentuckers</div>
+        <p style="font-size:.92rem;margin-top:1rem;max-width:34ch">Expert garment care across Dallas–Fort Worth for more than two decades.</p>
+        <div class="apps">
+          <a href="https://apps.apple.com/ca/app/bibbentuckers-cleaners/id1250195520" target="_blank" rel="noopener"> App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.spot.mdc.bibtx" target="_blank" rel="noopener">▶ Google Play</a>
+        </div>
+      </div>
+      <div><h4>Explore</h4><a href="#/services">Services</a><a href="#/pickup">Pickup &amp; delivery</a><a href="#/pickup/corporate">Corporate concierge</a><a href="#/locations">Locations</a><a href="#/about/specials">Specials</a><a href="#/about/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="#/about">About</a><a href="#/about/awards">Awards</a><a href="#/about/charity">Charity &amp; donations</a><a href="#/about/reviews">Reviews</a><a href="#/contact/faq">FAQ</a><a href="#/contact">Contact</a></div>
+      <div><h4>Reach us</h4><a href="tel:2142671700">214-267-1700</a><a href="sms:8446562080">Text 844-656-2080</a><p style="font-size:.9rem;margin-top:.8rem">4144 North Central, Suite 430<br>Dallas, TX 75204</p>
+        <div style="display:flex;gap:.8rem;margin-top:1rem"><a href="https://www.facebook.com/Bibbentuckers" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/bibbentuckersdrycleaner/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/bibbentuckers/" target="_blank" rel="noopener">LinkedIn</a></div>
+      </div>
+    </div>
+    <div class="base"><span>© 2026 Bibbentuckers. All rights reserved.</span><span><a href="#/terms">Terms</a><a href="#/privacy">Privacy</a></span></div>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- DATA ---------- */
+const SERVICES=[
+ {slug:'dry-cleaning',name:'Professional dry cleaning',short:'Suits, dresses, weekly wardrobe',turn:'2 days',desc:'Every garment is inspected, spot-treated by hand, cleaned in solvent matched to its fiber, then pressed and finished by a person, not a machine alone.',pts:['Free minor repairs: buttons, loose hems, small seams','Stain notes tracked garment-by-garment in your account','Eco-conscious solvents and energy recovery at every plant'],ico:'shirt'},
+ {slug:'wash-fold',name:'Wash & fold laundry',short:'Everyday clothes, by the pound',turn:'2 days',desc:'Drop off a bag; get back a neatly folded, sorted stack. Colors and whites are separated, temperatures matched to fabric, everything folded to a consistent size.',pts:['Hypoallergenic detergent on request','Socks paired, shirts folded retail-style','Complimentary laundry bags for route customers'],ico:'stack'},
+ {slug:'wedding-dress-cleaning',name:'Wedding dress cleaning & preservation',short:'Cleaning, museum-grade boxing',turn:'3–4 weeks',desc:'Gowns are cleaned by hand with attention to beading, lace, and hidden stains. Preserved dresses go into acid-free tissue and an archival box with a viewing window.',pts:['Pre-cleaning consultation and photo record','Restoration of vintage and heirloom gowns','Lifetime guarantee on preservation'],ico:'ring'},
+ {slug:'couture-garment-cleaning',name:'Couture & fine garment cleaning',short:'Designer, silk, cashmere, sequins',turn:'3–5 days',desc:'Designer pieces are handled by senior fabric specialists only. We test dyes, protect embellishments, and hand-finish every seam.',pts:['Specialists certified in luxury fabric care','Individual garment bags and padded hangers','Direct line to your specialist'],ico:'sparkle'},
+ {slug:'leather-cleaning',name:'Leather cleaning & restoration',short:'Jackets, coats, suede',turn:'2–3 weeks',desc:'Leather and suede are cleaned in dedicated systems, then re-conditioned and re-dyed where needed so the finish stays supple and the color even.',pts:['Color restoration and touch-up','Water-repellent treatment available','Zipper and lining repairs'],ico:'jacket'},
+ {slug:'fur-cleaning-storage',name:'Fur cleaning, storage & repair',short:'Cleaning, glazing, climate storage',turn:'Seasonal',desc:'Furs are cleaned and glazed to restore luster, then stored in a climate-controlled vault through the warm months.',pts:['Cold storage vault with humidity control','Insured storage with pickup and delivery','Reconditioning, relining, and repair'],ico:'snow'},
+ {slug:'alterations-tailoring',name:'Alterations & tailoring',short:'Hems, take-ins, full re-cuts',turn:'5–7 days',desc:'In-house tailors handle everything from a quick hem to reworking a jacket for a new fit. Fittings at every location.',pts:['Walk-in fittings, no appointment needed','Suits, dresses, denim, and formalwear','Express tailoring for events'],ico:'needle'},
+ {slug:'handbag-purse-care',name:'Handbag & purse complete care',short:'Cleaning, hardware, edge paint',turn:'2–3 weeks',desc:'Handbags are cleaned inside and out, hardware is polished, and worn edges or handles refinished.',pts:['Leather, canvas, and exotic skins','Edge-paint and handle repair','Interior odor and stain treatment'],ico:'bag'},
+ {slug:'shoe-care',name:'Shoe cleaning & complete care',short:'Cleaning, resoling, polishing',turn:'1–2 weeks',desc:'From a hand polish to a full resole, our cobblers keep leather and suede shoes wearable for years longer.',pts:['Resoling, heel replacement, stretching','Suede and nubuck cleaning','Sneaker cleaning and whitening'],ico:'shoe'},
+ {slug:'oriental-rug-care',name:'Oriental rug complete care',short:'Wash, repair, moth-proof',turn:'2–3 weeks',desc:'Rugs are dusted, hand-washed, dried flat, and inspected for fringe and pile damage. Pickup and delivery included.',pts:['Free pickup and delivery on rugs','Fringe repair and re-weaving','Pet stain and odor removal'],ico:'rug'},
+ {slug:'bedding-linen-cleaning',name:'Bedding & linen cleaning',short:'Comforters, duvets, table linens',turn:'3–4 days',desc:'Down, wool, and synthetic bedding cleaned and fluffed. Fine table linens pressed and folded.',pts:['Comforters, duvets, pillows','Tablecloths and napkins pressed','Allergen-reducing wash available'],ico:'bed'},
+ {slug:'tie-cleaning',name:'Tie cleaning',short:'Silk, knit, and bow ties',turn:'3–5 days',desc:'Ties are cleaned by hand and reshaped, never pressed flat, so the roll and knot stay right.',pts:['Silk-safe spot treatment','Reshaped by hand','Bundle discounts on five or more'],ico:'tie'}
+];
+const LOCS=[
+ {slug:'kessler-park',name:'Kessler Park',addr:'750 Fort Worth Avenue, Suite 110',city:'Dallas, TX 75208',tel:'972-913-4844',open:8,close:18,lat:32.752,lon:-96.851,note:'Drive-through lane. Free parking out front.'},
+ {slug:'park-cities',name:'Park Cities',addr:'6817 Hillcrest Avenue',city:'Dallas, TX 75205',tel:'214-361-9703',open:7,close:19,lat:32.852,lon:-96.788,note:'Our earliest and latest hours. Tailor on site daily.'},
+ {slug:'plano-frisco',name:'Plano / Frisco',addr:'1913 Preston Road #150',city:'Plano, TX 75093',tel:'972-733-1919',open:8,close:18,lat:33.026,lon:-96.796,note:'Drive-up service. Serves Plano, Frisco, and West Plano routes.'},
+ {slug:'preston-center',name:'Preston Center',addr:'4033 Northwest Parkway',city:'Dallas, TX 75225',tel:'972-850-9900',open:7,close:19,lat:32.865,lon:-96.806,note:'Couture specialists on staff. Gown consultations by appointment.'},
+ {slug:'preston-hollow',name:'Preston Hollow',addr:'11741 Preston Road',city:'Dallas, TX 75230',tel:'214-739-1100',open:8,close:18,lat:32.912,lon:-96.805,note:'Rug and fur intake location.'},
+ {slug:'southlake-westlake',name:'Southlake / Westlake',addr:'2301 W. Southlake Blvd. Suite 100',city:'Southlake, TX 76092',tel:'817-431-9990',open:8,close:18,lat:32.939,lon:-97.163,note:'Serves Southlake, Westlake, Keller, and Colleyville routes.'},
+ {slug:'uptown-midtown',name:'Uptown / Midtown',addr:'3400 Carlisle',city:'Dallas, TX 75204',tel:'214-219-5400',open:8,close:18,lat:32.804,lon:-96.804,note:'Walkable from Uptown and the State Thomas district.'}
+];
+const REVIEWS=[
+ {q:'They found a wine stain on my silk dress that two other cleaners had given up on. It came back perfect, with a note explaining what they did.',w:'Alexandra M., Park Cities'},
+ {q:'Our route manager knows my husband likes light starch and I like none. We have never once had to say it twice.',w:'Priya R., Plano'},
+ {q:'I sent my mother’s 1974 wedding gown for preservation. What came back looked better than the photos from the day.',w:'Daniel K., Preston Hollow'},
+ {q:'Tailoring is the reason I switched. Suits come back fitting the way the salesperson promised they would.',w:'Marcus T., Uptown'}
+];
+const FAQ=[
+ ['How does pickup and delivery work?','Sign up online or in the app, and a route manager assigned to your neighborhood confirms your service days. Leave your bag out; we pick up, clean, and return on the next visit. Membership is $7 a month.'],
+ ['Do I need to be home?','No. Most customers leave their bag on a porch, with a doorman, or in a lockbox. Tell us where in your account notes and we follow the same routine every visit.'],
+ ['What is your turnaround time?','Standard dry cleaning and laundry is two business days. Specialty items like leather, wedding gowns, and rugs take longer; each service page lists its timing.'],
+ ['Do you offer same-day service?','Yes, at most locations for items dropped off before 9 a.m. Ask at the counter, because capacity varies by day.'],
+ ['What if something goes wrong with a garment?','Every order is guaranteed. If you are unhappy with a result, bring it back and we re-clean it at no charge or make it right another way.'],
+ ['Can I request no plastic?','Yes. Choose reusable garment bags in your account preferences and we return your clothes without single-use plastic.'],
+ ['Do you clean household items?','Comforters, duvets, pillows, table linens, drapes, and area rugs are all handled in-house.']
+];
+const NAV=[
+ {l:'Pickup & delivery',h:'#/pickup',sub:[['Corporate concierge','#/pickup/corporate','For offices & teams']]},
+ {l:'Services',h:'#/services',sub:SERVICES.map(s=>[s.name,'#/services/'+s.slug,s.turn])},
+ {l:'Locations',h:'#/locations',sub:LOCS.map(l=>[l.name,'#/locations/'+l.slug,l.city.split(',')[0]])},
+ {l:'About',h:'#/about',sub:[['Awards & recognition','#/about/awards'],['Charity & donations','#/about/charity'],['Dry cleaning specials','#/about/specials'],['Reviews','#/about/reviews'],['Blog','#/about/blog']]},
+ {l:'Contact',h:'#/contact',sub:[['Frequently asked questions','#/contact/faq']]},
+ {l:'My account',h:'#/account',sub:[['Download the app','#/app']]}
+];
+const ICONS={shirt:'<path d="M16 3l4 2 2 6-4 1v9H6v-9L2 11l2-6 4-2c0 2 2 3 4 3s4-1 4-3z"/>',stack:'<path d="M3 7h18M3 12h18M3 17h18"/>',ring:'<circle cx="12" cy="14" r="6"/><path d="M9 8l3-4 3 4"/>',sparkle:'<path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>',jacket:'<path d="M8 3h8l3 4v14H5V7zM12 3v18M8 3l4 5 4-5"/>',snow:'<path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>',needle:'<path d="M4 20L18 6M18 6l2-2M14 10l2 2"/>',bag:'<path d="M5 8h14l1 13H4zM9 8V5a3 3 0 016 0v3"/>',shoe:'<path d="M3 16l5-6 4 3 4-1 5 3v3H3z"/>',rug:'<rect x="4" y="5" width="16" height="14" rx="1"/><path d="M8 5v14M16 5v14"/>',bed:'<path d="M3 18V8h18v10M3 13h18M6 8V6h5v2"/>',tie:'<path d="M9 3h6l-1 4 2 10-4 4-4-4 2-10z"/>',check:'<path d="M5 12l5 5L20 7"/>',leaf:'<path d="M5 19c0-8 5-13 14-14 0 9-5 14-14 14zM5 19l7-7"/>',hand:'<path d="M7 11V6a2 2 0 014 0v5M11 11V4a2 2 0 014 0v7M15 11V7a2 2 0 014 0v7c0 4-3 7-7 7s-6-2-8-5l-2-4a2 2 0 013-1l2 3"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',truck:'<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>',shield:'<path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/>',bell:'<path d="M6 16V11a6 6 0 0112 0v5l2 2H4zM10 20a2 2 0 004 0"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>'};
+const ico=(n,s=24)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]||''}</svg>`;
+const AR=`<span class="ar">${ico('arrow',18)}</span>`;
+
+/* ---------- SHARED ---------- */
+const phero=(t,c,l='')=>`<section class="phero"><div class="wrap"><div class="crumb">${c}</div><h1 class="reveal">${t}</h1>${l?`<p class="reveal d1">${l}</p>`:''}</div></section>`;
+const band=(t='Ready to hand it over?',p='Create an account, schedule a first pickup, or walk into any of our seven locations.')=>`<section class="sec" style="padding-top:0"><div class="wrap"><div class="band reveal"><div><h2>${t}</h2><p style="margin-top:.6rem">${p}</p></div><div class="acts"><a class="btn primary mag" href="#/pickup#schedule"><span>Schedule a pickup</span>${AR}</a><a class="btn light mag" href="#/locations"><span>Find a location</span></a></div></div></div></section>`;
+const svcScroll=()=>`<div class="hscroll" id="hscroll">${SERVICES.map((s,i)=>`<a class="scard tilt" href="#/services/${s.slug}"><div><span class="ico">${ico(s.ico,44)}</span><h3>${s.name}</h3><small>${s.short}</small></div><div><small style="color:var(--ink)">Turnaround · ${s.turn}</small><span class="go">See details ${ico('arrow',16)}</span></div></a>`).join('')}</div><div class="hbar"><i id="hbar"></i></div>`;
+
+/* ---------- PAGES ---------- */
+const pages={};
+const split=t=>t.split(' ').map((w,i)=>`<span class="w"><span style="animation-delay:${.15+i*.08}s">${w}</span></span>`).join(' ');
+pages.home=()=>`
+<section class="hero"><canvas id="steam"></canvas><div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="kick"><i></i>Dallas–Fort Worth, since 2003</span>
+      <h1>${split('Expect more from your')} <em class="w"><span style="animation-delay:.55s">dry cleaner.</span></em></h1>
+      <p>Certified fabric specialists, hand finishing, and concierge pickup at your door. A weekly shirt order gets the same care as a couture gown.</p>
+      <div class="acts"><a class="btn brass mag" href="#/pickup#schedule"><span>Schedule a pickup</span>${AR}</a><a class="btn ghostw mag" href="#/services"><span>See every service</span></a></div>
+    </div>
+    <div><div class="rail" id="rail">
+      ${[['Silk blouse','linear-gradient(160deg,#F0DFC9,#D9C2A6)','Hand wash · 3 days','couture-garment-cleaning'],['Wool suit','linear-gradient(160deg,#35496A,#1E2E47)','Dry clean · 2 days','dry-cleaning'],['Leather jacket','linear-gradient(160deg,#7A5636,#4E351F)','Recondition · 2–3 wks','leather-cleaning'],['Wedding gown','linear-gradient(160deg,#FFFFFF,#E9E4DA)','Preserve · 3–4 wks','wedding-dress-cleaning']].map((g,i)=>`
+      <div class="hanger" style="left:${6+i*23}%" data-care="${g[2]}" data-name="${g[0]}" data-slug="${g[3]}" tabindex="0" role="button" aria-label="${g[0]}"><div class="hook"></div><div class="body" style="background:${g[1]}"><span class="tag">${g[2].split('·')[0].trim()}</span></div><div class="name">${g[0]}</div></div>`).join('')}
+      <div class="care" id="care">Tap a garment on the rail to see how we would care for it.</div>
+    </div></div>
+  </div>
+  <div class="scrollhint">SCROLL<i></i></div>
+</section>
+<div class="marq"><div>${Array(2).fill(['Dry cleaning','Wash & fold','Alterations','Wedding gowns','Leather & suede','Fur storage','Handbags','Shoes','Oriental rugs','Fine linens'].map(x=>`<span>${x}</span>`).join('')).join('')}</div></div>
+
+<section class="sec"><div class="wrap split">
+  <div class="cmp reveal" id="cmp">
+    <div class="side before"><div class="shirt"><span class="stain"></span><span class="stain s2"></span></div><span class="lbl">BEFORE</span></div>
+    <div class="side after" id="cmpAfter"><div class="shirt"></div><span class="lbl">AFTER</span></div>
+    <div class="handle" id="cmpHandle"><b>‹ ›</b></div>
+  </div>
+  <div>
+    <span class="kick" style="color:var(--brass)"><i style="background:var(--brass)"></i>Drag the slider</span>
+    <h2 class="reveal" style="margin-top:.8rem">Stains other cleaners give up on.</h2>
+    <p class="lede reveal d1" style="margin-top:1.2rem">Red wine on silk, sugar on a gown, oil on wool. Our specialists test the fiber and the dye, then work each spot by hand before anything goes into a machine. Twenty years in Dallas–Fort Worth, and we still inspect every garment twice.</p>
+    <div class="stats reveal d2"><div><span class="stat" data-count="20" data-suffix="+">0</span><small>years in North Texas</small></div><div><span class="stat" data-count="7">0</span><small>neighborhood stores</small></div><div><span class="stat" data-count="2">0</span><small>day standard turnaround</small></div></div>
+  </div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <div class="reveal" style="display:flex;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1rem;flex-wrap:wrap"><h2>What we take care of</h2><a class="btn ghost mag" href="#/services"><span>All services</span>${AR}</a></div>
+  ${svcScroll()}
+</div></section>
+
+<section class="pin" style="background:var(--ink);color:#fff">
+  <div class="wrap stage">
+    <div class="steps">
+      <span class="kick"><i></i>Our signature service · $7/month</span>
+      <h2 style="margin:.8rem 0 1.5rem">Your schedule. Your doorstep.</h2>
+      ${[['Sign up','01','Online or in the app. We assign a route manager for your neighborhood within a day.'],['Leave your bag out','02','Porch, doorman, lockbox: you tell us once and we follow the same routine every visit.'],['Track every item','03','Each garment is scanned in with stain notes and care actions you can read in your account.'],['Returned, ready to wear','04','A reminder text the night before; clothes back on your next service day.']].map((s,i)=>`<div class="step ${i===0?'on':''}" data-i="${i}"><h4><small>${s[1]}</small>${s[0]}</h4><p>${s[2]}</p></div>`).join('')}
+      <a class="btn brass mag" href="#/pickup#schedule" style="margin-top:2rem;justify-self:start"><span>Start pickup &amp; delivery</span>${AR}</a>
+    </div>
+    <div class="vis" id="pinVis">
+      <div class="on"><div class="orb">${ico('bell',110)}</div></div>
+      <div><div class="orb">${ico('bag',110)}</div></div>
+      <div><div class="orb">${ico('eye',110)}</div></div>
+      <div><div class="orb">${ico('truck',110)}</div></div>
+    </div>
+  </div>
+  <div class="spacer" data-step="1"></div><div class="spacer" data-step="2"></div><div class="spacer" data-step="3"></div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <h2 class="reveal" style="margin-bottom:2rem">Why people switch to us</h2>
+  <div class="why">${[['check','Certified specialists','Fabric-care certified staff at every location, not just the plant.'],['sparkle','Advanced stain work','Solvent and treatment matched to the fiber, tested first on a seam.'],['hand','Hand finishing','Collars, cuffs, and pleats pressed by hand and inspected twice.'],['shield','Guaranteed results','Not happy? We re-clean or make it right, no questions.'],['leaf','Eco-conscious care','Energy recovery, solvent recycling, and reusable garment bags.'],['truck','Concierge delivery','Route managers who know your name and your starch preference.']].map((w,i)=>`<div class="tilt reveal d${i%3}">${ico(w[0],32)}<h4>${w[1]}</h4><p>${w[2]}</p></div>`).join('')}</div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap">
+  <div class="rev reveal"><div class="stars">★★★★★</div><blockquote id="rq" style="margin-top:1rem">${REVIEWS[0].q}</blockquote><cite id="rc">${REVIEWS[0].w}</cite>
+  <div class="ctrl"><button id="rprev" aria-label="Previous review">←</button><button id="rnext" aria-label="Next review">→</button><div class="dots" id="rdots">${REVIEWS.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div><a href="#/about/reviews" style="margin-left:auto;font-size:.9rem;color:var(--brass-2)">All reviews</a></div></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap split">
+  <div><h2 class="reveal">Seven stores, one standard</h2><p class="lede reveal d1" style="margin-top:1rem">Kessler Park to Southlake, every store runs on the same inspection process, the same tailors' standards, and the same guarantee.</p><a class="btn ghost mag reveal d2" href="#/locations" style="margin-top:1.5rem"><span>Find your nearest store</span>${AR}</a></div>
+  <div class="map reveal" style="position:static">${mapSVG(null,true)}</div>
+</div></section>
+${band()}`;
+
+pages.pickup=()=>`
+${phero('Pickup & delivery','<a href="#/">Home</a> / Pickup & delivery','Concierge garment care without leaving the house. $7 a month, cancel any time.')}
+<section class="sec"><div class="wrap split" style="align-items:start">
+  <div>
+    <h2 class="reveal">How it works</h2>
+    <div class="steps4 reveal d1" style="grid-template-columns:1fr 1fr;margin-top:2rem">${[['Sign up','Create an account and tell us your address. We assign a route manager within a day.'],['Leave your bag out','We give you two laundry bags. Leave them on your service days wherever you specify.'],['Track everything','Each garment is scanned into your account with stain notes and care actions.'],['Returned on schedule','A reminder text the night before; clothes back on your next service day.']].map(s=>`<div><h4>${s[0]}</h4><p>${s[1]}</p></div>`).join('')}</div>
+    <h3 class="reveal" style="margin-top:3rem">What is included</h3>
+    <ul class="reveal d1" style="list-style:none;display:grid;gap:.6rem;margin-top:1rem">${['Scheduled pickup and delivery at home or office','Garment tracking in the app or online portal','Reminder texts the night before service','Concierge support for special instructions','Complimentary laundry bags'].map(x=>`<li style="display:flex;gap:.7rem;align-items:flex-start;color:var(--charcoal)"><span style="color:var(--brass);margin-top:.2rem">${ico('check',18)}</span>${x}</li>`).join('')}</ul>
+    <p style="margin-top:2rem;font-size:.95rem">Have a team or building? See <a href="#/pickup/corporate" style="color:var(--brass);font-weight:500">corporate concierge services</a>.</p>
+  </div>
+  <div id="schedule" class="reveal d1">${scheduler()}</div>
+</div></section>
+${band('Still have questions?','Route coverage, hours, and pricing are all in the FAQ, or text us any time.')}`;
+
+pages['pickup/corporate']=()=>`
+${phero('Corporate concierge services','<a href="#/">Home</a> / <a href="#/pickup">Pickup & delivery</a> / Corporate','On-site garment care for offices, residential towers, hotels, and clubs.')}
+<section class="sec"><div class="wrap split" style="align-items:start">
+  <div><h2 class="reveal">A perk your people actually use</h2><p class="lede reveal d1" style="margin-top:1rem">We install a secure drop closet or lockers at your building and run a route on a fixed schedule. Employees and residents get their own accounts; you get one invoice or none at all.</p>
+  <div class="why reveal d2" style="grid-template-columns:1fr 1fr;margin-top:2rem">${[['truck','Fixed route days','Twice weekly is typical; daily for larger buildings.'],['shield','Secure drop','Coded lockers or a staffed closet, your choice.'],['bell','Zero admin','Members pay individually or roll into one account.'],['sparkle','Full menu','Dry cleaning, laundry, tailoring, and shoe care.']].map(w=>`<div class="tilt">${ico(w[0],30)}<h4>${w[1]}</h4><p>${w[2]}</p></div>`).join('')}</div></div>
+  <div class="sched reveal d1"><h3>Request a proposal</h3><p style="font-size:.92rem;color:var(--charcoal);margin:.4rem 0 1.4rem">Tell us about the building and we reply within one business day.</p>
+    <div class="field"><label>Company or building</label><input placeholder="Name"></div>
+    <div class="field"><label>Your name</label><input placeholder="Full name"></div>
+    <div class="field"><label>Work email</label><input type="email" placeholder="you@company.com"></div>
+    <div class="field"><label>Approximate headcount</label><select><option>Under 50</option><option>50–200</option><option>200–500</option><option>500+</option></select></div>
+    <div class="field"><label>Anything else</label><textarea rows="3" placeholder="Locker space, current provider, timing"></textarea></div>
+    <button class="btn primary mag" onclick="toast('Request sent. We will be in touch within one business day.')"><span>Send request</span>${AR}</button>
+  </div>
+</div></section>`;
+
+pages.services=()=>`
+${phero('Services','<a href="#/">Home</a> / Services','Everything in a wardrobe or a home, from a shirt to a rug. Choose a service to see what is included and how long it takes.')}
+<section class="sec"><div class="wrap"><div class="cards">${SERVICES.map((s,i)=>`<a class="card tilt reveal d${i%3}" href="#/services/${s.slug}"><span style="color:var(--brass)">${ico(s.ico,40)}</span><h4 style="margin-top:1rem">${s.name}</h4><p>${s.short}</p><p style="margin-top:.8rem;color:var(--ink);font-weight:500;font-size:.85rem">Turnaround · ${s.turn}</p></a>`).join('')}</div></div></section>
+${band()}`;
+
+const svcPage=s=>`
+${phero(s.name,`<a href="#/">Home</a> / <a href="#/services">Services</a> / ${s.name}`)}
+<section class="sec"><div class="wrap detail">
+  <div><p class="lede reveal">${s.desc}</p><ul class="reveal d1">${s.pts.map(p=>`<li>${p}</li>`).join('')}</ul>
+    <h3 class="reveal" style="margin-top:2.5rem">Our process</h3>
+    <div class="steps4 reveal d1" style="grid-template-columns:1fr 1fr;margin-top:1.5rem">${[['Inspect','Every item is checked for stains, damage, and construction before anything touches it.'],['Treat','Spots are worked by hand with treatment matched to the fiber and dye.'],['Clean','Solvent, water, or hand method chosen for the garment, never the batch.'],['Finish & check','Pressed or shaped by hand, then inspected a second time before it is bagged.']].map(x=>`<div><h4>${x[0]}</h4><p>${x[1]}</p></div>`).join('')}</div>
+    <div class="svcnav">${SERVICES.map(x=>`<a href="#/services/${x.slug}" class="${x.slug===s.slug?'on':''}">${x.name}</a>`).join('')}</div>
+  </div>
+  <div><div class="aside reveal d1"><span style="color:var(--brass)">${ico(s.ico,44)}</span><h3 style="margin-top:.8rem">At a glance</h3>
+    <dl><dt>Turnaround</dt><dd>${s.turn}</dd><dt>Best for</dt><dd>${s.short}</dd><dt>Guarantee</dt><dd>Re-cleaned free if you are not satisfied</dd><dt>Available at</dt><dd>All 7 locations &amp; by route</dd></dl>
+    <a class="btn primary mag" href="#/pickup#schedule" style="width:100%;justify-content:center"><span>Schedule a pickup</span>${AR}</a>
+    <a class="btn ghost mag" href="#/locations" style="width:100%;justify-content:center;margin-top:.5rem"><span>Drop off in store</span></a></div></div>
+</div></section>`;
+
+pages.locations=a=>`
+${phero('Locations','<a href="#/">Home</a> / Locations','Seven stores from Kessler Park to Southlake. Select one on the map or in the list.')}
+<section class="sec"><div class="wrap locs">
+  <div class="map reveal">${mapSVG(a)}</div>
+  <div class="loclist reveal d1" id="loclist">${LOCS.map(l=>locCard(l,l.slug===a)).join('')}</div>
+</div></section>
+${band('Prefer not to drive?','Pickup and delivery covers most of North Texas for $7 a month.')}`;
+const locCard=(l,on)=>{const o=isOpen(l);return `<div class="loc ${on?'on':''}" data-slug="${l.slug}" tabindex="0">
+  <div class="top"><h3>${l.name}</h3><span class="open ${o?'y':''}">${o?'Open now':'Closed now'}</span></div>
+  <div class="more"><p>${l.addr}<br>${l.city}</p><p>Mon–Fri ${fmt(l.open)}–${fmt(l.close)} · Sat 9am–2pm · Sun closed</p><p style="margin-top:.5rem;font-style:italic">${l.note}</p>
+  <div class="acts"><a class="btn primary" href="tel:${l.tel.replace(/-/g,'')}"><span>Call ${l.tel}</span></a><a class="btn ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.addr+', '+l.city)}"><span>Directions</span></a></div></div></div>`};
+const fmt=h=>h>12?`${h-12}pm`:`${h}am`;
+function isOpen(l){const d=new Date(new Date().toLocaleString('en-US',{timeZone:'America/Chicago'}));const day=d.getDay(),h=d.getHours()+d.getMinutes()/60;if(day===0)return false;if(day===6)return h>=9&&h<14;return h>=l.open&&h<l.close}
+function mapSVG(active,mini){
+ const px=lon=>((lon+97.28)/(97.28-96.62))*600,py=lat=>((33.12-lat)/(33.12-32.68))*420;
+ return `<svg viewBox="0 0 600 420" role="img" aria-label="Map of Bibbentuckers locations">
+  <defs><pattern id="g" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="rgba(255,255,255,.07)"/></pattern></defs>
+  <rect width="600" height="420" fill="url(#g)"/>
+  <path d="M0 250 C120 240 220 260 310 235 S 470 230 600 245" fill="none" stroke="rgba(221,184,120,.35)" stroke-dasharray="4 6"/>
+  <path d="M310 0 V420" stroke="rgba(255,255,255,.12)"/><path d="M0 155 H600" stroke="rgba(255,255,255,.12)"/>
+  <text x="14" y="405" fill="rgba(255,255,255,.4)" font-size="12" font-family="DM Sans">Fort Worth ←</text><text x="520" y="405" fill="rgba(255,255,255,.4)" font-size="12" font-family="DM Sans">→ Dallas</text>
+  ${LOCS.map((l,i)=>{const x=px(l.lon),y=py(l.lat),on=l.slug===active;return `<g class="pin ${on?'on':''}" data-slug="${l.slug}" ${mini?`onclick="location.hash='#/locations/${l.slug}'"`:''}>
+   <circle class="pulse" cx="${x}" cy="${y}" r="6" fill="none" stroke="var(--brass-2)" style="animation-delay:${i*.35}s"/><circle class="r" cx="${x}" cy="${y}" r="6" fill="var(--brass)"/>
+   <text x="${x+12}" y="${y+4}">${l.name}</text></g>`}).join('')}</svg>`}
+
+pages.about=()=>`
+${phero('About Bibbentuckers','<a href="#/">Home</a> / About','A North Texas dry cleaner that grew by refusing to cut the corners everyone else cut.')}
+<section class="sec"><div class="wrap split">
+  <div class="cmp reveal" id="cmp"><div class="side before"><div class="shirt"><span class="stain"></span><span class="stain s2"></span></div><span class="lbl">BEFORE</span></div><div class="side after" id="cmpAfter"><div class="shirt"></div><span class="lbl">AFTER</span></div><div class="handle" id="cmpHandle"><b>‹ ›</b></div></div>
+  <div><h2 class="reveal">Twenty years of taking clothes seriously</h2><p class="lede reveal d1" style="margin-top:1rem">Bibbentuckers opened in Dallas with one store and one idea: a dry cleaner should treat a customer's shirt the way a tailor treats a suit. Today we run seven stores, a fleet of delivery routes, and in-house teams for tailoring, leather, fur, rugs, and gown preservation.</p>
+  <div class="stats reveal d2"><div><span class="stat" data-count="7">0</span><small>stores</small></div><div><span class="stat" data-count="40" data-suffix="+">0</span><small>delivery routes</small></div><div><span class="stat" data-count="12">0</span><small>in-house tailors</small></div></div></div>
+</div></section>
+<section class="sec" style="padding-top:0"><div class="wrap"><h2 class="reveal" style="margin-bottom:1.5rem">More about us</h2><div class="cards">
+ ${[['Awards & recognition','Best of Dallas, Best of Big D, and industry awards for garment care.','#/about/awards'],['Charity & donations','Coats for Kids, gown donations, and free interview-suit cleaning.','#/about/charity'],['Dry cleaning specials','Current offers for new customers, route members, and bulk orders.','#/about/specials'],['Reviews','What customers in every neighborhood say about us.','#/about/reviews'],['Blog','Care guides, stain advice, and seasonal storage tips.','#/about/blog']].map((c,i)=>`<a class="card tilt reveal d${i%3}" href="${c[2]}"><h4>${c[0]}</h4><p>${c[1]}</p></a>`).join('')}
+</div></div></section>`;
+pages['about/awards']=()=>`${phero('Awards & recognition','<a href="#/">Home</a> / <a href="#/about">About</a> / Awards')}<section class="sec"><div class="wrap cards">${[['2026','Best Dry Cleaner','D Magazine, Best of Big D readers’ choice'],['2025','Best Dry Cleaner','Dallas Observer, Best of Dallas'],['2025','Award of Excellence','Drycleaning & Laundry Institute'],['2024','Best Pickup & Delivery','Park Cities People, Reader’s Choice'],['2024','Green Business Recognition','City of Dallas sustainability program'],['2023','Best Alterations','Plano Star Courier readers’ poll']].map((a,i)=>`<div class="card tilt reveal d${i%3}"><span class="yr">${a[0]}</span><h4 style="margin-top:.6rem">${a[1]}</h4><p>${a[2]}</p></div>`).join('')}</div></section>`;
+pages['about/charity']=()=>`${phero('Charity & donations','<a href="#/">Home</a> / <a href="#/about">About</a> / Charity','Clean clothes change how a person walks into a room. We give that away as often as we can.')}<section class="sec"><div class="wrap cards">${[['Coats for Kids','Every winter we collect, clean, and distribute coats to North Texas families. Drop a coat at any store from October to January.','Ongoing'],['Interview-ready','Job seekers referred by partner nonprofits get suits and dresses cleaned and pressed at no charge.','Year-round'],['Gown donations','Wedding and formal gowns you no longer need are cleaned and passed to Becca’s Closet and similar programs.','Year-round'],['Hanger & bag recycling','Return wire hangers and plastic to any store; we recycle or reuse everything we can.','Ongoing']].map((c,i)=>`<div class="card tilt reveal d${i%3}"><span class="tag">${c[2]}</span><h4>${c[0]}</h4><p>${c[1]}</p></div>`).join('')}</div></section>${band('Have a cause we should know about?','We partner with schools, shelters, and churches across DFW.')}`;
+pages['about/specials']=()=>`${phero('Dry cleaning specials','<a href="#/">Home</a> / <a href="#/about">About</a> / Specials','Current offers. Mention the offer at the counter or add it in your account notes.')}<section class="sec"><div class="wrap">${[['20%','New customer welcome','20% off your first dry cleaning order, in store or by route.'],['$7','Route membership','First month of pickup & delivery for the standard $7, no setup fee, cancel any time.'],['15%','Comforter season','15% off comforters and duvets through November.'],['5 for 4','Tie bundle','Send five ties, pay for four.'],['Free','Rug pickup','Free pickup and delivery on any area rug cleaning.']].map(s=>`<div class="special reveal"><span class="pct">${s[0]}</span><div><h3>${s[1]}</h3><p>${s[2]}</p></div><a class="btn ghost mag" href="#/pickup#schedule"><span>Use this offer</span></a></div>`).join('')}</div></section>`;
+pages['about/reviews']=()=>`${phero('Reviews','<a href="#/">Home</a> / <a href="#/about">About</a> / Reviews','From Google, Yelp, and our own post-order surveys.')}<section class="sec"><div class="wrap cards">${REVIEWS.concat([{q:'Fast, friendly, and they text me the night before every pickup. Exactly the reliability I needed.',w:'Jenna S., Southlake'},{q:'They resoled a pair of loafers I thought were done for. Better than when I bought them.',w:'Robert L., Kessler Park'}]).map((r,i)=>`<div class="card tilt reveal d${i%3}"><div class="stars">★★★★★</div><p style="font-family:var(--serif);font-size:1.35rem;line-height:1.3;color:var(--ink);margin:.8rem 0">${r.q}</p><small style="color:var(--mist)">${r.w}</small></div>`).join('')}</div></section>`;
+pages['about/blog']=()=>`${phero('Blog','<a href="#/">Home</a> / <a href="#/about">About</a> / Blog','Care guides and honest answers from our specialists.')}<section class="sec"><div class="wrap posts">${[['a','Sep 2026','How to store a fur through a Texas summer','Why humidity, not heat, is what damages pelts, and how a cold vault fixes it.'],['b','Aug 2026','Champagne, sugar, and the invisible wedding stain','The stains you cannot see on the day are the ones that yellow a gown in six months.'],['c','Aug 2026','Starch: light, medium, heavy, none','What each setting does to cotton, and why we ask every route customer.'],['a','Jul 2026','Cashmere care without the fear','Hand wash or dry clean? It depends on the knit. Here is how we decide.'],['b','Jun 2026','What "eco-conscious" means in a plant','Solvent recycling, energy recovery, and the plastic we no longer use.'],['c','May 2026','Five things to check before hemming jeans','Shrink first, keep the original hem, and other tailor’s rules.']].map((p,i)=>`<a class="post reveal d${i%3}" href="#/about/blog"><div class="cover ${p[0]}"></div><div class="txt"><small>${p[1]}</small><h4>${p[2]}</h4><p>${p[3]}</p></div></a>`).join('')}</div></section>`;
+pages.contact=()=>`${phero('Contact','<a href="#/">Home</a> / Contact','Call, text, or send a note. A real person at our Dallas office replies.')}<section class="sec"><div class="wrap contact">
+  <div class="cinfo reveal"><dl><div><dt>Phone</dt><dd><a href="tel:2142671700">214-267-1700</a></dd></div><div><dt>SMS text</dt><dd><a href="sms:8446562080">844-656-2080</a></dd></div><div><dt>Corporate office</dt><dd style="font-size:1.2rem;font-family:var(--sans)">4144 North Central, Suite 430<br>Dallas, TX 75204</dd></div><div><dt>Hours</dt><dd style="font-size:1.2rem;font-family:var(--sans)">Mon–Fri 8am–6pm · Sat 9am–2pm</dd></div></dl>
+  <p style="margin-top:2rem;font-size:.95rem">Looking for a store? <a href="#/locations" style="color:var(--brass);font-weight:500">All seven locations</a> with hours and directions. Common questions are in the <a href="#/contact/faq" style="color:var(--brass);font-weight:500">FAQ</a>.</p></div>
+  <div class="sched reveal d1"><h3>Send a message</h3><div class="field" style="margin-top:1.2rem"><label>Name</label><input placeholder="Full name"></div><div class="field"><label>Email or phone</label><input placeholder="How should we reply?"></div><div class="field"><label>Topic</label><select><option>Pickup & delivery</option><option>An order</option><option>Wedding gown</option><option>Corporate service</option><option>Something else</option></select></div><div class="field"><label>Message</label><textarea rows="4" placeholder="Tell us what you need"></textarea></div><button class="btn primary mag" onclick="toast('Message sent. We reply within one business day.')"><span>Send message</span>${AR}</button></div>
+</div></section>`;
+pages['contact/faq']=()=>`${phero('Frequently asked questions','<a href="#/">Home</a> / <a href="#/contact">Contact</a> / FAQ')}<section class="sec"><div class="wrap" style="max-width:840px"><div class="faq reveal">${FAQ.map((f,i)=>`<details ${i===0?'open':''}><summary>${f[0]}</summary><p>${f[1]}</p></details>`).join('')}</div><p style="margin-top:2rem;font-size:.95rem">Not answered here? <a href="#/contact" style="color:var(--brass);font-weight:500">Send us a message</a> or text 844-656-2080.</p></div></section>`;
+pages.account=()=>`${phero('My account','<a href="#/">Home</a> / My account','Track orders, manage preferences, and schedule pickups.')}<section class="sec"><div class="wrap acct">
+  <div class="box reveal"><div class="toggle"><button class="on" onclick="acctMode(this,0)">Sign in</button><button onclick="acctMode(this,1)">Create account</button></div><div id="acctForm">${acctForm(0)}</div></div>
+  <div><h2 class="reveal">What you can do here</h2><div class="feat reveal d1" style="margin-top:1.5rem">${[['eye','Track every garment','See what stage each item is in and any stain notes from your specialist.'],['bell','Set preferences once','Starch, hangers or folded, plastic or reusable bags, drop-off spot.'],['truck','Manage your route','Skip a week, add a one-time pickup, or update your address.'],['shield','Pay securely','Card on file, itemized receipts, and monthly statements.']].map(f=>`<div>${ico(f[0],26)}<div><h4>${f[1]}</h4><p>${f[2]}</p></div></div>`).join('')}</div><a class="btn ghost mag" href="#/app" style="margin-top:2rem"><span>Get the app</span>${AR}</a></div>
+</div></section>`;
+const acctForm=m=>m===0?`<div class="field"><label>Email</label><input type="email" placeholder="you@email.com"></div><div class="field"><label>Password</label><input type="password" placeholder="••••••••"></div><button class="btn primary mag" style="width:100%;justify-content:center" onclick="toast('Design preview: sign in on the live site.')"><span>Sign in</span></button><p style="font-size:.85rem;color:var(--mist);margin-top:1rem;text-align:center">Forgot your password? Text 844-656-2080.</p>`
+:`<div class="field"><label>Full name</label><input placeholder="First and last"></div><div class="field"><label>Email</label><input type="email" placeholder="you@email.com"></div><div class="field"><label>Mobile (for pickup reminders)</label><input type="tel" placeholder="214-555-0100"></div><div class="field"><label>Address</label><input placeholder="Street, city, ZIP"></div><button class="btn primary mag" style="width:100%;justify-content:center" onclick="toast('Design preview: create your account on the live site.')"><span>Create account</span></button>`;
+window.acctMode=(b,m)=>{[...b.parentNode.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');document.getElementById('acctForm').innerHTML=acctForm(m);bindMagnet()};
+pages.app=()=>`${phero('Download the app','<a href="#/">Home</a> / <a href="#/account">My account</a> / App','Schedule, track, and pay from your phone.')}<section class="sec"><div class="wrap acct">
+  <div class="phone tilt reveal"><div class="scr"><b style="font-family:var(--serif);font-size:1.3rem">Good morning, Alex</b><div class="t"><b>Next pickup: Thursday</b>Leave bag by the front door<div class="prog"><i></i></div></div><div class="t"><b>Order #48213 · 6 items</b>Pressing · ready Wed</div></div></div>
+  <div><h2 class="reveal">The whole store, in your pocket</h2><p class="lede reveal d1" style="margin-top:1rem">See your next service day, add a one-time pickup, follow each item from inspection to delivery, and message your route manager.</p>
+  <div class="reveal d2" style="display:flex;gap:.6rem;margin-top:2rem;flex-wrap:wrap"><a class="btn primary mag" target="_blank" rel="noopener" href="https://apps.apple.com/ca/app/bibbentuckers-cleaners/id1250195520"><span> App Store</span></a><a class="btn ghost mag" target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=com.spot.mdc.bibtx"><span>▶ Google Play</span></a></div></div>
+</div></section>`;
+pages.terms=()=>`${phero('Terms & conditions','<a href="#/">Home</a> / Terms')}<section class="sec"><div class="wrap" style="max-width:760px"><p class="lede">By using Bibbentuckers services you agree to our garment care policies, liability limits, and payment terms. Full terms are published on the live site.</p></div></section>`;
+pages.privacy=()=>`${phero('Privacy policy','<a href="#/">Home</a> / Privacy')}<section class="sec"><div class="wrap" style="max-width:760px"><p class="lede">We collect only what is needed to clean and deliver your garments and to run your account. We do not sell personal information. Full policy on the live site.</p></div></section>`;
+
+/* ---------- SCHEDULER ---------- */
+const state={step:0,svc:new Set(['Dry cleaning']),day:null,slot:null};
+function scheduler(){
+ const days=[];const d=new Date();for(let i=1;i<=7;i++){const x=new Date(d);x.setDate(d.getDate()+i);if(x.getDay()!==0)days.push(x)}
+ const steps=[
+  ()=>`<h3>What are we picking up?</h3><p style="font-size:.92rem;color:var(--charcoal);margin:.4rem 0 1.2rem">Choose everything that applies.</p><div class="chips" id="svcChips">${['Dry cleaning','Wash & fold','Alterations','Household items','Shoes & bags','Wedding gown'].map(s=>`<button class="chip ${state.svc.has(s)?'on':''}" data-s="${s}">${s}</button>`).join('')}</div>`,
+  ()=>`<h3>Pick a day and window</h3><p style="font-size:.92rem;color:var(--charcoal);margin:.4rem 0 1.2rem">Route customers keep the same days; one-time pickups can be any day.</p><div class="slotgrid" id="dayGrid">${days.map(x=>{const k=x.toDateString();return `<button class="slot ${state.day===k?'on':''}" data-d="${k}"><b>${x.toLocaleDateString('en-US',{weekday:'short'})}</b>${x.toLocaleDateString('en-US',{month:'short',day:'numeric'})}</button>`}).join('')}</div><div class="chips" id="slotChips" style="margin-top:1rem">${['8–10am','10am–12pm','12–2pm','2–4pm'].map(s=>`<button class="chip ${state.slot===s?'on':''}" data-t="${s}">${s}</button>`).join('')}</div>`,
+  ()=>`<h3>Where should we come?</h3><div class="field" style="margin-top:1rem"><label>Address</label><input id="addr" placeholder="Street, city, ZIP" value="${state.addr||''}"></div><div class="field"><label>Where will the bag be?</label><input id="spot" placeholder="Front porch, with concierge, garage…" value="${state.spot||''}"></div><div class="field"><label>Mobile for reminder text</label><input id="tel" type="tel" placeholder="214-555-0100" value="${state.tel||''}"></div>`,
+  ()=>`<h3>Confirm your pickup</h3><div class="sum" style="margin-top:1rem"><div><span>Services</span><b>${[...state.svc].join(', ')||'—'}</b></div><div><span>When</span><b>${state.day?new Date(state.day).toLocaleDateString('en-US',{weekday:'long',month:'short',day:'numeric'}):'—'}${state.slot?', '+state.slot:''}</b></div><div><span>Where</span><b>${state.addr||'—'}</b></div><div><span>Bag location</span><b>${state.spot||'—'}</b></div><div><span>Membership</span><b>$7/month, cancel any time</b></div></div>`,
+  ()=>`<div class="ok"><div class="tick">${ico('check',30)}</div><h3>Pickup requested</h3><p style="margin:.5rem auto 0;color:rgba(255,255,255,.75);font-size:.95rem">This is a design preview, so nothing was booked. On the live site your route manager confirms by text the night before.</p></div>`
+ ];
+ return `<div class="sched" id="sched"><div class="tabs">${[0,1,2,3].map(i=>`<span class="${i<=Math.min(state.step,3)?'on':''}"></span>`).join('')}</div>${steps[state.step]()}
+ <div class="row">${state.step>0&&state.step<4?`<button class="btn ghost" id="sBack"><span>Back</span></button>`:'<span></span>'}${state.step<3?`<button class="btn primary mag" id="sNext"><span>Continue</span>${AR}</button>`:state.step===3?`<button class="btn brass mag" id="sNext"><span>Confirm pickup</span>${AR}</button>`:`<button class="btn primary mag" id="sReset"><span>Schedule another</span></button>`}</div></div>`}
+function bindScheduler(){
+ const box=document.getElementById('sched');if(!box)return;
+ const re=()=>{box.outerHTML=scheduler();bindScheduler();bindMagnet()};
+ box.querySelectorAll('#svcChips .chip').forEach(c=>c.onclick=()=>{const s=c.dataset.s;state.svc.has(s)?state.svc.delete(s):state.svc.add(s);c.classList.toggle('on')});
+ box.querySelectorAll('#dayGrid .slot').forEach(c=>c.onclick=()=>{state.day=c.dataset.d;box.querySelectorAll('#dayGrid .slot').forEach(x=>x.classList.remove('on'));c.classList.add('on')});
+ box.querySelectorAll('#slotChips .chip').forEach(c=>c.onclick=()=>{state.slot=c.dataset.t;box.querySelectorAll('#slotChips .chip').forEach(x=>x.classList.remove('on'));c.classList.add('on')});
+ const nx=box.querySelector('#sNext');if(nx)nx.onclick=()=>{
+  if(state.step===0&&!state.svc.size)return toast('Choose at least one service.');
+  if(state.step===1&&(!state.day||!state.slot))return toast('Pick a day and a time window.');
+  if(state.step===2){state.addr=box.querySelector('#addr').value;state.spot=box.querySelector('#spot').value;state.tel=box.querySelector('#tel').value;if(!state.addr)return toast('Add an address so we know where to come.')}
+  state.step++;re()};
+ const bk=box.querySelector('#sBack');if(bk)bk.onclick=()=>{state.step--;re()};
+ const rs=box.querySelector('#sReset');if(rs)rs.onclick=()=>{Object.assign(state,{step:0,day:null,slot:null});re()};
+}
+
+/* ---------- INTERACTIONS ---------- */
+const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+/* cursor */
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+if(fine){document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;document.body.classList.toggle('hovering',!!e.target.closest('a,button,.hanger,.loc,summary,.chip,.slot,.pin'))});
+ (function loop(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop)})();
+ document.addEventListener('mouseleave',()=>document.body.classList.add('hide-cur'));document.addEventListener('mouseenter',()=>document.body.classList.remove('hide-cur'))}
+/* magnetic buttons */
+function bindMagnet(){if(!fine||reduce)return;document.querySelectorAll('.mag').forEach(b=>{if(b._m)return;b._m=1;b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();const x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;b.style.transform=`translate(${x*.25}px,${y*.35}px)`});b.addEventListener('mouseleave',()=>b.style.transform='')})}
+/* tilt cards */
+function bindTilt(){if(!fine||reduce)return;document.querySelectorAll('.tilt').forEach(c=>{if(c._t)return;c._t=1;c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${-y*8}deg) rotateY(${x*8}deg) translateY(-4px)`});c.addEventListener('mouseleave',()=>c.style.transform='')})}
+/* reveal + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);e.target.querySelectorAll('[data-count]').forEach(count)}}),{threshold:.15});
+function bindReveal(){document.querySelectorAll('.reveal').forEach(el=>io.observe(el))}
+function count(el){if(el._c)return;el._c=1;const end=+el.dataset.count,suf=el.dataset.suffix||'';const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-p,3);el.textContent=Math.round(end*e)+suf;if(p<1)requestAnimationFrame(f)})(t0)}
+/* steam canvas */
+function steam(){const c=document.getElementById('steam');if(!c||reduce)return;const x=c.getContext('2d');let W,H,P=[];const rs=()=>{W=c.width=c.offsetWidth;H=c.height=c.offsetHeight};rs();addEventListener('resize',rs);
+ for(let i=0;i<70;i++)P.push({x:Math.random()*2000,y:Math.random()*1200,r:20+Math.random()*60,s:.15+Math.random()*.35,a:Math.random()*Math.PI*2});
+ (function f(){if(!document.getElementById('steam'))return;x.clearRect(0,0,W,H);P.forEach(p=>{p.y-=p.s;p.a+=.005;p.x+=Math.sin(p.a)*.4+(mx-W/2)*.0006;if(p.y<-p.r){p.y=H+p.r;p.x=Math.random()*W}const g=x.createRadialGradient(p.x%W,p.y,0,p.x%W,p.y,p.r);g.addColorStop(0,'rgba(221,184,120,.10)');g.addColorStop(1,'rgba(221,184,120,0)');x.fillStyle=g;x.beginPath();x.arc(p.x%W,p.y,p.r,0,7);x.fill()});requestAnimationFrame(f)})()}
+/* compare slider */
+function bindCmp(){const c=document.getElementById('cmp');if(!c)return;const a=document.getElementById('cmpAfter'),h=document.getElementById('cmpHandle');let drag=false;
+ const set=x=>{const r=c.getBoundingClientRect();const p=Math.max(2,Math.min(98,(x-r.left)/r.width*100));a.style.clipPath=`inset(0 0 0 ${p}%)`;h.style.left=p+'%'};
+ c.addEventListener('pointerdown',e=>{drag=true;c.setPointerCapture(e.pointerId);set(e.clientX)});c.addEventListener('pointermove',e=>drag&&set(e.clientX));c.addEventListener('pointerup',()=>drag=false);c.addEventListener('pointercancel',()=>drag=false);
+ if(!reduce){let t=0;const id=setInterval(()=>{if(drag||!document.getElementById('cmp'))return clearInterval(id);t+=.02;if(t>Math.PI)return clearInterval(id);const r=c.getBoundingClientRect();set(r.left+r.width*(.5+Math.sin(t)*.3))},16)}}
+/* pinned process */
+function bindPin(){const sp=document.querySelectorAll('.pin .spacer');if(!sp.length)return;const set=i=>{document.querySelectorAll('.pin .step').forEach(s=>s.classList.toggle('on',+s.dataset.i===i));[...document.getElementById('pinVis').children].forEach((v,j)=>v.classList.toggle('on',j===i))};
+ const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)set(+e.target.dataset.step)}),{rootMargin:'-45% 0px -45% 0px'});sp.forEach(s=>o.observe(s));
+ const top=document.querySelector('.pin .stage');const o2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.boundingClientRect.top>=0)set(0)}),{threshold:.9});o2.observe(top)}
+/* hscroll progress */
+function bindHscroll(){const h=document.getElementById('hscroll'),b=document.getElementById('hbar');if(!h)return;const up=()=>{const p=h.scrollLeft/(h.scrollWidth-h.clientWidth||1);b.style.left=(p*85)+'%'};h.addEventListener('scroll',up);up();
+ h.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)>Math.abs(e.deltaX)&&h.scrollWidth>h.clientWidth){const atEnd=e.deltaY>0&&h.scrollLeft>=h.scrollWidth-h.clientWidth-2,atStart=e.deltaY<0&&h.scrollLeft<=2;if(!atEnd&&!atStart){e.preventDefault();h.scrollLeft+=e.deltaY}}},{passive:false})}
+
+/* ---------- ROUTER ---------- */
+let first=true;
+function route(){
+ const go=()=>{
+  const h=location.hash.replace(/^#\/?/,'').split('#')[0].replace(/\/$/,'');const [a,b]=h.split('/');let html;
+  if(!h)html=pages.home();
+  else if(a==='services'&&b){const s=SERVICES.find(x=>x.slug===b);html=s?svcPage(s):pages.services()}
+  else if(a==='locations')html=pages.locations(b||LOCS[1].slug);
+  else if(pages[h])html=pages[h]();else if(pages[a])html=pages[a]();
+  else html=phero('Page not found','<a href="#/">Home</a>','Try the menu above or go back to the home page.');
+  document.getElementById('app').innerHTML=`<div class="page">${html}</div>`;
+  document.title=`Bibbentuckers — ${h?h.split('/').pop().replace(/-/g,' ').replace(/^\w/,c=>c.toUpperCase()):'Premier Dry Cleaning, Dallas–Fort Worth'}`;
+  const sub=location.hash.split('#')[2];
+  if(sub){setTimeout(()=>document.getElementById(sub)?.scrollIntoView({behavior:'smooth',block:'start'}),80)}else window.scrollTo({top:0});
+  closeDrawer();bindPage(a);onScroll()};
+ const w=document.getElementById('wipe');
+ if(first||reduce){first=false;go();return}
+ w.className='in';setTimeout(()=>{go();w.className='out';setTimeout(()=>w.className='',600)},520)}
+function bindPage(a){
+ bindScheduler();bindMagnet();bindTilt();bindReveal();steam();bindCmp();bindPin();bindHscroll();
+ document.querySelectorAll('.hanger').forEach(h=>{const go=()=>{document.querySelectorAll('.hanger').forEach(x=>x.classList.remove('picked'));h.classList.add('picked');document.getElementById('care').innerHTML=`<b>${h.dataset.name}</b> · ${h.dataset.care.replace('·','—')} &nbsp;<a href="#/services/${h.dataset.slug}" style="color:var(--brass-2);text-decoration:underline">See the service</a>`};h.onclick=go;h.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
+ let ri=0;const rq=document.getElementById('rq');if(rq){const show=n=>{ri=(n+REVIEWS.length)%REVIEWS.length;rq.classList.add('fade');setTimeout(()=>{rq.textContent=REVIEWS[ri].q;document.getElementById('rc').textContent=REVIEWS[ri].w;rq.classList.remove('fade');[...document.getElementById('rdots').children].forEach((d,i)=>d.classList.toggle('on',i===ri))},380)};document.getElementById('rnext').onclick=()=>show(ri+1);document.getElementById('rprev').onclick=()=>show(ri-1);
+  const t=setInterval(()=>{if(!document.getElementById('rq'))return clearInterval(t);show(ri+1)},6000)}
+ if(a==='locations'){const sel=s=>{document.querySelectorAll('.loc').forEach(x=>x.classList.toggle('on',x.dataset.slug===s));document.querySelectorAll('.pin').forEach(x=>x.classList.toggle('on',x.dataset.slug===s));history.replaceState(null,'','#/locations/'+s)};
+  document.querySelectorAll('.loc').forEach(l=>{l.onclick=e=>{if(e.target.closest('a'))return;sel(l.dataset.slug)};l.onkeydown=e=>{if(e.key==='Enter')sel(l.dataset.slug)}});
+  document.querySelectorAll('.pin').forEach(p=>p.onclick=()=>{sel(p.dataset.slug);document.querySelector(`.loc[data-slug="${p.dataset.slug}"]`).scrollIntoView({behavior:'smooth',block:'center'})})}
+}
+/* header + progress */
+const hdr=document.getElementById('hdr'),navGhost=document.getElementById('navGhost');
+function onScroll(){const y=scrollY;const dark=y<(document.querySelector('.hero,.phero')?.offsetHeight||0)-80;hdr.classList.toggle('solid',!dark);navGhost.className='btn '+(dark?'ghostw':'ghost');document.getElementById('prog').style.width=(y/(document.body.scrollHeight-innerHeight)*100)+'%'}
+addEventListener('scroll',onScroll,{passive:true});
+/* nav */
+const menu=document.getElementById('menu');
+menu.innerHTML=NAV.map((n,i)=>`<li><button aria-expanded="false">${n.l}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button><div class="drop">${n.sub.map(s=>`<a href="${s[1]}">${s[0]}${s[2]?`<span>${s[2]}</span>`:''}</a>`).join('')}<a class="all" href="${n.h}">${n.l} overview</a></div></li>`).join('');
+menu.querySelectorAll('li>button').forEach(b=>{b.onclick=()=>{const li=b.parentNode,was=li.classList.contains('open');menu.querySelectorAll('li').forEach(x=>x.classList.remove('open'));if(!was)li.classList.add('open');b.setAttribute('aria-expanded',!was)}});
+document.addEventListener('click',e=>{if(!e.target.closest('#menu'))menu.querySelectorAll('li').forEach(x=>x.classList.remove('open'))});
+document.getElementById('drawerLinks').innerHTML=NAV.map(n=>`<h4><a href="${n.h}" style="color:inherit;padding:0;font-size:inherit">${n.l}</a></h4>${n.sub.map(s=>`<a href="${s[1]}">${s[0]}</a>`).join('')}`).join('')+`<a class="btn brass" href="#/pickup#schedule" style="margin-top:2rem"><span>Schedule a pickup</span></a>`;
+const drawer=document.getElementById('drawer');
+document.getElementById('burger').onclick=()=>{drawer.classList.add('on');drawer.setAttribute('aria-hidden','false')};
+function closeDrawer(){drawer.classList.remove('on');drawer.setAttribute('aria-hidden','true');menu.querySelectorAll('li').forEach(x=>x.classList.remove('open'))}
+document.getElementById('drawerClose').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+let tt;window.toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),3200)};
+addEventListener('hashchange',route);route();
+</script>
+</body>
+</html>
