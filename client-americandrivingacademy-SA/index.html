@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>American Driving Academy — Colorado's Largest Driving School</title>
+<meta name="description" content="Driver's ed, drive tests and behind-the-wheel lessons across 16 Colorado locations. AAA approved. 4.8★ from 15,000+ reviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --navy:#262262; --navy-2:#1a1745; --navy-3:#0f0d2b;
+  --blue:#012c6d; --red:#bf1e2e; --red-2:#9e1524; --amber:#ffb700;
+  --ink:#12102e; --muted:#5b5a72; --line:#e7e7f1;
+  --bg:#ffffff; --soft:#f6f7fb; --soft-2:#eef0f8;
+  --r-s:10px; --r-m:16px; --r-l:24px; --r-xl:32px;
+  --sh-1:0 1px 2px rgba(18,16,46,.06),0 4px 14px rgba(18,16,46,.06);
+  --sh-2:0 18px 44px -18px rgba(38,34,98,.38);
+  --hd:'Exo 2',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --bd:'Roboto',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --nav-h:74px; --util-h:40px;
+  --ease:cubic-bezier(.22,.9,.28,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--bd);font-size:16px;line-height:1.65;overflow-x:hidden}
+body.lock{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--hd);line-height:1.12;margin:0;letter-spacing:-.02em;font-weight:800}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+
+/* ============ LAYOUT ============ */
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+.sec{padding:clamp(56px,7vw,104px) 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--hd);font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--red);border-radius:2px}
+.h2{font-size:clamp(1.85rem,3.6vw,3rem)}
+.lede{color:var(--muted);font-size:clamp(1rem,1.3vw,1.09rem);max-width:62ch}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,52px)}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font-family:var(--hd);font-weight:700;font-size:.95rem;letter-spacing:.01em;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s,color .25s,border-color .25s;will-change:transform}
+.btn svg{width:17px;height:17px;transition:transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover svg{transform:translateX(4px)}
+.btn:active{transform:translateY(0)}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 10px 24px -10px rgba(191,30,46,.75)}
+.btn-red:hover{background:var(--red-2);box-shadow:0 16px 32px -12px rgba(191,30,46,.85)}
+.btn-navy{background:var(--navy);color:#fff;box-shadow:0 10px 24px -10px rgba(38,34,98,.7)}
+.btn-navy:hover{background:var(--navy-2)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.34);color:#fff;backdrop-filter:blur(6px)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+.btn-line{border:1.5px solid var(--line);color:var(--navy);background:#fff}
+.btn-line:hover{border-color:var(--navy);box-shadow:var(--sh-1)}
+.btn-sm{padding:11px 20px;font-size:.87rem}
+
+/* ============ UTILITY BAR ============ */
+.util{background:var(--navy-3);color:#fff;font-size:.82rem;height:var(--util-h);display:flex;align-items:center}
+.util .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.util-l{display:flex;align-items:center;gap:22px;min-width:0;overflow:hidden}
+.util a{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;color:rgba(255,255,255,.86);transition:color .2s;min-width:0}
+.util a:hover{color:var(--amber)}
+.util svg{width:14px;height:14px;flex:none}
+.util-r{display:flex;align-items:center;gap:14px}
+.lang{display:flex;background:rgba(255,255,255,.1);border-radius:999px;padding:3px}
+.lang button{padding:3px 12px;border-radius:999px;font-size:.74rem;font-weight:700;font-family:var(--hd);color:rgba(255,255,255,.7);transition:.2s}
+.lang button[aria-pressed="true"]{background:#fff;color:var(--navy)}
+.util-sep{width:1px;height:16px;background:rgba(255,255,255,.18)}
+
+/* ============ HEADER ============ */
+.hdr{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line);transition:box-shadow .3s,height .3s}
+.hdr.stuck{box-shadow:0 8px 28px -14px rgba(18,16,46,.28)}
+.hdr .wrap{display:flex;align-items:center;gap:20px;height:var(--nav-h);transition:height .3s var(--ease)}
+.hdr.stuck .wrap{height:64px}
+.logo{display:flex;align-items:center;gap:11px;flex:none}
+.logo-mark{width:40px;height:40px;border-radius:11px;background:linear-gradient(140deg,var(--navy),var(--blue));display:grid;place-items:center;box-shadow:0 6px 16px -6px rgba(38,34,98,.6);position:relative;overflow:hidden;flex:none}
+.logo-mark::after{content:"";position:absolute;inset:auto -30% -55% -30%;height:60%;background:var(--red);transform:rotate(-12deg);opacity:.9}
+.logo-mark svg{width:21px;height:21px;position:relative;z-index:1}
+.logo-txt{font-family:var(--hd);font-weight:800;font-size:.98rem;line-height:1.08;letter-spacing:-.025em;color:var(--navy)}
+.logo-txt span{display:block;font-family:var(--bd);font-weight:500;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-top:3px}
+
+/* nav */
+.nav{margin-left:auto;display:flex;align-items:center;gap:2px}
+.nav>li{position:relative}
+.nav>li>a,.nav>li>button{display:flex;align-items:center;gap:5px;padding:10px 13px;border-radius:10px;font-family:var(--hd);font-weight:700;font-size:.82rem;letter-spacing:.03em;text-transform:uppercase;color:var(--navy);transition:.2s}
+.nav>li>a:hover,.nav>li>button:hover,.nav>li.open>button{background:var(--soft-2);color:var(--blue)}
+.caret{width:9px;height:9px;transition:transform .3s var(--ease)}
+.nav>li.open .caret{transform:rotate(180deg)}
+.drop{position:absolute;top:calc(100% + 12px);left:0;background:#fff;border:1px solid var(--line);border-radius:var(--r-m);box-shadow:var(--sh-2);padding:10px;min-width:272px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:.26s var(--ease);z-index:5}
+.nav>li.open .drop{opacity:1;visibility:visible;transform:translateY(0)}
+.drop.wide{min-width:520px;left:50%;transform:translate(-50%,-8px)}
+.nav>li.open .drop.wide{transform:translate(-50%,0)}
+.drop.right{left:auto;right:0}
+.drop-t{font-family:var(--hd);font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:8px 12px 6px}
+.drop a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:.9rem;font-weight:500;color:var(--ink);transition:.18s}
+.drop a:hover{background:var(--soft);color:var(--blue);transform:translateX(3px)}
+.drop a .dot{width:5px;height:5px;border-radius:50%;background:var(--red);flex:none;opacity:.35;transition:.18s}
+.drop a:hover .dot{opacity:1;transform:scale(1.5)}
+.drop .cols{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.drop-cta{margin-top:8px;border-top:1px solid var(--line);padding:12px 12px 6px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:.82rem;color:var(--muted)}
+.drop-cta a{color:var(--red);font-weight:700;padding:0}
+.hdr-cta{flex:none;display:flex;gap:10px;align-items:center}
+.burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);place-items:center;flex:none}
+.burger span{display:block;width:19px;height:2px;background:var(--navy);border-radius:2px;position:relative;transition:.3s var(--ease)}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:19px;height:2px;background:var(--navy);border-radius:2px;transition:.3s var(--ease)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+body.menu .burger span{background:transparent}
+body.menu .burger span::before{top:0;transform:rotate(45deg)}
+body.menu .burger span::after{top:0;transform:rotate(-45deg)}
+
+/* mobile drawer */
+.drawer{position:fixed;inset:0;top:0;z-index:95;background:#fff;transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column;visibility:hidden}
+body.menu .drawer{transform:translateX(0);visibility:visible}
+.drawer-top{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);flex:none}
+.drawer-body{overflow-y:auto;padding:12px 20px 30px;flex:1;-webkit-overflow-scrolling:touch}
+.macc{border-bottom:1px solid var(--line)}
+.macc>button,.macc>a{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:17px 2px;font-family:var(--hd);font-weight:700;font-size:1.02rem;text-transform:uppercase;letter-spacing:.03em;color:var(--navy);text-align:left}
+.macc .sub{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.macc.open .sub{max-height:640px}
+.macc.open>button .caret{transform:rotate(180deg)}
+.sub a{display:block;padding:11px 2px 11px 16px;font-size:.93rem;color:var(--muted);border-left:2px solid var(--line)}
+.sub a:hover{color:var(--red);border-color:var(--red)}
+.sub .lbl{padding:12px 2px 4px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);font-family:var(--hd);font-weight:700}
+.drawer-foot{padding:20px;border-top:1px solid var(--line);display:grid;gap:10px;flex:none}
+.drawer-foot .btn{width:100%}
+.drawer-foot .lang button{color:var(--muted);padding:6px 16px;font-size:.8rem}
+.drawer-foot .lang button[aria-pressed="true"]{background:var(--navy);color:#fff}
+
+/* ============ HERO ============ */
+.hero{position:relative;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 45%,var(--blue) 100%);color:#fff;overflow:hidden;padding:clamp(56px,7vw,92px) 0 0}
+.hero::before{content:"";position:absolute;width:720px;height:720px;right:-220px;top:-280px;border-radius:50%;background:radial-gradient(circle,rgba(191,30,46,.42),transparent 62%);filter:blur(10px)}
+.hero::after{content:"";position:absolute;width:520px;height:520px;left:-200px;bottom:-240px;border-radius:50%;background:radial-gradient(circle,rgba(255,183,0,.22),transparent 65%)}
+.road{position:absolute;inset:auto 0 0 0;height:140px;opacity:.16;pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(30px,4.5vw,64px);align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:7px 15px 7px 8px;border-radius:999px;font-size:.79rem;font-weight:500;margin-bottom:22px;backdrop-filter:blur(6px)}
+.hero-badge b{background:var(--amber);color:var(--navy-3);font-family:var(--hd);font-weight:800;font-size:.68rem;letter-spacing:.06em;padding:3px 9px;border-radius:999px;text-transform:uppercase}
+.hero h1{font-size:clamp(2.3rem,5.6vw,4.15rem);letter-spacing:-.035em}
+.hero h1 .accent{position:relative;display:inline-block;color:var(--amber)}
+.hero h1 .accent::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.1em;background:var(--red);border-radius:4px;transform:scaleX(0);transform-origin:left;animation:swipe 1s var(--ease) .5s forwards}
+@keyframes swipe{to{transform:scaleX(1)}}
+.hero-sub{color:rgba(255,255,255,.82);font-size:clamp(1.02rem,1.5vw,1.16rem);margin-top:20px;max-width:53ch}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.trust{display:flex;align-items:center;gap:clamp(16px,2.4vw,30px);flex-wrap:wrap;margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14)}
+.trust-i{display:flex;align-items:center;gap:10px;font-size:.84rem;color:rgba(255,255,255,.8)}
+.trust-i strong{display:block;font-family:var(--hd);font-size:1.02rem;color:#fff;line-height:1.2}
+.stars{display:flex;gap:2px}
+.stars svg{width:14px;height:14px;fill:var(--amber)}
+.seal{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-family:var(--hd);font-weight:800;font-size:.62rem;letter-spacing:.04em;border:1px solid rgba(255,255,255,.2);flex:none}
+
+/* hero card / quiz */
+.picker{background:#fff;color:var(--ink);border-radius:var(--r-xl);padding:clamp(22px,2.6vw,30px);box-shadow:0 40px 80px -30px rgba(0,0,0,.55);position:relative}
+.picker::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(140deg,var(--amber),transparent 40%);opacity:.5;z-index:-1}
+.picker h3{font-size:1.2rem;margin-bottom:4px}
+.picker .hint{font-size:.85rem;color:var(--muted);margin-bottom:18px}
+.ages{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.age{border:1.5px solid var(--line);border-radius:14px;padding:13px 6px;text-align:center;transition:.25s var(--ease)}
+.age b{display:block;font-family:var(--hd);font-weight:800;font-size:1.06rem;color:var(--navy)}
+.age small{font-size:.7rem;color:var(--muted);letter-spacing:.04em}
+.age:hover{border-color:var(--navy);transform:translateY(-2px)}
+.age.on{background:var(--navy);border-color:var(--navy);box-shadow:0 12px 26px -12px rgba(38,34,98,.8)}
+.age.on b{color:#fff}.age.on small{color:rgba(255,255,255,.75)}
+.result{background:var(--soft);border-radius:var(--r-m);padding:16px 18px;border-left:3px solid var(--red);min-height:112px;transition:.3s}
+.result .tag{font-family:var(--hd);font-weight:700;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.result h4{font-size:1.02rem;margin:5px 0 6px}
+.result p{font-size:.86rem;color:var(--muted);line-height:1.55}
+.result.flash{animation:pop .45s var(--ease)}
+@keyframes pop{0%{transform:scale(.97);opacity:.4}100%{transform:scale(1);opacity:1}}
+.picker .btn{width:100%;margin-top:16px}
+.picker .fine{text-align:center;font-size:.74rem;color:var(--muted);margin-top:11px}
+
+/* stat ribbon */
+.ribbon{background:#fff;border-radius:var(--r-l) var(--r-l) 0 0;margin-top:clamp(40px,5vw,70px);position:relative;z-index:2;box-shadow:0 -20px 50px -30px rgba(0,0,0,.4)}
+.ribbon-in{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:clamp(22px,3vw,34px) 0}
+.stat{text-align:center;padding:8px 14px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat b{display:block;font-family:var(--hd);font-weight:800;font-size:clamp(1.7rem,3.4vw,2.6rem);color:var(--navy);letter-spacing:-.04em;line-height:1}
+.stat span{font-size:.78rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+
+/* ============ LAW ALERT ============ */
+.alert{background:linear-gradient(120deg,var(--red),var(--red-2));color:#fff;position:relative;overflow:hidden}
+.alert::after{content:"";position:absolute;right:-90px;top:-90px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.07)}
+.alert-in{display:grid;grid-template-columns:1fr auto;gap:clamp(22px,3.5vw,50px);align-items:center;padding:clamp(28px,3.6vw,44px) 0;position:relative;z-index:1}
+.alert .tagline{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.2);padding:5px 13px;border-radius:999px;font-family:var(--hd);font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:13px}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,183,0,.7)}50%{box-shadow:0 0 0 7px rgba(255,183,0,0)}}
+.alert h2{font-size:clamp(1.4rem,2.5vw,2.05rem)}
+.alert p{color:rgba(255,255,255,.88);margin-top:10px;max-width:60ch;font-size:.96rem}
+.alert .btn{margin-top:20px}
+.count{display:flex;gap:9px}
+.cbox{background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-m);padding:14px 6px;min-width:76px;text-align:center}
+.cbox b{display:block;font-family:var(--hd);font-weight:800;font-size:clamp(1.4rem,2.4vw,2rem);line-height:1;letter-spacing:-.03em}
+.cbox span{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+
+/* ============ SERVICES ============ */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,1.6vw,22px)}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-l);padding:clamp(22px,2.4vw,30px);overflow:hidden;transition:.35s var(--ease);display:flex;flex-direction:column}
+.card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--red),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.card:hover{transform:translateY(-8px);box-shadow:var(--sh-2);border-color:transparent}
+.card:hover::after{transform:scaleX(1)}
+.ico{width:52px;height:52px;border-radius:15px;background:var(--soft-2);display:grid;place-items:center;margin-bottom:18px;transition:.35s var(--ease)}
+.ico svg{width:24px;height:24px;stroke:var(--navy);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:.35s}
+.card:hover .ico{background:var(--navy);transform:rotate(-6deg) scale(1.06)}
+.card:hover .ico svg{stroke:#fff}
+.card h3{font-size:1.14rem;margin-bottom:9px}
+.card p{font-size:.9rem;color:var(--muted);flex:1}
+.card .more{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-family:var(--hd);font-weight:700;font-size:.82rem;color:var(--red);letter-spacing:.03em}
+.card .more svg{width:15px;height:15px;transition:transform .3s var(--ease)}
+.card:hover .more svg{transform:translateX(5px)}
+.card .pill{position:absolute;top:18px;right:18px;background:var(--amber);color:var(--navy-3);font-family:var(--hd);font-weight:800;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+
+/* ============ LOCATIONS ============ */
+.loc{background:var(--soft)}
+.tabs{display:flex;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:26px;width:max-content;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabs button{padding:10px 20px;border-radius:999px;font-family:var(--hd);font-weight:700;font-size:.83rem;color:var(--muted);white-space:nowrap;transition:.25s var(--ease)}
+.tabs button.on{background:var(--navy);color:#fff;box-shadow:0 8px 18px -10px rgba(38,34,98,.9)}
+.cities{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.city{background:#fff;border:1px solid var(--line);border-radius:var(--r-m);padding:18px;display:flex;align-items:center;gap:12px;transition:.28s var(--ease)}
+.city:hover{border-color:var(--navy);transform:translateY(-4px);box-shadow:var(--sh-1)}
+.city .pin{width:34px;height:34px;border-radius:10px;background:var(--soft-2);display:grid;place-items:center;flex:none;transition:.28s}
+.city .pin svg{width:16px;height:16px;stroke:var(--navy);fill:none;stroke-width:1.8}
+.city:hover .pin{background:var(--red)}
+.city:hover .pin svg{stroke:#fff}
+.city b{font-family:var(--hd);font-size:.93rem;display:block;line-height:1.25}
+.city small{font-size:.72rem;color:var(--muted)}
+
+/* ============ WHY US ============ */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.8vw,24px)}
+.why{padding:clamp(22px,2.4vw,30px);border-radius:var(--r-l);background:var(--soft);transition:.35s var(--ease);position:relative;overflow:hidden}
+.why:hover{background:var(--navy);color:#fff;transform:translateY(-6px)}
+.why:hover p{color:rgba(255,255,255,.8)}
+.why:hover .n{color:rgba(255,255,255,.14)}
+.why:hover .wico svg{stroke:var(--amber)}
+.n{position:absolute;right:16px;top:6px;font-family:var(--hd);font-weight:800;font-size:3.6rem;color:rgba(38,34,98,.07);transition:.35s}
+.wico{margin-bottom:14px}
+.wico svg{width:26px;height:26px;stroke:var(--red);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:.35s}
+.why h3{font-size:1.05rem;margin-bottom:7px}
+.why p{font-size:.88rem;color:var(--muted);transition:.35s}
+
+/* ============ AAA BAND ============ */
+.aaa{background:linear-gradient(120deg,var(--navy-2),var(--blue));color:#fff;border-radius:var(--r-xl);padding:clamp(28px,3.6vw,50px);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,3vw,40px);align-items:center;position:relative;overflow:hidden}
+.aaa::after{content:"";position:absolute;left:-60px;bottom:-120px;width:300px;height:300px;border-radius:50%;background:rgba(255,183,0,.12)}
+.aaa-seal{width:86px;height:86px;border-radius:22px;background:var(--amber);color:var(--navy-3);display:grid;place-items:center;font-family:var(--hd);font-weight:800;font-size:1.5rem;letter-spacing:-.03em;flex:none;box-shadow:0 16px 30px -14px rgba(255,183,0,.8);position:relative;z-index:1}
+.aaa-txt{position:relative;z-index:1}
+.aaa h3{font-size:clamp(1.15rem,2vw,1.6rem)}
+.aaa p{color:rgba(255,255,255,.8);font-size:.88rem;margin-top:9px;max-width:62ch}
+.aaa .btn{position:relative;z-index:1;flex:none}
+
+/* ============ FAQ ============ */
+.faq-wrap{display:grid;grid-template-columns:.86fr 1.14fr;gap:clamp(28px,4vw,60px);align-items:start}
+.faq-list{border-top:1px solid var(--line)}
+.q{border-bottom:1px solid var(--line)}
+.q button{width:100%;display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:21px 4px;text-align:left;font-family:var(--hd);font-weight:700;font-size:clamp(.96rem,1.4vw,1.06rem);color:var(--navy);transition:color .2s}
+.q button:hover{color:var(--red)}
+.q .pm{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;flex:none;margin-top:2px;transition:.3s var(--ease)}
+.q .pm::before,.q .pm::after{content:"";position:absolute;width:10px;height:1.8px;background:var(--navy);border-radius:2px;transition:.3s var(--ease)}
+.q .pm{position:relative}
+.q .pm::after{transform:rotate(90deg)}
+.q.open .pm{background:var(--red);border-color:var(--red);transform:rotate(180deg)}
+.q.open .pm::before,.q.open .pm::after{background:#fff}
+.q.open .pm::after{transform:rotate(0)}
+.a{max-height:0;overflow:hidden;transition:max-height .42s var(--ease)}
+.a p{padding:0 4px 22px;color:var(--muted);font-size:.93rem;max-width:66ch}
+
+/* ============ FINAL CTA ============ */
+.final{background:var(--navy-3);color:#fff;position:relative;overflow:hidden;text-align:center}
+.final::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(191,30,46,.45),transparent 62%)}
+.final .wrap{position:relative;z-index:1}
+.final h2{font-size:clamp(2rem,4.4vw,3.4rem);max-width:17ch;margin-inline:auto}
+.final p{color:rgba(255,255,255,.76);margin:18px auto 0;max-width:54ch}
+.final .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.final .phones{display:flex;gap:clamp(18px,3vw,44px);justify-content:center;flex-wrap:wrap;margin-top:38px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+.final .phones a{text-align:left}
+.final .phones small{display:block;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.final .phones b{font-family:var(--hd);font-size:1.12rem;transition:color .2s}
+.final .phones a:hover b{color:var(--amber)}
+
+/* ============ FOOTER ============ */
+.ftr{background:var(--navy-3);color:rgba(255,255,255,.65);font-size:.88rem;border-top:1px solid rgba(255,255,255,.09)}
+.ftr-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.2fr;gap:clamp(22px,3vw,40px);padding:clamp(40px,5vw,66px) 0 34px}
+.ftr h4{color:#fff;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.ftr li{margin-bottom:9px}
+.ftr a:hover{color:var(--amber)}
+.ftr .about p{margin:14px 0 18px;max-width:34ch;font-size:.86rem}
+.socials{display:flex;gap:9px}
+.socials a{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.08);display:grid;place-items:center;transition:.25s var(--ease)}
+.socials a:hover{background:var(--red);transform:translateY(-3px)}
+.socials svg{width:16px;height:16px;fill:#fff}
+.ftr-phone{display:block;margin-bottom:12px}
+.ftr-phone small{display:block;font-size:.72rem;color:rgba(255,255,255,.45)}
+.ftr-phone b{color:#fff;font-family:var(--hd);font-size:.95rem}
+.ftr-bot{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.8rem}
+.ftr-bot ul{display:flex;gap:20px;flex-wrap:wrap}
+
+/* ============ FAB ============ */
+.top{position:fixed;right:20px;bottom:20px;z-index:80;width:48px;height:48px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;box-shadow:var(--sh-2);opacity:0;visibility:hidden;transform:translateY(12px);transition:.3s var(--ease)}
+.top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.top:hover{background:var(--red)}
+.top svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.2}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1180px){
+  .nav>li>a,.nav>li>button{padding:10px 9px;font-size:.76rem}
+  .cities{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:1024px){
+  .nav,.hdr-cta .btn{display:none}
+  .burger{display:grid}
+  .hdr .wrap{justify-content:space-between}
+  .hero-grid{grid-template-columns:1fr;gap:38px}
+  .picker{max-width:520px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .faq-wrap{grid-template-columns:1fr}
+  .ftr-grid{grid-template-columns:repeat(3,1fr)}
+  .aaa{grid-template-columns:auto 1fr;text-align:left}
+  .aaa .btn{grid-column:1/-1;justify-self:start}
+}
+@media (max-width:860px){
+  .util-l a:not(.u-key){display:none}
+  .alert-in{grid-template-columns:1fr}
+  .cities{grid-template-columns:repeat(3,1fr)}
+  .ribbon-in{grid-template-columns:repeat(2,1fr);gap:18px}
+  .stat:nth-child(2){border-right:0}
+  .stat{border-bottom:0}
+}
+@media (max-width:760px){
+  .util .lang,.util .util-sep{display:none}
+  .util-l a .reg{display:none}
+}
+@media (max-width:640px){
+  .wrap{width:min(1240px,100% - 32px)}
+  .util{font-size:.76rem}
+  .util-l{gap:12px}
+  .cards{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .cities{grid-template-columns:repeat(2,1fr)}
+  .ftr-grid{grid-template-columns:repeat(2,1fr)}
+  .ages{grid-template-columns:1fr}
+  .age{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px}
+  .age small{font-size:.75rem}
+  .hero-cta .btn{width:100%}
+  .count{width:100%}
+  .cbox{flex:1;min-width:0;padding:12px 4px}
+  .aaa{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .aaa p{margin-inline:auto}
+  .final .phones{flex-direction:column;align-items:center;gap:16px}
+  .final .phones a{text-align:center}
+  .ftr-bot{justify-content:center;text-align:center}
+}
+@media (max-width:420px){
+  .logo-txt{font-size:.86rem}
+  .trust{gap:14px}
+  .cities{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== UTILITY BAR ========== -->
+<div class="util">
+  <div class="wrap">
+    <div class="util-l">
+      <a class="u-key" href="tel:1-719-442-0400"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg> <span class="reg">Southern CO</span> <strong>(719) 442-0400</strong></a>
+      <a href="tel:1-303-623-1404"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg> <span class="reg">Northern CO</span> <strong>(303) 623-1404</strong></a>
+    </div>
+    <div class="util-r">
+      <div class="lang" role="group" aria-label="Language">
+        <button aria-pressed="true">EN</button>
+        <button aria-pressed="false">ES</button>
+      </div>
+      <span class="util-sep"></span>
+      <a href="https://bookings.americandrivingacademy.com/Login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Student Login</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="American Driving Academy home">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3v5.8M12 15.2V21M3 12h5.8M15.2 12H21"/></svg>
+      </span>
+      <span class="logo-txt">American<br>Driving Academy<span>Colorado since 2000</span></span>
+    </a>
+
+    <ul class="nav" id="nav">
+      <li data-drop>
+        <button aria-expanded="false">Courses <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+        <div class="drop">
+          <div class="drop-t">Driver's Education</div>
+          <a href="/30-hour-online/"><span class="dot"></span>30-Hour Online Course</a>
+          <a href="/30-hour-classroom/"><span class="dot"></span>30-Hour Classroom Course</a>
+          <a href="/clase-de-permiso/"><span class="dot"></span>Clase de Permiso <em style="margin-left:auto;font-size:.7rem;color:var(--red);font-style:normal">ES</em></a>
+          <div class="drop-cta"><span>Not sure which fits?</span><a href="#picker">Take the 10-sec quiz →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button aria-expanded="false">Drive Tests <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+        <div class="drop">
+          <div class="drop-t">State-Certified Testing</div>
+          <a href="/drivers-permit-testing/"><span class="dot"></span>Drivers Permit Testing</a>
+          <a href="/drivers-license-testing/"><span class="dot"></span>Drivers License Testing</a>
+          <a href="/drivers-license-testing/practice-drivers-license-test/"><span class="dot"></span>Practice Driving Evaluation</a>
+          <a href="/practice-permit-test/"><span class="dot"></span>Practice Permit Test</a>
+          <div class="drop-cta"><span>Test seats fill fast</span><a href="#book">Book a test →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button aria-expanded="false">Online <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+        <div class="drop wide">
+          <div class="drop-t">Online Packages by Location</div>
+          <div class="cols">
+            <a href="/30-hour-online/aurora-program-online-packages/"><span class="dot"></span>Aurora</a>
+            <a href="/30-hour-online/centennial-program-online-packages/"><span class="dot"></span>Centennial</a>
+            <a href="/30-hour-online/colorado-springs-program-online-packages/"><span class="dot"></span>Colorado Springs</a>
+            <a href="/30-hour-online/denver-program-online-packages/"><span class="dot"></span>Denver</a>
+            <a href="/erie-program-online-packages/"><span class="dot"></span>Erie</a>
+            <a href="/30-hour-online/fort-collins-program-online-packages/"><span class="dot"></span>Fort Collins</a>
+            <a href="/30-hour-online/longmont-program-online-packages/"><span class="dot"></span>Longmont</a>
+            <a href="/30-hour-online/loveland-program-online-packages/"><span class="dot"></span>Loveland</a>
+            <a href="/30-hour-online/pueblo-program-online-packages/"><span class="dot"></span>Pueblo</a>
+            <a href="/30-hour-online/westminster-program-online-packages/"><span class="dot"></span>Westminster</a>
+          </div>
+          <div class="drop-cta"><span>Start today, study at your pace</span><a href="/online-packages/">All online packages →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button aria-expanded="false">Classroom <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+        <div class="drop wide">
+          <div class="drop-t">Classroom Packages by Location</div>
+          <div class="cols">
+            <a href="/full-program/aurora-full-program/"><span class="dot"></span>Aurora</a>
+            <a href="/full-program/centennial-full-program/"><span class="dot"></span>Centennial</a>
+            <a href="/full-program/colorado-springs-full-program/"><span class="dot"></span>Colorado Springs</a>
+            <a href="/full-program/denver-full-program/"><span class="dot"></span>Denver</a>
+            <a href="/full-program/erie-full-program/"><span class="dot"></span>Erie</a>
+            <a href="/full-program/fort-collins-full-program/"><span class="dot"></span>Fort Collins</a>
+            <a href="/full-program/longmont-full-program/"><span class="dot"></span>Longmont</a>
+            <a href="/full-program/loveland-full-program/"><span class="dot"></span>Loveland</a>
+            <a href="/full-program/pueblo-full-program/"><span class="dot"></span>Pueblo</a>
+            <a href="/full-program/westminster-full-program/"><span class="dot"></span>Westminster</a>
+          </div>
+          <div class="drop-cta"><span>Average class size: 25</span><a href="/full-program/">All classroom packages →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button aria-expanded="false">Lessons <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+        <div class="drop wide">
+          <div class="drop-t">Behind-the-Wheel by Location</div>
+          <div class="cols">
+            <a href="/behind-the-wheel-driving-lessons/aurora-behind-the-wheel-driving-lessons/"><span class="dot"></span>Aurora</a>
+            <a href="/behind-the-wheel-driving-lessons/centennial-behind-the-wheel-driving-lessons/"><span class="dot"></span>Centennial</a>
+            <a href="/behind-the-wheel-driving-lessons/colorado-springs-behind-the-wheel-driving-lessons/"><span class="dot"></span>Colorado Springs</a>
+            <a href="/behind-the-wheel-driving-lessons/denver-behind-the-wheel-driving-lessons/"><span class="dot"></span>Denver</a>
+            <a href="/behind-the-wheel-driving-lessons/erie-behind-the-wheel-driving-lessons/"><span class="dot"></span>Erie</a>
+            <a href="/behind-the-wheel-driving-lessons/fort-collins-behind-the-wheel-driving-lessons/"><span class="dot"></span>Fort Collins</a>
+            <a href="/behind-the-wheel-driving-lessons/longmont-behind-the-wheel-driving-lessons/"><span class="dot"></span>Longmont</a>
+            <a href="/behind-the-wheel-driving-lessons/loveland-behind-the-wheel-driving-lessons/"><span class="dot"></span>Loveland</a>
+            <a href="/behind-the-wheel-driving-lessons/pueblo-behind-the-wheel-driving-lessons/"><span class="dot"></span>Pueblo</a>
+            <a href="/behind-the-wheel-driving-lessons/westminster-behind-the-wheel-driving-lessons/"><span class="dot"></span>Westminster</a>
+          </div>
+          <div class="drop-cta"><span>2-hour sessions · dual-controlled cars</span><a href="/behind-the-wheel-driving-lessons/">All lessons →</a></div>
+        </div>
+      </li>
+      <li data-drop>
+        <button aria-expanded="false">About <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+        <div class="drop right">
+          <div class="drop-t">Our Academy</div>
+          <a href="/about-us/"><span class="dot"></span>About Us</a>
+          <a href="/our-instructors/"><span class="dot"></span>Our Instructors</a>
+          <a href="/careers/"><span class="dot"></span>Careers</a>
+          <a href="/community-partners/"><span class="dot"></span>Community Partners</a>
+          <a href="/blog/"><span class="dot"></span>Blog</a>
+        </div>
+      </li>
+      <li><a href="/contact-us/">Contact</a></li>
+    </ul>
+
+    <div class="hdr-cta">
+      <a class="btn btn-red btn-sm" href="#picker">Start Driving <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MOBILE DRAWER ========== -->
+<div class="drawer" id="drawer" role="dialog" aria-label="Menu">
+  <div class="drawer-top">
+    <span class="logo-txt" style="font-size:.92rem">American<br>Driving Academy</span>
+    <button class="burger" id="burger2" aria-label="Close menu" style="display:grid"><span></span></button>
+  </div>
+  <div class="drawer-body">
+    <div class="macc">
+      <button>Courses <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+      <div class="sub">
+        <a href="/30-hour-online/">30-Hour Online Course</a>
+        <a href="/30-hour-classroom/">30-Hour Classroom Course</a>
+        <a href="/clase-de-permiso/">Clase de Permiso</a>
+      </div>
+    </div>
+    <div class="macc">
+      <button>Drive Tests <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+      <div class="sub">
+        <a href="/drivers-permit-testing/">Drivers Permit Testing</a>
+        <a href="/drivers-license-testing/">Drivers License Testing</a>
+        <a href="/drivers-license-testing/practice-drivers-license-test/">Practice Driving Evaluation</a>
+        <a href="/practice-permit-test/">Practice Permit Test</a>
+      </div>
+    </div>
+    <div class="macc">
+      <button>Online Packages <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+      <div class="sub" data-cities="online"><span class="lbl">Choose your city</span></div>
+    </div>
+    <div class="macc">
+      <button>Classroom Packages <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+      <div class="sub" data-cities="classroom"><span class="lbl">Choose your city</span></div>
+    </div>
+    <div class="macc">
+      <button>Lessons <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+      <div class="sub" data-cities="lessons"><span class="lbl">Choose your city</span></div>
+    </div>
+    <div class="macc">
+      <button>About <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 4 4 4 4-4"/></svg></button>
+      <div class="sub">
+        <a href="/about-us/">About Us</a>
+        <a href="/our-instructors/">Our Instructors</a>
+        <a href="/careers/">Careers</a>
+        <a href="/community-partners/">Community Partners</a>
+        <a href="/blog/">Blog</a>
+      </div>
+    </div>
+    <div class="macc"><a href="/contact-us/">Contact Us</a></div>
+    <div class="macc"><a href="https://bookings.americandrivingacademy.com/Login">Student Login</a></div>
+  </div>
+  <div class="drawer-foot">
+    <div class="lang" style="background:var(--soft-2);justify-self:start" role="group" aria-label="Language">
+      <button aria-pressed="true">English</button>
+      <button aria-pressed="false">Español</button>
+    </div>
+    <a class="btn btn-red" href="#picker">Start Driving</a>
+    <a class="btn btn-line" href="tel:1-303-623-1404">Call (303) 623-1404</a>
+  </div>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-badge"><b>New</b> 2027 Colorado driver's ed law — get ahead of the rush</span>
+        <h1>Colorado's largest driving school. <span class="accent">Licensed for life.</span></h1>
+        <p class="hero-sub">Driver's ed, state-certified drive tests and behind-the-wheel lessons across 16 locations. 40,000 students a year trust us to get them road-ready — safely.</p>
+        <div class="hero-cta">
+          <a class="btn btn-red" href="#picker">I'm a Teen — Start Driving <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#picker">I'm an Adult</a>
+        </div>
+        <div class="trust">
+          <div class="trust-i">
+            <div>
+              <div class="stars" aria-label="4.8 out of 5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg></div>
+              <strong>4.8 / 5</strong>15,000+ reviews
+            </div>
+          </div>
+          <div class="trust-i"><span class="seal">AAA</span><div><strong>AAA Approved</strong>Driving school</div></div>
+          <div class="trust-i"><span class="seal">MADD</span><div><strong>MADD Partner</strong>Driver ed partner</div></div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE PICKER -->
+      <div class="picker" id="picker">
+        <h3>What do I actually need?</h3>
+        <p class="hint">Pick an age. We'll show the exact path — 10 seconds.</p>
+        <div class="ages" id="ages" role="group" aria-label="Select age range">
+          <button class="age on" data-age="15"><b>15–17</b><small>Teen</small></button>
+          <button class="age" data-age="18"><b>18–20</b><small>Young adult</small></button>
+          <button class="age" data-age="21"><b>21+</b><small>Adult</small></button>
+        </div>
+        <div class="result" id="result" aria-live="polite"></div>
+        <a class="btn btn-red" id="pickCta" href="/30-hour-online/">See my package <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+        <p class="fine">No payment needed to see pricing & schedules.</p>
+      </div>
+    </div>
+
+    <!-- STAT RIBBON -->
+    <div class="ribbon">
+      <div class="wrap">
+        <div class="ribbon-in" id="stats">
+          <div class="stat"><b data-to="25" data-suf="+">0</b><span>Years driving CO</span></div>
+          <div class="stat"><b data-to="40000" data-suf="">0</b><span>Students / year</span></div>
+          <div class="stat"><b data-to="75" data-suf="+">0</b><span>Certified instructors</span></div>
+          <div class="stat"><b data-to="16" data-suf="">0</b><span>Colorado locations</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 2027 LAW ALERT ========== -->
+<section class="alert">
+  <div class="wrap">
+    <div class="alert-in">
+      <div class="rv">
+        <span class="tagline"><span class="pulse"></span> Important update</span>
+        <h2>The 2027 Colorado driver's ed law lands January 1.</h2>
+        <p>Every driver under 21 will need driver's education <em>before</em> a permit. Ages 15–17: a 30-hour course. Ages 18–20: the 30-hour course or a 4-hour awareness course. Our state-approved courses are already open — start now and skip the January backlog.</p>
+        <a class="btn btn-ghost" href="/blog/">Read the full parent guide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="count rv" id="countdown" aria-label="Countdown to January 1, 2027">
+        <div class="cbox"><b data-c="d">—</b><span>Days</span></div>
+        <div class="cbox"><b data-c="h">—</b><span>Hours</span></div>
+        <div class="cbox"><b data-c="m">—</b><span>Mins</span></div>
+        <div class="cbox"><b data-c="s">—</b><span>Secs</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="sec" id="book">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow">Our Services</span>
+        <h2 class="h2">Four ways we get you licensed.</h2>
+        <p class="lede" style="margin-top:14px">Mix and match, or take the full program. Every path is state-approved and taught by certified instructors.</p>
+      </div>
+      <a class="btn btn-line" href="/contact-us/">Talk to a human</a>
+    </div>
+    <div class="cards">
+      <article class="card rv">
+        <span class="pill">Most booked</span>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 11.5 11 13.5 15.5 9"/><path d="M12 2 4 5v6.5c0 5 3.4 9.4 8 10.5 4.6-1.1 8-5.5 8-10.5V5Z"/></svg></div>
+        <h3>Drive Testing</h3>
+        <p>Third-party, state-certified permit and license exams — with real feedback from your examiner, not just a pass/fail.</p>
+        <a class="more" href="/colorado-drivers-license-and-permit-testing/">Book a drive test <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="card rv">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 5h18v12H3z"/><path d="M8 21h8M12 17v4"/><path d="M7 11h5M7 8h8"/></svg></div>
+        <h3>Classroom Packages</h3>
+        <p>30 hours of in-person driver's ed with an average class size of 25 — plus behind-the-wheel hours bundled in.</p>
+        <a class="more" href="/full-program/">View classroom packages <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="card rv">
+        <span class="pill">Start today</span>
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="m10 9 4 2.5-4 2.5z"/></svg></div>
+        <h3>Online Packages</h3>
+        <p>The same 30-hour state-approved course, on your schedule. Phone, tablet or laptop — pause and pick up anywhere.</p>
+        <a class="more" href="/online-packages/">View online packages <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="card rv">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 17h14M6.5 17V9l1.8-3.6A2 2 0 0 1 10.1 4h3.8a2 2 0 0 1 1.8 1.4L17.5 9v8"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/></svg></div>
+        <h3>Driving Lessons</h3>
+        <p>Two-hour behind-the-wheel sessions in dual-controlled cars with a certified instructor beside you the whole way.</p>
+        <a class="more" href="/behind-the-wheel-driving-lessons/">View driving lessons <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOCATIONS ========== -->
+<section class="sec loc">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow">16 Colorado Locations</span>
+        <h2 class="h2">Find your city. Pick your program.</h2>
+      </div>
+    </div>
+    <div class="tabs rv" id="tabs" role="tablist">
+      <button class="on" data-tab="online" role="tab">Online Packages</button>
+      <button data-tab="classroom" role="tab">Classroom Packages</button>
+      <button data-tab="lessons" role="tab">Driving Lessons</button>
+    </div>
+    <div class="cities rv" id="cities"></div>
+  </div>
+</section>
+
+<!-- ========== WHY US ========== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow">Why Us?</span>
+        <h2 class="h2">25 years of getting it right.</h2>
+        <p class="lede" style="margin-top:14px">We're not the cheapest hour on the road. We're the one parents recommend to other parents.</p>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why rv"><span class="n">01</span><div class="wico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg></div><h3>Flexible Scheduling</h3><p>Any day of the week, morning or evening, with a choice of instructors. Built around school, work and everything else.</p></div>
+      <div class="why rv"><span class="n">02</span><div class="wico"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6.5c0 5 3.4 9.4 8 10.5 4.6-1.1 8-5.5 8-10.5V5Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Safety First</h3><p>Every lesson carries the latest defensive-driving technique. Safety isn't a module — it's the whole curriculum.</p></div>
+      <div class="why rv"><span class="n">03</span><div class="wico"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.8 8.8-8.8a5.5 5.5 0 0 0 0-7.8Z"/></svg></div><h3>Peace Of Mind</h3><p>Students — and their parents — finish knowing they have the judgment to stay safe for life, not just pass a test.</p></div>
+      <div class="why rv"><span class="n">04</span><div class="wico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></svg></div><h3>Multiple Languages</h3><p>Bilingual instructors, Spanish-language classes and phone support. Clase de Permiso available year-round.</p></div>
+      <div class="why rv"><span class="n">05</span><div class="wico"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h3>Professional Instructors</h3><p>State-certified, extensively trained, and carrying years of safe driving behind them — all 75+ of them.</p></div>
+      <div class="why rv"><span class="n">06</span><div class="wico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></div><h3>Lifetime Support</h3><p>Graduated years ago? Still call us. Past students get answers on safe driving for as long as they want them.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AAA BAND ========== -->
+<section style="padding-bottom:clamp(56px,7vw,104px)">
+  <div class="wrap">
+    <div class="aaa rv">
+      <div class="aaa-seal">AAA</div>
+      <div class="aaa-txt">
+        <h3>Free AAA membership for your teen with a learner's permit.</h3>
+        <p>For teens who complete an American Driving Academy course and are dependents of active AAA Primary Members in Colorado. Membership expires on the Primary member's renewal date. Some restrictions apply.</p>
+      </div>
+      <a class="btn btn-red" href="tel:1-877-244-9790">Call 877-244-9790</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="sec" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="faq-wrap">
+      <div class="rv">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="h2" style="margin-top:12px">Questions parents<br>ask us first.</h2>
+        <p class="lede" style="margin-top:16px">Still unsure? Call Northern Colorado at (303) 623-1404 or Southern Colorado at (719) 442-0400 — a real person picks up.</p>
+        <a class="btn btn-navy" style="margin-top:22px" href="/contact-us/">Contact us today <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="faq-list rv" id="faq">
+        <div class="q open">
+          <button aria-expanded="true">What is the first step to getting a driver's license in Colorado?<span class="pm"></span></button>
+          <div class="a"><p>Pass the Colorado written permit test to receive your learner's permit. If you're 15, you must also complete a state-approved driver's education course before you can receive that permit. Once you have it, you can start practicing and complete behind-the-wheel training before your Colorado drive test.</p></div>
+        </div>
+        <div class="q">
+          <button aria-expanded="false">Do I need to take driver's education in Colorado?<span class="pm"></span></button>
+          <div class="a"><p>Today it depends on your age. From January 1, 2027, every driver under 21 must complete driver's ed before getting a permit — 30 hours for ages 15–17, and either the 30-hour course or a 4-hour driver awareness course for ages 18–20.</p></div>
+        </div>
+        <div class="q">
+          <button aria-expanded="false">What services does American Driving Academy offer?<span class="pm"></span></button>
+          <div class="a"><p>State-certified permit and license drive testing, 30-hour online and classroom driver's education, Spanish-language Clase de Permiso, behind-the-wheel driving lessons, practice permit tests and practice driving evaluations.</p></div>
+        </div>
+        <div class="q">
+          <button aria-expanded="false">Where are your driving school locations in Colorado?<span class="pm"></span></button>
+          <div class="a"><p>We serve Aurora, Centennial, Colorado Springs, Denver, Erie, Fort Collins, Longmont, Loveland, Pueblo and Westminster, across 16 locations statewide — the largest footprint of any driving school in Colorado.</p></div>
+        </div>
+        <div class="q">
+          <button aria-expanded="false">How long does it take to complete driver's education?<span class="pm"></span></button>
+          <div class="a"><p>The state-approved course is 30 hours. Online students set their own pace and can finish in a couple of weeks; classroom students follow a scheduled session calendar. Behind-the-wheel lessons run in two-hour blocks alongside either format.</p></div>
+        </div>
+        <div class="q">
+          <button aria-expanded="false">Do I need a permit before taking driving lessons?<span class="pm"></span></button>
+          <div class="a"><p>Yes — a valid Colorado learner's permit is required before you get behind the wheel with an instructor. If you don't have one yet, start with the permit test or the 30-hour course, and we'll sequence the rest for you.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="sec final">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--amber)">Ready when you are</span>
+    <h2 style="margin-top:16px">Your first drive is closer than you think.</h2>
+    <p>Pick a course, book a drive test, or just call and tell us where you're at. We'll build the path from there.</p>
+    <div class="btns">
+      <a class="btn btn-red" href="#picker">Start Driving <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-ghost" href="/colorado-drivers-license-and-permit-testing/">Book a drive test</a>
+    </div>
+    <div class="phones">
+      <a href="tel:1-719-442-0400"><small>Colorado Springs &amp; Pueblo</small><b>(719) 442-0400</b></a>
+      <a href="tel:1-303-623-1404"><small>Aurora &amp; Centennial</small><b>(303) 623-1404</b></a>
+      <a href="tel:1-303-623-1404"><small>Denver &amp; Westminster</small><b>(303) 623-1404</b></a>
+      <a href="tel:1-303-623-1404"><small>Longmont, Loveland &amp; Fort Collins</small><b>(303) 623-1404</b></a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div class="about">
+        <a class="logo" href="/" style="margin-bottom:4px">
+          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3v5.8M12 15.2V21M3 12h5.8M15.2 12H21"/></svg></span>
+          <span class="logo-txt" style="color:#fff">American<br>Driving Academy<span>Colorado since 2000</span></span>
+        </a>
+        <p>Colorado's largest driving school and drive testing provider. AAA approved. Recognized by MADD as a driver education partner.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.55-1.5h1.65V4.6A22 22 0 0 0 14.3 4.5c-2.4 0-4 1.45-4 4.1v2.3H7.6V14h2.7v8z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.21.96.47 1.38.89.42.42.68.82.89 1.38.17.42.37 1.06.42 2.23.06 1.25.07 1.62.07 4.81s-.01 3.56-.07 4.81c-.05 1.17-.25 1.8-.42 2.23-.21.56-.47.96-.89 1.38-.42.42-.82.68-1.38.89-.42.17-1.06.37-2.23.42-1.25.06-1.62.07-4.85.07s-3.6-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.21-.96-.47-1.38-.89a3.7 3.7 0 0 1-.89-1.38c-.17-.42-.37-1.06-.42-2.23C2.21 15.56 2.2 15.19 2.2 12s.01-3.56.07-4.81c.05-1.17.25-1.8.42-2.23.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.42-.17 1.06-.37 2.23-.42C8.44 2.21 8.8 2.2 12 2.2Zm0 3.15A6.65 6.65 0 1 0 18.65 12 6.65 6.65 0 0 0 12 5.35Zm0 10.97A4.32 4.32 0 1 1 16.32 12 4.32 4.32 0 0 1 12 16.32Zm6.91-11.2a1.55 1.55 0 1 1-1.55-1.56 1.55 1.55 0 0 1 1.55 1.56Z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.4-.43-5.03a2.6 2.6 0 0 0-1.84-1.85C19.1 4.7 12 4.7 12 4.7s-7.1 0-8.73.42a2.6 2.6 0 0 0-1.84 1.85C1 8.6 1 12 1 12s0 3.4.43 5.03a2.6 2.6 0 0 0 1.84 1.85c1.63.42 8.73.42 8.73.42s7.1 0 8.73-.42a2.6 2.6 0 0 0 1.84-1.85C23 15.4 23 12 23 12ZM9.75 15.3V8.7L15.5 12Z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="/30-hour-online/">30 Hour Online</a></li>
+          <li><a href="/30-hour-classroom/">30 Hour Classroom</a></li>
+          <li><a href="/clase-de-permiso/">Clase De Permiso</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="/drivers-permit-testing/">Drivers Permit Testing</a></li>
+          <li><a href="/drivers-license-testing/">Drivers License Testing</a></li>
+          <li><a href="/drivers-license-testing/practice-drivers-license-test/">Practice Driving Evaluation</a></li>
+          <li><a href="/full-program/">Full Program</a></li>
+          <li><a href="/behind-the-wheel-driving-lessons/">Behind the Wheel Lessons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="/about-us/">About Us</a></li>
+          <li><a href="/our-instructors/">Our Instructors</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/community-partners/">Community Partners</a></li>
+          <li><a href="/blog/">Our Blog</a></li>
+          <li><a href="/contact-us/">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Call Us</h4>
+        <a class="ftr-phone" href="tel:1-719-442-0400"><small>Colorado Springs &amp; Pueblo</small><b>(719) 442-0400</b></a>
+        <a class="ftr-phone" href="tel:1-303-623-1404"><small>Aurora, Centennial, Denver &amp; Westminster</small><b>(303) 623-1404</b></a>
+        <a class="ftr-phone" href="tel:1-303-623-1404"><small>Longmont, Loveland &amp; Fort Collins</small><b>(303) 623-1404</b></a>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <span>© 2026 American Driving Academy — All Rights Reserved</span>
+      <ul>
+        <li><a href="/ada-refund-policy/">Refund Policy</a></li>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+        <li><a href="/terms-service/">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<button class="top" id="top" aria-label="Back to top"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(s,c){return (c||document).querySelector(s)},
+      $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+  /* ---------- DATA ---------- */
+  var CITIES = ["Aurora","Centennial","Colorado Springs","Denver","Erie","Fort Collins","Longmont","Loveland","Pueblo","Westminster"];
+  var slug = function(c){return c.toLowerCase().replace(/\s+/g,'-')};
+  var URLS = {
+    online: function(c){ return c==="Erie" ? "/erie-program-online-packages/" : "/30-hour-online/"+slug(c)+"-program-online-packages/"; },
+    classroom: function(c){ return "/full-program/"+slug(c)+"-full-program/"; },
+    lessons: function(c){ return "/behind-the-wheel-driving-lessons/"+slug(c)+"-behind-the-wheel-driving-lessons/"; }
+  };
+  var LABEL = {online:"Online package", classroom:"Classroom package", lessons:"Behind-the-wheel"};
+
+  /* ---------- HEADER STICKY ---------- */
+  var hdr = $('#hdr');
+  var onScroll = function(){
+    var y = window.pageYOffset;
+    hdr.classList.toggle('stuck', y > 16);
+    $('#top').classList.toggle('show', y > 620);
+  };
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---------- DESKTOP DROPDOWNS ---------- */
+  $$('#nav li[data-drop]').forEach(function(li){
+    var btn = $('button', li), t;
+    var open = function(v){
+      $$('#nav li[data-drop]').forEach(function(o){ if(o!==li){o.classList.remove('open'); $('button',o).setAttribute('aria-expanded','false');} });
+      li.classList.toggle('open', v); btn.setAttribute('aria-expanded', v?'true':'false');
+    };
+    btn.addEventListener('click', function(e){ e.stopPropagation(); open(!li.classList.contains('open')); });
+    li.addEventListener('mouseenter', function(){ clearTimeout(t); if(window.innerWidth>1024) open(true); });
+    li.addEventListener('mouseleave', function(){ if(window.innerWidth>1024) t = setTimeout(function(){open(false)}, 140); });
+  });
+  document.addEventListener('click', function(){ $$('#nav li.open').forEach(function(o){o.classList.remove('open'); $('button',o).setAttribute('aria-expanded','false');}); });
+  document.addEventListener('keydown', function(e){
+    if(e.key!=='Escape') return;
+    $$('#nav li.open').forEach(function(o){o.classList.remove('open')});
+    if(document.body.classList.contains('menu')) toggleMenu(false);
+  });
+
+  /* ---------- MOBILE DRAWER ---------- */
+  function toggleMenu(v){
+    document.body.classList.toggle('menu', v);
+    document.body.classList.toggle('lock', v);
+    $('#burger').setAttribute('aria-expanded', v?'true':'false');
+  }
+  $('#burger').addEventListener('click', function(){ toggleMenu(!document.body.classList.contains('menu')); });
+  $('#burger2').addEventListener('click', function(){ toggleMenu(false); });
+  $$('.drawer a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
+
+  $$('.macc > button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var p = b.parentElement, was = p.classList.contains('open');
+      $$('.macc').forEach(function(m){m.classList.remove('open')});
+      p.classList.toggle('open', !was);
+    });
+  });
+  $$('.sub[data-cities]').forEach(function(box){
+    var k = box.getAttribute('data-cities');
+    CITIES.forEach(function(c){
+      var a = document.createElement('a'); a.href = URLS[k](c); a.textContent = c; box.appendChild(a);
+    });
+  });
+
+  /* ---------- AGE PICKER ---------- */
+  var PATHS = {
+    "15": {tag:"Ages 15–17", h:"30-Hour Driver's Ed + Behind-the-Wheel", p:"Colorado requires a state-approved 30-hour course before your permit. Take it online at your own pace or in a classroom, then add behind-the-wheel lessons.", cta:"See teen packages", url:"/full-program/"},
+    "18": {tag:"Ages 18–20", h:"30-Hour Course or 4-Hour Awareness", p:"From Jan 1, 2027 you'll need one of the two before a permit. The 30-hour course covers you either way — and it's the stronger prep for the drive test.", cta:"See online packages", url:"/online-packages/"},
+    "21": {tag:"Ages 21+", h:"Drive Test + Behind-the-Wheel Lessons", p:"No course required. Book your state-certified drive test directly, and add 2-hour lessons with a certified instructor if you want road time first.", cta:"Book a drive test", url:"/colorado-drivers-license-and-permit-testing/"}
+  };
+  var res = $('#result'), cta = $('#pickCta');
+  function setAge(k){
+    var d = PATHS[k];
+    res.innerHTML = '<span class="tag">'+d.tag+'</span><h4>'+d.h+'</h4><p>'+d.p+'</p>';
+    res.classList.remove('flash'); void res.offsetWidth; res.classList.add('flash');
+    cta.href = d.url;
+    cta.innerHTML = d.cta+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
+  }
+  $$('#ages .age').forEach(function(b){
+    b.addEventListener('click', function(){
+      $$('#ages .age').forEach(function(o){o.classList.remove('on')});
+      b.classList.add('on'); setAge(b.getAttribute('data-age'));
+    });
+  });
+  setAge('15');
+
+  /* ---------- LOCATION TABS ---------- */
+  var grid = $('#cities');
+  function renderCities(k){
+    grid.innerHTML = '';
+    CITIES.forEach(function(c){
+      var a = document.createElement('a');
+      a.className = 'city'; a.href = URLS[k](c);
+      a.innerHTML = '<span class="pin"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span><b>'+c+'</b><small>'+LABEL[k]+'</small></span>';
+      grid.appendChild(a);
+    });
+  }
+  $$('#tabs button').forEach(function(b){
+    b.addEventListener('click', function(){
+      $$('#tabs button').forEach(function(o){o.classList.remove('on')});
+      b.classList.add('on'); renderCities(b.getAttribute('data-tab'));
+    });
+  });
+  renderCities('online');
+
+  /* ---------- FAQ ---------- */
+  function sizeA(q){ var a = $('.a', q); a.style.maxHeight = q.classList.contains('open') ? a.scrollHeight+'px' : '0px'; }
+  $$('#faq .q').forEach(function(q){
+    $('button', q).addEventListener('click', function(){
+      var was = q.classList.contains('open');
+      $$('#faq .q').forEach(function(o){ o.classList.remove('open'); $('button',o).setAttribute('aria-expanded','false'); sizeA(o); });
+      if(!was){ q.classList.add('open'); $('button',q).setAttribute('aria-expanded','true'); sizeA(q); }
+    });
+    sizeA(q);
+  });
+  window.addEventListener('resize', function(){ $$('#faq .q.open').forEach(sizeA); });
+
+  /* ---------- COUNTDOWN ---------- */
+  var target = new Date('2027-01-01T00:00:00-07:00').getTime();
+  function tick(){
+    var d = Math.max(0, target - Date.now()), s = Math.floor(d/1000);
+    var set = function(k,v){ var el = $('[data-c="'+k+'"]'); if(el) el.textContent = v < 10 ? '0'+v : v; };
+    set('d', Math.floor(s/86400)); set('h', Math.floor(s%86400/3600)); set('m', Math.floor(s%3600/60)); set('s', s%60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- COUNTERS ---------- */
+  function runCounters(){
+    $$('#stats b').forEach(function(el){
+      var to = +el.getAttribute('data-to'), suf = el.getAttribute('data-suf')||'', t0 = null, dur = 1500;
+      function step(ts){
+        if(!t0) t0 = ts;
+        var p = Math.min(1,(ts-t0)/dur), e = 1-Math.pow(1-p,3);
+        el.textContent = Math.round(to*e).toLocaleString('en-US')+suf;
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  /* ---------- REVEAL ---------- */
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    $$('.rv').forEach(function(el,i){ el.style.transitionDelay = (i%4*70)+'ms'; io.observe(el); });
+
+    var so = new IntersectionObserver(function(es){
+      if(es[0].isIntersecting){ runCounters(); so.disconnect(); }
+    },{threshold:.15});
+    so.observe($('#stats'));
+  } else {
+    $$('.rv').forEach(function(el){el.classList.add('in')}); runCounters();
+  }
+
+  /* ---------- MISC ---------- */
+  $('#top').addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+  $$('.lang').forEach(function(g){
+    $$('button', g).forEach(function(b, i){
+      b.addEventListener('click', function(){
+        $$('.lang').forEach(function(g2){
+          $$('button', g2).forEach(function(o, j){ o.setAttribute('aria-pressed', j===i ? 'true' : 'false'); });
+        });
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
